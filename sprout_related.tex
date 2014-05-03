@@ -1,0 +1,111 @@
+\section{Related Work}
+\label{s:related}
+
+\paragraph{End-to-end algorithms.}
+%Although a large number of congestion control algorithms have been
+%developed over the past three decades, 
+
+Traditional congestion-control algorithms generally do not
+simultaneously achieve high utilization and low delay over paths with
+high rate variations.
+%They also often introduce long and variable
+%delays.
+Early TCP variants such as Tahoe and Reno~\cite{Jacobson88} do not
+explicitly adapt to delay (other than from ACK clocking), and require
+an appropriate buffer size for good performance. TCP
+Vegas~\cite{Brakmo94}, FAST~\cite{FAST}, and Compound TCP~\cite{CTCP}
+incorporate round-trip delay explicitly, but the adaptation is
+reactive and does not directly involve the receiver's observed rate.
+
+LEDBAT~\cite{ledbat} (and TCP Nice~\cite{tcpnice}) share our goals of
+high throughput without introducing long delays, but LEDBAT does not
+perform as well as Sprout. We believe this is because of its choice of
+congestion signal (one-way delay) and the absence of forecasting.
+Some recent work proposes TCP receiver modifications to combat
+bufferbloat in 3G/4G wireless networks~\cite{tcpbufferbloat}.
+%We note
+%that it is not enough to reactively throttle the receiver window when
+%delays rise, because one needs mechanisms to predict rate increases
+%and outages as well.
+Schemes such as ``TCP-friendly'' equation-based
+rate control~\cite{ebcc} and binomial congestion
+control~\cite{binomial} exhibit slower transmission rate variations
+than TCP, and in principle could introduce lower delay, but perform
+poorly in the face of sudden rate changes~\cite{slowcc-dynamic}.
+
+Google has proposed a congestion-control scheme~\cite{WebRTCdraft} for
+the WebRTC system that uses an arrival-time filter at the receiver,
+along with other congestion signals, to decide whether a real-time
+flow should increase, decrease, or hold its current bit rate. We plan
+to investigate this system and assess it on the same metrics as the
+other schemes in our evaluation.
+
+%In contrast to all these schemes, Sprout uses the observed
+%distribution of packet interarrivals at the receiver as a signal,
+%and incorporates stochastic predictions to forecast future rates that
+%balance bit rate and delay. Rate forecasts allow Sprout to react on
+%time scales faster than the round-trip time of the connection, which
+%is unusual behavior for an end-to-end scheme. 
+%Sprout's forecasts bear
+%some similarity with the approach presented in a Hotnets position
+%paper~\cite{WB11} (both deal with network uncertainty), but the
+%problems tackled and the methods proposed in that paper are completely
+%different.
+\vspace{\baselineskip}
+\noindent \textbf{Active queue management.} Active queue management schemes such as RED~\cite{Floyd93} and its
+variants, BLUE~\cite{BLUE}, AVQ~\cite{AVQ}, etc., drop or mark packets
+using local indications of upcoming congestion at a bottleneck queue,
+with the idea that endpoints react to these signals before queues
+grow significantly. Over the past several years, it has proven
+difficult to automatically configure the parameters used in these
+algorithms. To alleviate this shortcoming, CoDel~\cite{CoDel} changes
+the signal of congestion from queue length to the delay experienced by
+packets in a queue, with a view toward controlling that delay,
+especially in networks with deep queues
+(``bufferbloat''~\cite{bufferbloat}).
+
+Our results show that Sprout largely holds its own with CoDel over
+challenging wireless conditions without requiring any gateway
+modifications. It is important to note that network paths in practice
+have several places where queues may build up (in LTE infrastructure, in baseband modems, in IP-layer
+queues, near the USB interface in tethering mode, etc.), so one may
+need to deploy CoDel at all these locations, which could be
+difficult. However, in networks where there is a lower degree of
+isolation between queues than the cellular networks we study, CoDel
+may be the right approach to controlling delay while providing good
+throughput, but it is a ``one-size-fits-all'' method that assumes
+that a single throughput-delay tradeoff is right for all traffic. 
+%
+
+% Sprout is end-to-end; it does not require any AQM at the bottleneck
+% gateways, and might work well if all the sources in the network used
+% it. That, however, is a difficult test to conduct in practice, so the
+% immediately deployable ``use case'' is in cellular wireless networks
+% where per-user queueing and (weighted and channel-dependent)
+% round-robin scheduling is the norm. Per-user queues have traditionally
+% been viewed as ``non-scalable'' in the folklore of Internet
+% architecture, but cellular networks (for all their other shortcomings)
+% demonstrate that such isolation is both practical and useful (e.g.,
+% for accounting, billing, providing loose rate guarantees tied to
+% subscriptions, etc.).  For wired networks with fair queueing gateways,
+% a good congestion control solution is the packet-pair
+% scheme~\cite{packetpair}, which relies on transmitting pairs (or
+% bunches) of back-to-back packets to determine transmission rates. This
+% method works well when the link rate is constant, but when link rates
+% vary quickly, packet-pair methods are unlikely to work well.
+
+%\paragraph{Adaptive applications.}
+%In terms of application-layer adaptation, Alfalfa's new interface to
+%video codec libraries enables finer-grained adaptation compared with
+%other systems. Our use is an example of Application-Level Framing
+%(ALF)~\cite{alf}, but unlike previous ALF-inspired applications, the
+%adaptation is at a finer grain. Alfalfa does not just pick a suitable
+%application data unit (ADU) from pre-determined choices, but instead
+%constructs data frames dynamically using knowledge of previous
+%receptions as well as the forecasted network conditions.  The ALF
+%principle has been used in a variety of media delivery protocols and
+%architectural proposals, including RTP~\cite{RTP}, MBone
+%applications~\cite{Mbone}, the Congestion Manager API~\cite{cm},
+%etc. Much of the previous work on ALF-inspired protocols has focused
+%on handling packet losses~\cite{audio-perkins,cmvideo}, whereas in
+%cellular networks the main problem is coping with rapid rate variations.

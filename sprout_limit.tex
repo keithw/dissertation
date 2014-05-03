@@ -1,0 +1,44 @@
+\section{Limitations and Future Work}
+
+Although our results are encouraging, there are several limitations to
+our work. First, as noted in \S\ref{s:problem} and \S\ref{s:sprout},
+an end-to-end system like Sprout cannot control delays when the
+bottleneck link includes competing traffic that shares the same
+queue. If a device uses traditional TCP outside of Sprout, the
+incurred queueing delay---seen by Sprout and every flow---will be
+substantial.
+
+Sprout is not a traditional congestion-control protocol, in that it is
+designed to adapt to varying link conditions, not varying cross
+traffic. In a cellular link where users have their own queues on the
+base station, interactive performance will likely be best when the
+user runs bulk and interactive traffic \emph{inside} Sprout
+(e.g.~using SproutTunnel), not alongside Sprout. We have not evaluated
+the performance of multiple Sprouts sharing a queue.
+% We leave to
+%future work a better understanding of the {\em need} for active queue
+%management to achieve good throughput-delay trade-offs with multiple
+%independent contending flows, speculating here that a purely
+%end-to-end approach may in fact work.
+
+The accuracy of Sprout's forecasts depends on whether the application
+is providing offered load sufficient to saturate the link. For
+applications that switch intermittently on and off, or don't desire
+high throughput, the transient behavior of Sprout's forecasts
+(e.g.~ramp-up time) becomes more important. We did not evaluate any
+non-saturating applications in this paper or attempt to measure or optimize
+Sprout's startup time from idle.
+
+Finally, we have tested Sprout only in trace-based emulation of eight
+cellular links recorded in the Boston area in 2012. Although Sprout's
+model was frozen before data were collected and was not ``tuned'' in
+response to any particular network, we cannot know how generalizable
+Sprout's algorithm is without more real-world testing.
+
+In future work, we are eager to explore different stochastic network
+models, including ones trained on empirical variations in cellular
+link speed, to see whether it is possible to perform much better than
+Sprout if a protocol has more accurate forecasts. We think it will be
+worthwhile to collect enough traces to compile a standardized
+benchmark of cellular link behavior, over which one could evaluate any
+new transport protocol.

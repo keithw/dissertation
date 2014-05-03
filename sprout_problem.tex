@@ -1,0 +1,159 @@
+%\section{Cellular Wireless Videoconferencing: Context and Challenges}
+\section{Context and Challenges}
+\label{s:problem}
+
+This section highlights the networking challenges in designing an
+adaptive transport protocol on cellular wireless networks. We discuss
+the queueing and scheduling mechanisms used in existing networks,
+present measurements of throughput and delay to illustrate the
+problems, and list the challenges.
+
+\subsection{Cellular Networks}
+
+At the link layer of a cellular wireless network, each device (user)
+experiences a different time-varying bit rate because of variations in
+the wireless channel; these variations are often exacerbated because of
+mobility. Bit rates are also usually different in the two directions
+of a link. One direction may experience an outage for a few seconds
+even when the other is functioning well. Variable link-layer bit rates
+cause the data rates at the transport layer to vary. In addition, as
+in other data networks, cross traffic caused by the arrival and
+departure of other users and their demands adds to the rate
+variability.
+
+Most (in fact, all, to our knowledge) deployed cellular wireless
+networks enqueue each user's traffic in a separate queue. The base
+station schedules data transmissions taking both per-user
+(proportional) fairness and channel quality into
+consideration~\cite{propfair}. Typically, each user's device is
+scheduled for a fixed time slice over which a variable number of
+payload bits may be sent, depending on the channel conditions, and
+users are scheduled in roughly round-robin fashion. The isolation
+between users' queues means that the dominant factor in the end-to-end
+delay experienced by a user's packets is {\em self-interaction},
+rather than cross traffic. If a user were to combine a high-throughput
+transfer and a delay-sensitive transfer, the commingling of these
+packets in the same queue would cause them to experience the same
+delay distributions. The impact of other users on delay is
+muted. However, competing demand can affect the throughput that a user
+receives.
+
+%The impact of other users is not as significant,
+%because the time scales over which users arrive and leave is large
+%compared to the time scales of channel variations.
+
+Many cellular networks employ a non-trivial amount of packet
+buffering. For TCP congestion control with a small degree of
+statistical multiplexing, a good rule-of-thumb is that the buffering
+should not exceed the bandwidth-delay product of the connection. For
+cellular networks where the ``bandwidth'' may vary by two orders of
+magnitude within seconds, this guideline is not particularly useful. A
+``bufferbloated''~\cite{bufferbloat} base station at one link rate
+may, within a short amount of time, be under-provisioned when the link
+rate suddenly increases, leading to extremely high IP-layer packet
+loss rates (this problem is observed in one
+provider~\cite{Mahajan12}).
+
+The high delays in cellular wireless networks cannot simply be blamed
+on bufferbloat, because there is no single buffer size that will
+always work. It is also not simply a question of using an appropriate
+Active Queue Management (AQM) scheme, because the difficulties in
+picking appropriate parameters are well-documented and become harder
+when the available rates change quickly, and such a scheme must be
+appropriate when applied to all applications, even if they desire bulk
+throughput. In \S\ref{s:eval}, we evaluate CoDel~\cite{CoDel}, a
+recent AQM technique, together with a modern TCP variant (Cubic, which
+is the default in Linux), finding that on more than half of our tested
+network paths, CoDel slows down a bulk TCP transfer that has the link
+to itself.
+%CoDel dramatically improved TCP's
+%end-to-end delays compared with a gateway that indefinitely queues
+%packets, but not as much as Sprout (even without active queue
+%management).
+%
+%Sprout outperformed Cubic-over-CoDel in delay (with a 60\% reduction)
+%but also had 30\% less throughput. Sprout-EWMA surpassed
+%Cubic-over-CoDel in throughput (by 31\%) and nearly matched it in
+%delay.
+
+By making changes---when possible---at endpoints
+instead of inside the network, diverse applications may have more
+freedom to choose their desired compromise between throughput and
+delay, compared with an AQM scheme that is applied uniformly to all
+flows.
+
+%When rate variations occur both because of congestion and because of
+%channel variations, a different approach is required to provide high
+%throughput at low delay. For applications concerned only with bulk
+%throughput (e.g., a file download), TCP running over existing cellular
+%networks generally keeps a varying link occupied and achieves close to
+%the maximum possible throughput. But this comes at the expense of
+%extremely long delays. Installing CoDel at the bottleneck link
+%dramatically improves the delay, but hurts throughput. 
+%By contrast,
+%Sprout provides an end-to-end way to achieve both high throughput and
+%low delay---on some networks, higher throughput and lower delay than
+%TCP-over-CoDel.
+
+Sprout is not a traditional congestion-control scheme, in that its
+focus is directed at adapting to varying link conditions, not to
+varying cross traffic that contends for the same bottleneck queue. Its
+improvements over existing schemes are found when queueing delays are
+imposed by one user's traffic. This is typically the case
+when the application is running on a mobile device, because cellular
+network operators generally maintain a separate queue for each
+customer, and the wireless link is typically the bottleneck.  An
+important limitation of this approach is that in cases where these
+conditions don't hold, Sprout's traffic will experience the same
+delays as other flows.
+%We believe this is an unavoidable consequence
+%of an end-to-end approach.
+
+\subsection{Measurement Example}
+
+In our measurements, we recorded large swings in available throughput
+on mobile cellular links. Existing interactive transports do
+not handle these well. Figure~\ref{fig:skypevssprout} shows an
+illustrative section of our trace from the Verizon LTE downlink, whose
+capacity varied up and down by almost an order of magnitude within one
+second. From 15 to 25 seconds into the plot, and from 43 to 49 seconds,
+Skype overshoots the available link capacity, causing large standing
+queues that persist for several seconds, and leading to glitches or
+reduced interactivity for the users. By contrast, Sprout works to
+maximize the available throughput, while limiting the risk that any
+packet will wait in queue for more than 100~ms (dotted line). It also
+makes mistakes (e.g., it overshoots at $t=43$ seconds), but then
+repairs them.
+
+Network behavior like the above has motivated our development of
+Sprout and our efforts to deal explicitly with the uncertainty of
+future link speed variations.
+
+\subsection{Challenges}
+
+A good transport protocol for cellular wireless networks
+must overcome the following challenges:
+\begin{enumerate}
+\item It must cope with dramatic temporal variations in link rates.
+\item It must avoid over-buffering and incurring high delays, but at
+  the same time, if the rate were to increase, avoid
+  under-utilization.
+\item It must be able to handle outages without over-buffering, cope
+  with asymmetric outages, and recover gracefully afterwards.
+%\item At the application layer, the quality of delivered video and
+%  audio must match the achievable link rate to provide the best
+%  possible experience to the user.
+\end{enumerate}
+
+Our experimental results show that previous work (see
+\S\ref{s:related}) does not address these challenges
+satisfactorily. These methods are reactive, using packet
+losses, round-trip delays, and in some cases, one-way delays as the
+``signal'' of how well the network is doing. In contrast, Sprout uses
+a different signal, the observed arrival times of packets at the
+receiver, over which it runs an inference procedure to make
+forecasts of future rates. We find that this method produces a good
+balance between throughput and delay under a wide range of
+conditions.
+
+

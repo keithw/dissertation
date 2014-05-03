@@ -1,0 +1,142 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Data::Dumper;
+
+open DATA, "raw2.csv";
+
+my @headers = split /,/, <DATA>;
+for ( @headers ) { chomp; s{"}{}g };
+
+<DATA>; # version numbers
+
+my $service = undef;
+my $direction = undef;
+my $quantity = undef;
+
+my %result;
+
+while ( <DATA> ) {
+  chomp;
+  if ( $_ =~ m{^,} ) {
+    $_ = "x$_\n";
+  }
+
+  my @field = split /,/;
+
+  for ( @field ) { s{"}{}g };
+
+  if ( $field[ 0 ] eq 'x' ) {
+    $field[ 0 ] = "";
+  }
+
+  # update service
+  if ( $field[ 0 ] =~ m{\w} ) {
+    $service = $field[ 0 ];
+  }
+
+  if ( $field[ 1 ] =~ m{\w} ) {
+    $direction = $field[ 1 ];
+  }
+
+  if ( $field[ 2 ] =~ m{\w} ) {
+    $quantity = $field[ 2 ];
+  }
+
+  my @important_fields = (6 .. 12, 15, 19);
+
+  if ( $field[ 10 ] !~ m{\w} ) {
+    next;
+  }
+
+  for my $column ( @important_fields ) {
+    my $program = $headers[ $column ];
+
+    chomp $field[ $column ];
+
+    $result{ $service }{ $direction }{ $program }{ $quantity } = $field[ $column ];
+  }
+}
+
+# now make graphs
+
+for my $service ( keys %result ) {
+  for my $direction ( keys %{ $result{ $service } } ) {
+    my $filename = $service . "-" . $direction;
+    $filename =~ s{[\s()&]}{}g;
+    open DATA, ">$filename.gnu" or die "$!";
+
+    my $tmin = 10000000;
+    my $tmax = 0;
+    my $dmax = 0;
+    my $dmin = 10000000;
+
+    my $ps = $service;
+    $ps =~ s'&'\\\\&';
+
+    print DATA qq{set terminal svg solid\n};
+    print DATA qq{set output "$filename.svg"\n};
+    print DATA qq{set title "$ps $direction"\n};
+    print DATA qq{set logscale x\n};
+    print DATA qq{unset label\n};
+    print DATA q{set xlabel "Self-inflicted delay (ms)"} . "\n";
+    print DATA q{set ylabel "Throughput (kbps)"} . "\n";
+
+    print DATA qq{set xtics (10, 20, 30, 50, 100, 200, 300, 500, 1000, 2000, 3000, 5000, 10000, 20000, 30000, 50000, 100000)\n};
+    print DATA qq{set ytics format "% 4.0f"\n};
+    print DATA qq{set size ratio 1.0/1.85\n};
+
+    for my $program ( keys %{ $result{ $service }{ $direction } } ) {
+      my $tput = $result{ $service }{ $direction }{ $program }{ "Throughput" };
+      my $delay = $result{ $service }{ $direction }{ $program }{ "Self-inflicted delay" };
+
+      die "no tput for $service $direction $program" unless ( defined $tput );
+      die unless ( defined $delay );
+
+      my $style = 3;
+      if ( $program =~ m{Vegas|LEDBAT|Compound|Linux} ) {
+	$style = 2;
+      } elsif ( $program =~ m{Skype|Hangout|Facetime} ) {
+	$style = 1;
+      } elsif ( $program =~ m{CUBIC} ) {
+	$style = 7;
+      }
+
+      if ( $program =~ m{LEDBAT} ) {
+	$program = "LEDBAT";
+      } elsif ( $program =~ m{CUBIC} ) {
+	$program = "Cubic";
+      } elsif ( $program =~ m{EWMA} ) {
+	$program = "Sprout-EWMA";
+      }
+
+      if ( $program =~ m{Sprout} ) { $program = qq[\\\\color{blue}$program] }
+      if ( $program =~ m{Vegas|LEDBAT|TCP} ) { $program = qq[\\\\color{ForestGreen}$program] }
+      if ( $program =~ m{Facetime|Skype|Hangout} ) { $program = qq[\\\\color{red}$program] }
+      if ( $program =~ m{EWMA|Cubic} ) { $program = qq[\\\\color{Orange}$program] }
+
+      print DATA qq{set label "$program" at $delay, $tput textcolor lt $style point pt $style lc $style\n};
+
+      if ( $tput > $tmax ) { $tmax = $tput }
+      if ( $tput < $tmin ) { $tmin = $tput }
+      if ( $delay > $dmax ) { $dmax = $delay }
+      if ( $delay < $dmin ) { $dmin = $delay }
+    }
+
+    my $vextent = $tmax - $tmin;
+
+    $tmin -= $vextent * 0.1;
+    $tmax += $vextent * 0.1;
+    $dmax *= 1.1;
+    $dmin *= 0.85;
+
+    if ( $tmin < 0 ) { $tmin = 0; }
+
+    print DATA qq{set yrange [ $tmin : $tmax ]\n};
+    print DATA qq{set xrange [ $dmax : $dmin ]\n};
+    print DATA qq{plot "empty.txt"\n};
+    print DATA qq{set output\n};
+
+    close DATA or die "$!";
+  }
+}

@@ -1,0 +1,256 @@
+%% Creator: Inkscape inkscape 0.48.3.1, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'latexgraphs.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{452.61708984bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.17060556)%
+    \put(0,0){\includegraphics[width=\unitlength]{latexgraphs.pdf}}%
+    \put(0.04576154,0.93240763){\makebox(0,0)[lb]{\smash{01000
+2000
+3000
+4000
+5000
+6000
+100
+200
+300
+500
+1000
+2000
+5000}}}%
+    \put(0.01170626,0.98070673){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput(kbps)}}}}%
+    \put(0.17522417,0.89780443){\makebox(0,0)[lb]{\smash{Self-inficteddelay(ms)
+VerizonLTEDownlink
+LEDBAT
+Cubic
+Skype
+GoogleHangout
+Facetime
+CompoundTCP
+Vegas
+Sprout}}}%
+    \put(0.59867261,0.93240763){\makebox(0,0)[lb]{\smash{0500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+4500
+300
+500
+1000
+2000
+3000
+5000
+10000}}}%
+    \put(0.56461733,0.98070673){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput(kbps)}}}}%
+    \put(0.72813524,0.89780443){\makebox(0,0)[lb]{\smash{Self-inficteddelay(ms)
+VerizonLTEUplink
+LEDBAT
+Cubic
+Skype
+GoogleHangout
+Facetime
+CompoundTCP
+Vegas
+Sprout}}}%
+    \put(0.03938087,0.63420413){\makebox(0,0)[lb]{\smash{0100
+200
+300
+400
+500
+2000
+3000
+5000
+10000
+20000
+50000
+100000}}}%
+    \put(0.01170626,0.6841912){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput(kbps)}}}}%
+    \put(0.17200069,0.59960093){\makebox(0,0)[lb]{\smash{Self-inficteddelay(ms)
+Verizon3G(1xEV-DO)Downlink
+LEDBAT
+Cubic
+Skype
+GoogleHangout
+Facetime
+CompoundTCP
+Vegas
+Sprout}}}%
+    \put(0.59229194,0.63420413){\makebox(0,0)[lb]{\smash{050
+100
+150
+200
+250
+300
+350
+400
+450
+200
+300
+500
+1000
+2000
+3000
+5000
+10000}}}%
+    \put(0.56461733,0.6841912){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput(kbps)}}}}%
+    \put(0.72491177,0.59960093){\makebox(0,0)[lb]{\smash{Self-inficteddelay(ms)
+Verizon3G(1xEV-DO)Uplink
+LEDBAT
+Cubic
+Skype
+GoogleHangout
+Facetime
+CompoundTCP
+Vegas
+Sprout}}}%
+    \put(0.04576154,0.33600726){\makebox(0,0)[lb]{\smash{0500
+1000
+1500
+2000
+30
+50
+100
+200
+300
+500
+1000
+2000
+5000}}}%
+    \put(0.01170626,0.38430636){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput(kbps)}}}}%
+    \put(0.17522417,0.30140406){\makebox(0,0)[lb]{\smash{Self-inficteddelay(ms)
+AT&TLTEDownlink
+LEDBAT
+Cubic
+Skype
+GoogleHangout
+Facetime
+CompoundTCP
+Vegas
+Sprout}}}%
+    \put(0.59229194,0.33600726){\makebox(0,0)[lb]{\smash{0100
+200
+300
+400
+500
+600
+700
+800
+200
+300
+500
+1000
+2000
+5000
+10000
+20000}}}%
+    \put(0.56461733,0.38599432){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput(kbps)}}}}%
+    \put(0.72491177,0.30140406){\makebox(0,0)[lb]{\smash{Self-inficteddelay(ms)
+AT&TLTEUplink
+LEDBAT
+Cubic
+Skype
+GoogleHangout
+Facetime
+CompoundTCP
+Vegas
+Sprout}}}%
+    \put(0.03938087,0.03780818){\makebox(0,0)[lb]{\smash{0100
+200
+300
+400
+500
+600
+700
+800
+300
+500
+1000
+2000
+3000
+5000}}}%
+    \put(0.01170626,0.08779745){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput(kbps)}}}}%
+    \put(0.17200069,0.00320498){\makebox(0,0)[lb]{\smash{Self-inficteddelay(ms)
+T-Mobile3G(UMTS)Downlink
+LEDBAT
+Cubic
+Skype
+GoogleHangout
+Facetime
+CompoundTCP
+Vegas
+Sprout}}}%
+    \put(0.59867261,0.03780818){\makebox(0,0)[lb]{\smash{0200
+400
+600
+800
+1000
+200
+300
+500
+1000
+2000
+5000
+10000
+30000}}}%
+    \put(0.56461733,0.08610949){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput(kbps)}}}}%
+    \put(0.72813524,0.00320498){\makebox(0,0)[lb]{\smash{Self-inficteddelay(ms)
+T-Mobile3G(UMTS)Uplink
+LEDBAT
+Cubic
+Skype
+GoogleHangout
+Facetime
+CompoundTCP
+Vegas
+Sprout}}}%
+  \end{picture}%
+\endgroup%

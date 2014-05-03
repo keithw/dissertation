@@ -1,0 +1,80 @@
+%% Creator: Inkscape inkscape 0.48.3.1, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'T-Mobile3GUMTS-Downlink.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{455.05634766bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.62159713)%
+    \put(0,0){\includegraphics[width=\unitlength]{T-Mobile3GUMTS-Downlink.pdf}}%
+    \put(0.11465906,0.11349229){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{200}}}%
+    \put(0.11465906,0.1709797){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{400}}}%
+    \put(0.11465906,0.22846705){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{600}}}%
+    \put(0.11465906,0.28595446){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{800}}}%
+    \put(0.11465906,0.34344184){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{1000}}}%
+    \put(0.11465906,0.40075343){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{1200}}}%
+    \put(0.11465906,0.45824081){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{1400}}}%
+    \put(0.11465906,0.51572819){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{1600}}}%
+    \put(0.98312301,0.05301627){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{300}}}%
+    \put(0.85566616,0.05301627){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{500}}}%
+    \put(0.68267661,0.05301627){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{1000}}}%
+    \put(0.50968706,0.05301627){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{2000}}}%
+    \put(0.40842486,0.05301627){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{3000}}}%
+    \put(0.28096812,0.05301627){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{5000}}}%
+    \put(0.01919835,0.32761962){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{Throughput (kbps)}}}}%
+    \put(0.5641858,0.00554962){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Self-inflicted delay (ms)}}}%
+    \put(0.5641858,0.60239878){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{T-Mobile 3G (UMTS) Downlink}}}%
+    \put(0.73647216,0.48847882){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{Orange}\color{blue}Sprout-EWMA}}}%
+    \put(0.35498094,0.28261422){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}Compound TCP}}}%
+    \put(0.69058772,0.30247987){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}LEDBAT}}}%
+    \put(0.16089508,0.25589224){\color[rgb]{1,0.6,0}\makebox(0,0)[lb]{\smash{\color{Orange}Cubic}}}%
+    \put(0.57578877,0.20051448){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Skype}}}%
+    \put(0.30733848,0.19664686){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Facetime}}}%
+    \put(0.50810484,0.13177573){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Google Hangout}}}%
+    \put(0.86410471,0.2829658){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}Vegas}}}%
+    \put(0.8574243,0.22776385){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}Sprout}}}%
+  \end{picture}%
+\endgroup%

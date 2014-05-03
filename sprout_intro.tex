@@ -1,0 +1,346 @@
+\section{Introduction}
+\label{s:intro}
+
+Cellular wireless networks have become a dominant mode of Internet
+access. These mobile networks, which include LTE and 3G (UMTS and
+1xEV-DO) services, present new challenges for network applications,
+because they behave differently from wireless LANs and from the
+Internet's traditional wired infrastructure.
+
+Cellular wireless networks experience rapidly varying link rates
+and occasional multi-second outages in one or both directions,
+especially when the user is mobile. As a result, the time it takes to
+deliver a network-layer packet may vary significantly, and may include
+the effects of link-layer retransmissions. Moreover, these networks
+schedule transmissions after taking channel quality into account, and
+prefer to have packets waiting to be sent whenever a link is
+scheduled. They often achieve that goal by maintaining deep packet
+queues. The effect at the transport layer is that a stream of packets
+experiences widely varying packet delivery rates, as well as variable,
+sometimes multi-second, packet delays.
+
+
+%To ameliorate these issues, these networks use semi-reliable protocols
+%with link-layer retransmissions and enqueue packets waiting to be
+%transmitted so that the link, when available, does not starve for
+%packets.  As a result, these networks experience high variations in
+%achievable transmission rates as well as packet delays.
+
+For an interactive application such as a videoconferencing program
+that requires both high throughput and low delay, these conditions are
+challenging. If the application sends at too low a rate, it will waste
+the opportunity for higher-quality service when the link is
+doing well. But when the application sends too aggressively, it
+accumulates a queue of packets inside the network waiting to be
+transmitted across the cellular link, delaying subsequent
+packets. Such a queue can take several seconds to drain, destroying
+interactivity (see Figure~\ref{fig:skypevssprout}).
+
+%Furthermore, even if the transport protocol knew the varying rate of
+%the network path exactly, a videoconferencing application would not
+%benefit unless it could rapidly adapt the quality of its video
+%encoding to meet the available rate.  Unfortunately, this task is
+%difficult and done poorly by existing videoconferencing
+%applications. To match a time-varying rate, the application needs to
+%control the coded size of each outgoing video frame. To help the
+%client recover from loss, the application needs to ensure that
+%transmitted video frames depend only on frames available to the
+%receiver, and not frames that have been lost. Current video coder
+%libraries generally don't expose this level of control to
+%applications.
+
+Our experiments with Microsoft's Skype, Google's Hangout, and Apple's
+Facetime running over traces from commercial 3G and LTE networks show
+the shortcomings of the transport protocols in use and the lack of
+adaptation required for a good user experience.
+%(\S\ref{s:problem}). 
+The transport protocols deal with rate variations in a reactive
+manner: they attempt to send at a particular rate, and if all goes
+well, they increase the rate and try again. They are slow to
+decrease their transmission rate when the link has deteriorated, and as a
+result they often create a large backlog of queued packets in the
+network. When that happens, only after several seconds and a
+user-visible outage do they switch to a lower rate.
+%The
+%encoder pre-determines which frames should be sent at any given
+%encoding rate, not adapting to what the receiver might (or might not)
+%have recently received.
+
+%\subsection{Contributions}
+
+\begin{figure}
+\caption{Skype and Sprout on the Verizon LTE downlink trace. For Skype, overshoots in throughput lead to large standing queues. Sprout tries to keep each
+packet's delay less than 100~ms with 95\% probability.}
+\label{fig:skypevssprout}
+\vspace{\baselineskip}
+\scriptsize\def\svgwidth{\columnwidth}\input{newfigure1.pdf_tex}
+\end{figure}
+
+%\paragraph{Contributions.}
+This paper presents {\em Sprout}, a transport protocol designed for
+interactive applications on variable-quality networks. Sprout uses the
+receiver's observed packet arrival times as the primary signal to
+determine how the network path is doing, rather than the packet loss,
+round-trip time, or one-way delay. Moreover, instead of the
+traditional reactive approach where the sender's window or rate
+increases or decreases in response to a congestion signal, the Sprout
+receiver makes a short-term forecast (at times in the near future) of
+the bottleneck link rate using probabilistic inference.  From this
+model, the receiver predicts how many bytes are likely to cross the
+link within several intervals in the near future with at least 95\%
+probability. The sender uses this forecast to transmit its data,
+bounding the risk that the queuing delay will exceed some threshold,
+and maximizing the achieved throughput within that constraint.
+
+%This is difficult for existing videoconferencing systems. To match the
+%capacity of a varying link, the application needs to control the coded
+%size of each outgoing video frame. To help the client recover from
+%loss, the application needs to ensure that transmitted video frames
+%depend only on frames available to the receiver (and not frames that
+%have been lost). Current video coder libraries generally don't expose
+%this level of control to calling applications.
+%
+%In our experiments using trace-based emulation of cellular networks,
+%we have found that videoconferencing programs --- including
+%Microsoft's Skype, Google's Hangout, and Apple's Facetime --- operate
+%poorly over commercial 3G and LTE service. Based on our measurements,
+%these programs deal with varying link speeds in a reactive manner.
+%They attempt to send at a particular rate. If all goes well, after
+%several seconds they increase the rate in a large jump and try
+%again. If they are accumulating a large delay, again only after
+%several seconds, and a user-visible outage, does the program switch to
+%a lower rate.
+
+%\begin{enumerate}a
+
+%\item 
+
+
+%  In practice, Sprout responds more quickly than existing schemes to
+%  increases or decreases in path rates because it does not need to
+%  wait for detectable changes in the observed round-trip time or for
+%  losses. Scout generally achieves higher throughput and lower delay
+%  than competing end-to-end schemes.
+
+%  Sprout sends as much data as it can---subject to
+%   the constraint that no outgoing packet will end up waiting behind
+%   other packets in a network queue for more than 100
+%   milliseconds. Sprout can't guarantee this, but it does its best to
+%   bound the risk of violating the constraint at less than 5\% per
+%   packet.
+
+%  The Sprout receiver maintains a stochastic model of the cellular
+%  link, and uses probabilistic inference to evolve a probability
+%  density function on the network's underlying link speed. From this
+%  probability distribution and model, Sprout's receiver calculates a
+%  conservative packet delivery forecast --- an estimate of how many
+%  bytes will cross the wireless link in various intervals in the near
+%  future, with at least some minimum probability, such as 5\%. This
+%  forecast is sent to the sender.
+
+%  The Sprout sender uses the forecast and transmits as much data as
+%  possible, while bounding the risk that any packet will have to wait
+%  in a network queue for more than 100 milliseconds (or another
+%  threshold for good interactivity). The goal is to achieve as much
+%  throughput as possible, while keeping the induced delay below 100~ms
+%  with at least 95\% probability.
+
+
+%\item 
+
+%The second contribution is a video coder/decoder (codec) interface
+%that can smoothly vary its quality on a frame-by-frame basis to match
+%Sprout's network capacity forecasts, and can recover swiftly from
+%losses (\S\ref{s:alf}). Alfalfa treats compressed video not so much as
+%a stream to be played back in order, but as a collection of ``diffs''
+%between arbitrary frames that may be marshaled to advance the receiver
+%to the current video frame in the most efficient manner.
+
+%We propose a new, simple interface to low-delay video codecs, in which
+% With this interface, the application can request a ``diff'', of a
+% specified size, between any previous frame and coding state serving as
+% a reference (one presumed to be available at the receiver) and the
+% most recent frame. This ``diff'' can then be applied at the receiver
+% to update the screen and serve as a reference for future frames.
+
+%  In
+%  contradistinction to other schemes, Alfalfa does not use golden
+%  frames, high-quality key frames, or a predetermined frame
+%  interdependency relationship (such as an I-P-B picture cadence).
+
+%  Instead, we propose a new interface to low-delay video codecs, in
+%  which the application can request a ``diff'' of a specified coded
+%  frame size, between any previous frame serving as a reference (one
+%  presumed to be available to the receiver) and the most recent
+%  frame. This ``diff'' can then be applied at the receiver to update
+%  the screen and serve as a reference for future frames.
+
+%  In the event of losses, the sender will base its ``diffs'' on older
+%  frames that have been acknowledged by the receiver until a newer
+%  frame has been acked, all with the goal of advancing the receiver to
+%  the ``current'' frame as quickly as possible. The main benefit of
+%  this scheme is that network feedback can immediately influence frame
+%  interdependency relationships, so there is less danger of
+%  transmitting a frame that is predicated on a previous frame that has
+%  been lost.
+
+%  Another advantage is that no frames are more important or need to be
+%  larger than other frames. ``Lumpiness'' in coded frame sizes (e.g.,
+%  in a stream whose I-frames or golden frames are larger than
+%  predicted frames) is unfortunate because it generally increases
+%  user-experienced latency, as larger frames take longer to send, or
+%  causes underutilization when sending smaller frames.
+
+%\end{enumerate}
+
+%Alfalfa varies its frame rate and bit rate continuously, obeying the
+%Sprout algorithm's estimate of how much data the network can bear
+%without amassing a queue. Using Sprout's forecasts and the explicit
+%modeling of delay, Alfalfa is able to use the available network rate
+%even when that rate is highly variable.
+
+%Alfalfa represents an end-to-end, application-layer solution to the
+%challenges presented by cellular networks: variable (and
+%unpredictable) link speeds and delays caused by packets waiting to
+%transit a wireless link with link-layer acknowledgments and
+%retransmissions.  We have implemented Alfalfa's codec interface on top
+%of existing encoder and decoder implementations for MPEG-2 part 2
+%(H.262) video (\S\ref{s:impl}), but our scheme is more generally
+%applicable (see \S\ref{s:alf}).
+
+%to any DPCM-based video compression method, including H.264 (MPEG-4
+%part 10 / AVC), VP8/WebM, and the forthcoming H.265.
+
+%\subsection{Summary of Results}
+
+% To evaluate Sprout's ability to match network performance, we
+% saturated the uplink and downlink of four commercial LTE and 3G
+% networks: Verizon Wireless's LTE and 3G (1xEV-DO / eHRPD) services,
+% AT\&T's LTE service, and T-Mobile's 3G (UMTS) service. We drove around
+% the Boston area while recording the timings of packet arrivals from
+% each network, with about 18 minutes from each. Later, we replayed
+% these traces to emulate the same network conditions for pairs of
+% computers running Skype, Hangout, Facetime, and several bulk-transfer
+% protocols. These experiments are described in detail in
+% \S\ref{s:eval}.
+
+%\paragraph{Summary of results.}
+We conducted a trace-driven experimental evaluation (details in
+\S\ref{s:eval}) using data collected from four different commercial
+cellular networks (Verizon's LTE and 3G 1xEV-DO, AT\&T's LTE, and
+T-Mobile's 3G UMTS). We compared Sprout with Skype, Hangout, Facetime,
+and several TCP congestion-control algorithms, running in both
+directions (uplink and downlink).
+
+The following table summarizes the average relative throughput
+improvement and reduction in self-inflicted queueing
+delay\footnote{This metric expresses a lower bound on the amount of
+  time necessary between a sender's input and receiver's output, so
+  that the receiver can reconstruct more than 95\% of the input
+  signal. We define the metric more precisely in \S\ref{s:eval}.} for
+Sprout compared with the various other schemes, averaged over all four
+cellular networks in both directions. Metrics where Sprout did not
+outperform the existing algorithm are highlighted in red:
+
+\vspace{\baselineskip}
+
+%\begin{center}
+\noindent \begin{tabular}{|l|c|c|}
+\hline
+App/protocol & Avg.~speedup & Delay reduction \\
+& \footnotesize{vs.~Sprout} & \footnotesize{(from avg.~delay)}\\
+\hline
+\hline
+\cellcolor{blue!20}Sprout & \cellcolor{blue!20}$1.0\times$ & \cellcolor{blue!20}$1.0\times$ (0.32~s) \\
+\hline
+Skype & $2.2\times$ & $7.9\times$ (2.52~s) \\
+Hangout & $4.4\times$ & $7.2\times$ (2.28~s) \\
+Facetime & $1.9\times$ & $8.7\times$ (2.75~s) \\
+\hline
+Compound & $1.3\times$ & $4.8\times$ (1.53~s) \\
+TCP Vegas & $1.1\times$ & $2.1\times$ (0.67~s) \\
+LEDBAT & $1.0\times$ & $2.8\times$ (0.89~s) \\
+Cubic & \cellcolor{red!20}$0.91\times$ & $79\times$ (25~s)\\
+\hline
+Cubic-CoDel & \cellcolor{red!20}$0.70\times$ & $1.6\times$ (0.50~s) \\
+%CUBIC/CoDel & & \\
+%Compound/CoDel & & \\
+\hline
+\end{tabular}
+%\end{center}
+
+\vspace{\baselineskip}
+
+Cubic-CoDel indicates TCP Cubic running over the CoDel
+queue-management algorithm~\cite{CoDel}, which would be implemented in the
+carrier's cellular equipment to be deployed on a downlink, and in
+the baseband modem or radio-interface driver of a cellular phone for an
+uplink.
+
+We also evaluated a simplified version of Sprout, called Sprout-EWMA,
+that tracks the network bitrate with a simple exponentially-weighted
+moving average, rather than making a cautious forecast of future
+packet deliveries with 95\% probability.
+
+Sprout and Sprout-EWMA represents different tradeoffs in their
+preference for throughput versus delay.  As expected, Sprout-EWMA
+achieved greater throughput, but also greater delay, than Sprout. It
+outperformed TCP Cubic on both throughput and delay. Despite being
+end-to-end, Sprout-EWMA outperformed Cubic-over-CoDel on throughput
+and approached it on delay:
+
+\vspace{\baselineskip}
+
+\noindent \begin{tabular}{|l|c|c|}
+\hline
+Protocol & Avg.~speedup & Delay reduction \\
+& \footnotesize{vs.~Sprout-EWMA} & \footnotesize{(from avg.~delay)}\\
+\hline
+\hline
+\cellcolor{blue!20}Sprout-EWMA & \cellcolor{blue!20}$1.0\times$ & \cellcolor{blue!20}$1.0\times$ (0.53~s) \\
+\hline
+Sprout & $2.0\times$ & \cellcolor{red!20}$0.60\times$ (0.32~s) \\
+Cubic & $1.8\times$ & $48 \times$ (25~s)\\
+\hline
+Cubic-CoDel & 1.3 $\times$ & \cellcolor{red!20}$0.95\times$ (0.50~s)\\
+\hline
+\end{tabular}
+
+\vspace{\baselineskip}
+
+% Alfalfa achieved a bit rate 2.2$\times$ higher than Skype, while
+% reducing self-inflicted end-to-end delay by 87\%, or from 2,519~ms to
+% 317~ms on average,  while averaging a 118\% increase in achievable bit
+% rate. Compared with Facetime, which averaged a 2,752~ms self-inflicted
+% delay, Sprout's delay was 88\% lower, and Sprout increased throughput
+% by 89\%. Against Hangout, Sprout achieved 4.4x the bit rate while
+% reducing delay by 86\%, from 2,279~ms.
+
+% We also compared Sprout against the delay-based bulk transfer
+% protocols Compound TCP, LEDBAT, and TCP Vegas. Sprout achieved 79\%
+% less delay than Compound TCP (with an average speedup of 26\%), 64\%
+% less delay than LEDBAT (with no speedup or slowdown on average), and
+% 52\% less delay than TCP Vegas (with a 10\% average speedup).
+
+%Finally, we compared Sprout against Linux's TCP CUBIC default, with
+%and without the use of CoDel AQM on the emulated bottleneck
+%link. CUBIC's delays were gigantic (25 seconds) over a link that
+%queued packets indefinitely, and Sprout achieved a 14\% speedup over
+%CUBIC over such links.
+%
+%But adding AQM to the bottleneck link made CUBIC perform the best of
+%any comparator. Sprout (without AQM) still achieved lower delay, but
+%only by 36\%. On average, Sprout had 30\% less throughput than
+%CUBIC-over-CoDel.
+
+We also tested Sprout as a tunnel carrying competing traffic over a
+cellular network, with queue management performed at the tunnel
+endpoints based on the receiver's stochastic forecast about future
+link speeds. We found that Sprout could isolate interactive and bulk
+flows from one another, dramatically improving the performance of
+Skype when run at the same time as a TCP Cubic flow.
+
+The source code for Sprout, our wireless network trace capture
+utility, and our trace-based network emulator is available at
+\texttt{http://alfalfa.mit.edu/} .
+%\texttt{http://github.com/keithw/alfalfa}.

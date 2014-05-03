@@ -1,0 +1,147 @@
+\section{Experimental Testbed}
+\label{s:impl}
+\label{ss:platform}
+We use trace-driven emulation to evaluate Sprout and compare it with
+other applications and protocols under reproducible network
+conditions. Our goal is to capture the variability of cellular
+networks in our experiments and to evaluate each scheme under the same
+set of time-varying conditions.
+
+\subsection{Saturator} Our strategy is to characterize the behavior
+of a cellular network by saturating its uplink and downlink at the
+same time with MTU-sized packets, so that neither queue goes empty. We
+record the times that packets actually cross the link, and we treat
+these as the ground truth representing all the times that packets
+\emph{could} cross the link as long as a sender maintains a backlogged
+queue.
+
+Because even TCP does not reliably keep highly variable links
+saturated, we developed our own tool. The Saturator runs on a laptop
+tethered to a cell phone (which can be used while in a car) and on a
+server that has a good, low-delay ($<$ 20~ms) Internet path to the
+cellular carrier.
+
+The sender keeps a window of $N$ packets in flight to the receiver,
+and adjusts $N$ in order to keep the observed RTT greater than 750~ms
+(but less than 3000~ms). The theory of operation is that if packets
+are seeing more than 750~ms of queueing delay, the link is not
+starving for offered load. (We do not exceed 3000~ms of delay because
+the cellular network may start throttling or dropping packets.)
+
+\begin{figure}
+  \caption{Block diagram of Cellsim}
+\hspace{\baselineskip}
+
+\noindent \def\svgwidth{\columnwidth}\input{emu.pdf_tex}
+
+\label{f:cellsim}
+
+\end{figure}
+
+There is a challenge in running this system in two directions at once
+(uplink and downlink), because if both links are backlogged by
+multiple seconds, feedback arrives too slowly to reliably keep both
+links saturated. Thus, the Saturator laptop is actually connected to
+\emph{two} cell phones. One acts as the ``device under test,'' and its
+uplink and downlink are saturated.  The second cell phone is used only
+for short feedback packets and is otherwise kept unloaded. In our
+experiments, the ``feedback phone'' was on Verizon's LTE network,
+which provided satisfactory performance: generally about 20~ms delay
+back to the server at MIT.
+
+We collected data from four commercial cellular networks: Verizon
+Wireless's LTE and 3G (1xEV-DO / eHRPD) services, AT\&T's LTE service,
+and T-Mobile's 3G (UMTS) service.\footnote{We also attempted a
+  measurement on Sprint's 3G (1xEV-DO) service, but the results
+  contained several lengthy outages and were not further analyzed.} We
+drove around the greater Boston area at rush hour and in the evening
+while recording the timings of packet arrivals from each network,
+gathering about 17 minutes of data from each. Because the traces were
+collected at different times and places, the measurements cannot be
+used to compare different commercial services head-to-head.
+
+For the device under test, the Verizon LTE and 1xEV-DO (3G) traces
+used a Samsung Galaxy Nexus smartphone running Android 4.0. The AT\&T
+trace used a Samsung Galaxy S3 smartphone running Android 4.0. The
+T-Mobile trace used a Samsung Nexus S smartphone running Android 4.1.
+
+\subsection{Cellsim}
+
+We then replay the traces in a network emulator, which we call
+Cellsim (Figure~\ref{f:cellsim}). It runs on a PC and takes in packets
+on two Ethernet interfaces, delays them for a configurable amount of
+time (the propagation delay), and adds them to the tail of a
+queue. Cellsim releases packets from the head of the queue to the
+other network interface according to the same trace that was
+previously recorded by Saturator. If a scheduled packet delivery
+occurs while the queue is empty, nothing happens and the opportunity
+to delivery a packet is wasted.\footnote{This accounting is done on a
+  per-byte basis. If the queue contains 15 100-byte packets, they will
+  all be released when the trace records delivery of a single
+  1500-byte (MTU-sized) packet.}
+
+Empirically, we measure a one-way delay of about 20~ms in each
+direction on our cellular links (by sending a single packet in one
+direction on the uplink or downlink back to a desktop with good
+Internet service). All our experiments are done with this
+propagation delay, or in other words a 40~ms minimum RTT.
+
+Cellsim serves as a transparent Ethernet bridge for a Mac or PC under
+test. A second computer (which runs the other end of the connection)
+is connected directly to the Internet. Cellsim and the second computer
+receive their Internet service from the same gigabit Ethernet switch.
+
+We tested the latest (September 2012) real-time implementations of all
+the applications and protocols (Skype, Facetime, etc.) running on
+separate late-model Macs or PCs (Figure~\ref{f:software}).
+
+\begin{figure}
+  \caption{Software versions tested}
+\hspace{\baselineskip}
+
+\label{f:software}
+
+\scriptsize
+\noindent \begin{tabular}{|l|l|l|l|}
+\hline
+Program & Version & OS & Endpoints \\
+\hline
+\hline
+Skype & 5.10.0.116 & Windows 7 & Core i7 PC \\
+Hangout & as of 9/2012 & Windows 7 & Core i7 PC \\
+Facetime & 2.0 (1070) & OS X 10.8.1 & MB Pro (2.3 GHz i7),\\
+& & & MB Air (1.8 GHz i5) \\
+TCP Cubic & in Linux 3.2.0 & & Core i7 PC \\
+TCP Vegas & in Linux 3.2.0 & & Core i7 PC \\
+LEDBAT & in $\mu$TP & Linux 3.2.0 & Core i7 PC \\
+Compound TCP & in Windows 7 & & Core i7 PC \\
+\hline
+\end{tabular}
+\end{figure}
+
+We also added stochastic packet losses to Cellsim to study Sprout's
+loss resilience. Here, Cellsim drops packets from the tail of the
+queue according to a specified random drop rate.  This approach
+emulates, in a coarse manner, cellular networks that do not have deep
+packet buffers (e.g., Clearwire, as reported
+in~\cite{Mahajan12}). Cellsim also includes an optional implementation
+of CoDel, based on the pseudocode in ~\cite{CoDel}.
+
+\subsection{SproutTunnel}
+
+We implemented a UDP tunnel that uses Sprout to carry arbitrary
+traffic (e.g.~TCP, videoconferencing protocols) across a cellular link
+between a mobile user and a well-connected host, which acts as a relay
+for the user's Internet traffic. SproutTunnel provides each flow with
+the abstraction of a low-delay connection, without modifying carrier
+equipment. It does this by separating each flow into its own queue,
+and filling up the Sprout window in round-robin fashion among the
+flows that have pending data.
+
+The total queue length of all flows is limited to the receiver's most
+recent estimate of the number of packets that can be delivered over
+the life of the forecast. When the queue lengths exceed this value,
+the tunnel endpoints drop packets from the head of the longest
+queue. This algorithm serves as a dynamic traffic-shaping or
+active-queue-management scheme that adjusts the amount of buffering to
+the predicted channel conditions.
