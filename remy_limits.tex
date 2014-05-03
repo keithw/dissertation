@@ -1,0 +1,82 @@
+\section{Discussion}
+
+Much remains unknown about the capabilities and limits of
+computer-generated algorithms, much less decentralized algorithms that
+cooperate indirectly across a network to achieve a common
+goal. Although the RemyCCs appear to work well on networks whose
+parameters fall within or near the limits of what they were prepared
+for --- even beating in-network schemes at their own game and even
+when the design range spans an order of magnitude variation in network
+parameters --- we do not yet understand clearly \emph{why} they work,
+other than the observation that they seem to optimize their intended
+objective well.
+
+We have attempted to make algorithms ourselves that surpass the
+generated RemyCCs, without success. That suggests to us that Remy may
+have accomplished something substantive. But digging through the
+dozens of rules in a RemyCC and figuring out their purpose and
+function is a challenging job in reverse-engineering. RemyCCs
+designed for broader classes of networks will likely be even
+more complex, compounding the problem.
+
+Our approach \emph{increases} endpoint complexity in order to
+\emph{reduce} the complexity of overall network behavior. Traditional
+TCP congestion control specifies simpler behavior for each endpoint,
+but the resulting emergent behavior of a multiuser network is not
+easily specified and is often suboptimal and variable, and even
+unstable.
+
+By contrast, our approach focuses on maximizing a well-specified
+overall objective at the cost of complex endpoint algorithms. We think
+this tradeoff is advisable: today's endpoints can execute complex
+algorithms almost as easily as simple ones (and with Remy, the bulk of
+the intelligence is computed offline). What users and system designers
+ultimately care about, we believe, is the quality and consistency of
+overall behavior.
+
+Our {\em synthesis-by-simulation} approach also makes it easier to
+\emph{discuss} competing proposals for congestion control. Today, it
+is not easy to say why one flavor of TCP or tweak may be preferred
+over another. But if two computer-generated algorithms differ, there is
+a reason: either they make different assumptions about the expected
+networks they will encounter, or they have different goals in mind, or
+one is better optimized than the other. This formulation allows the
+implementer to choose rationally among competing options.
+
+All that said, we have much to learn before computer-generated
+algorithms will have proven themselves trustworthy:
+
+\begin{itemize}
+
+\item Other than by exhaustive testing, we don't know how to predict
+  the robustness of RemyCCs to unexpected inputs. Do they break
+  catastrophically in such situations?
+
+\item How would a RemyCC designed for a 10,000-fold range of
+  throughputs and RTTs perform?
+%, compared with existing algorithms?
+%We do not know how a RemyCC's performance will be affected as
+%  its prior knowledge becomes less specific and the optimization
+%  procedure more arduous. 
+
+\item Although we are somewhat robust against a RemyCC's latching on
+  to the peculiarities of a simulator implementation (because RemyCCs
+  are designed within Remy but then evaluated within ns-2), we can't
+  be certain how well RemyCCs will perform on real networks without
+  trying them.
+
+% We have not exhaustively cataloged the behavior of
+%even the RemyCCs discussed in this paper.
+%, and we have not yet tried to
+%design a congestion-control protocol that resists being ``squeezed
+%out'' by heterogenous incumbent protocols.
+
+\end{itemize}
+
+We believe that making congestion control a \emph{function} of the
+desired ends, and the assumptions we make about the network, is the
+solution to allow the Internet and its subnetworks to evolve without
+tiptoeing around TCP's assumptions about how networks behave. But many
+dots need to be connected before the the Internet at large --- as
+opposed to internal networks --- might agree on a model that could be
+used to prepare a ``one-size-fits-all'' RemyCC.

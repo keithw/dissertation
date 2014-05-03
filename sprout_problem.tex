@@ -1,6 +1,6 @@
 %\section{Cellular Wireless Videoconferencing: Context and Challenges}
 \section{Context and Challenges}
-\label{s:problem}
+\label{sprout:problem}
 
 This section highlights the networking challenges in designing an
 adaptive transport protocol on cellular wireless networks. We discuss
@@ -61,7 +61,7 @@ Active Queue Management (AQM) scheme, because the difficulties in
 picking appropriate parameters are well-documented and become harder
 when the available rates change quickly, and such a scheme must be
 appropriate when applied to all applications, even if they desire bulk
-throughput. In \S\ref{s:eval}, we evaluate CoDel~\cite{CoDel}, a
+throughput. In \S\ref{sprout:eval}, we evaluate CoDel~\cite{CoDel}, a
 recent AQM technique, together with a modern TCP variant (Cubic, which
 is the default in Linux), finding that on more than half of our tested
 network paths, CoDel slows down a bulk TCP transfer that has the link
@@ -146,7 +146,7 @@ must overcome the following challenges:
 \end{enumerate}
 
 Our experimental results show that previous work (see
-\S\ref{s:related}) does not address these challenges
+\S\ref{sprout:related}) does not address these challenges
 satisfactorily. These methods are reactive, using packet
 losses, round-trip delays, and in some cases, one-way delays as the
 ``signal'' of how well the network is doing. In contrast, Sprout uses

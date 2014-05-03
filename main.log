@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2013.11.21)  3 MAY 2014 14:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2013.11.21)  3 MAY 2014 15:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -9,6 +9,7 @@ Babel <3.9f> and hyphenation patterns for 78 languages loaded.
 (./mitthesis.cls
 Document Class: mitthesis 1999/10/20
 \vithesis=\count79
+Single spaced
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -345,7 +346,14 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \f@ncyO@erf=\skip66
 \f@ncyO@olf=\skip67
 \f@ncyO@orf=\skip68
-) (./main.aux)
+) (./main.aux
+
+LaTeX Warning: Label `s:intro' multiply defined.
+
+
+LaTeX Warning: Label `s:related' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
@@ -364,8 +372,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 61.
 LaTeX Font Info:    ... okay on input line 61.
 \AtBeginShipoutBox=\box34
 Package hyperref Info: Link coloring OFF on input line 61.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -441,9 +448,6 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Warning: Citation `sprout' on page 7 undefined on input line 9.
 
 
-LaTeX Warning: Reference `chap:remy' on page 7 undefined on input line 15.
-
-
 LaTeX Warning: Citation `remy' on page 7 undefined on input line 15.
 
 
@@ -467,7 +471,7 @@ Chapter 1.
 ]
 Chapter 2.
 (./sprout_abstract.tex) (./sprout_intro.tex [13] (./newfigure1.pdf_tex
-<newfigure1.pdf, id=127, 459.16545pt x 384.28796pt>
+<newfigure1.pdf, id=249, 459.16545pt x 384.28796pt>
 File: newfigure1.pdf Graphic file (type pdf)
  <use newfigure1.pdf>
 Package pdftex.def Info: newfigure1.pdf used on input line 52.
@@ -475,39 +479,24 @@ Package pdftex.def Info: newfigure1.pdf used on input line 52.
 )
 [14] [15 <./newfigure1.pdf>]
 
-LaTeX Warning: Reference `s:eval' on page 16 undefined on input line 229.
-
-
-LaTeX Warning: Reference `s:eval' on page 16 undefined on input line 240.
-
-
 LaTeX Warning: Citation `CoDel' on page 16 undefined on input line 275.
 
-[16]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 345.
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-))
-(./sprout_problem.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
+)) (./sprout_problem.tex [16]
 
- [17]
-
-LaTeX Warning: Citation `propfair' on page 18 undefined on input line 28.
+LaTeX Warning: Citation `propfair' on page 17 undefined on input line 28.
 
 
-LaTeX Warning: Citation `bufferbloat' on page 18 undefined on input line 51.
+LaTeX Warning: Citation `bufferbloat' on page 17 undefined on input line 51.
 
 
-LaTeX Warning: Citation `Mahajan12' on page 18 undefined on input line 55.
-
-[18]
-
-LaTeX Warning: Reference `s:eval' on page 19 undefined on input line 64.
+LaTeX Warning: Citation `Mahajan12' on page 17 undefined on input line 55.
 
 
-LaTeX Warning: Citation `CoDel' on page 19 undefined on input line 64.
+LaTeX Warning: Citation `CoDel' on page 17 undefined on input line 64.
 
 
 Overfull \hbox (9.83829pt too wide) in paragraph at lines 57--78
@@ -515,53 +504,41 @@ Overfull \hbox (9.83829pt too wide) in paragraph at lines 57--78
 -ply be blamed on bufferbloat,
  []
 
+[17]) (./sprout_sprout.tex [18]
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19]
-
-LaTeX Warning: Reference `s:related' on page 20 undefined on input line 149.
-
-) (./sprout_sprout.tex [20]
-
-LaTeX Warning: Citation `bufferbloat' on page 21 undefined on input line 13.
+LaTeX Warning: Citation `bufferbloat' on page 19 undefined on input line 13.
 
 
-LaTeX Warning: Citation `packetpair' on page 21 undefined on input line 36.
+LaTeX Warning: Citation `packetpair' on page 19 undefined on input line 36.
 
-[21] (./vz-inter.pdf_tex <vz-inter.pdf, id=184, 449.38875pt x 373.10431pt>
+(./vz-inter.pdf_tex <vz-inter.pdf, id=294, 449.38875pt x 373.10431pt>
 File: vz-inter.pdf Graphic file (type pdf)
 
 <use vz-inter.pdf>
 Package pdftex.def Info: vz-inter.pdf used on input line 53.
 (pdftex.def)             Requested size: 433.62pt x 360.02063pt.
-)
+) [19] [20 <./vz-inter.pdf>]
 
-LaTeX Warning: Citation `Cox84' on page 22 undefined on input line 98.
-
-
-LaTeX Warning: Citation `Paxson95' on page 22 undefined on input line 98.
+LaTeX Warning: Citation `Cox84' on page 21 undefined on input line 98.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Citation `Paxson95' on page 21 undefined on input line 98.
 
- [22]
-[23 <./vz-inter.pdf>] (./sprout-model.pdf_tex
-<sprout-model.pdf, id=204, 569.91673pt x 299.91939pt>
+(./sprout-model.pdf_tex <sprout-model.pdf, id=316, 569.91673pt x 299.91939pt>
 File: sprout-model.pdf Graphic file (type pdf)
- <use sprout-model.pdf>
+
+<use sprout-model.pdf>
 Package pdftex.def Info: sprout-model.pdf used on input line 52.
 (pdftex.def)             Requested size: 433.62pt x 228.1928pt.
 )
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 150.
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
- [24]
+ [21]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 171.
@@ -574,43 +551,524 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 171.
 
-[25 <./sprout-model.pdf>]
-! Undefined control sequence.
-l.194  \Prob
-            _{\textrm{old}}(\lambda = x) \frac{(x \cdot \tau)^k}{k!}  \exp[-...
+[22 <./sprout-model.pdf>] [23]
+<forecast.pdf, id=339, 494.10231pt x 386.1824pt>
+File: forecast.pdf Graphic file (type pdf)
+ <use forecast.pdf>
+Package pdftex.def Info: forecast.pdf used on input line 282.
+(pdftex.def)             Requested size: 433.62pt x 338.91052pt.
+ [24 <./forecast.pdf>]) (./sprout_impl.tex (./emu.pdf_tex
+<emu.pdf, id=360, 2183.7836pt x 573.46944pt>
+File: emu.pdf Graphic file (type pdf)
+ <use emu.pdf>
+Package pdftex.def Info: emu.pdf used on input line 52.
+(pdftex.def)             Requested size: 433.62pt x 113.86931pt.
+) [25] [26 <./emu.pdf>]
 
-? X
- 
+LaTeX Warning: Citation `Mahajan12' on page 27 undefined on input line 127.
+
+
+LaTeX Warning: Citation `CoDel' on page 27 undefined on input line 128.
+
+) (./sprout_eval.tex
+Underfull \vbox (badness 3623) has occurred while \output is active []
+
+ [27]
+[28] <graphs-out.pdf, id=402, 498.86375pt x 627.34375pt>
+File: graphs-out.pdf Graphic file (type pdf)
+ <use graphs-out.pdf>
+Package pdftex.def Info: graphs-out.pdf used on input line 95.
+(pdftex.def)             Requested size: 433.62pt x 545.3156pt.
+
+[29] [30 <./graphs-out.pdf>]
+
+LaTeX Warning: Citation `CoDel' on page 31 undefined on input line 172.
+
+(./codelcomp.pdf_tex <codelcomp.pdf, id=443, 443.90843pt x 262.45091pt>
+File: codelcomp.pdf Graphic file (type pdf)
+
+<use codelcomp.pdf>
+Package pdftex.def Info: codelcomp.pdf used on input line 52.
+(pdftex.def)             Requested size: 433.62pt x 256.36716pt.
+) (./varySprout2.pdf_tex
+<varySprout2.pdf, id=444, 456.72163pt x 257.45207pt>
+File: varySprout2.pdf Graphic file (type pdf)
+ <use varySprout2.pdf>
+Package pdftex.def Info: varySprout2.pdf used on input line 52.
+(pdftex.def)             Requested size: 433.62pt x 244.42879pt.
+)
+Underfull \vbox (badness 4981) has occurred while \output is active []
+
+ [31]
+[32 <./codelcomp.pdf> <./varySprout2.pdf
+
+pdfTeX warning: pdflatex (file ./varySprout2.pdf): PDF inclusion: multiple pdfs
+ with page group included in a single page
+>] [33]) (./sprout_related.tex
+
+LaTeX Warning: Citation `Jacobson88' on page 34 undefined on input line 13.
+
+
+LaTeX Warning: Citation `Brakmo94' on page 34 undefined on input line 16.
+
+
+LaTeX Warning: Citation `FAST' on page 34 undefined on input line 16.
+
+
+LaTeX Warning: Citation `CTCP' on page 34 undefined on input line 16.
+
+
+LaTeX Warning: Citation `ledbat' on page 34 undefined on input line 20.
+
+
+LaTeX Warning: Citation `tcpnice' on page 34 undefined on input line 20.
+
+
+LaTeX Warning: Citation `tcpbufferbloat' on page 34 undefined on input line 25.
+
+
+
+LaTeX Warning: Citation `ebcc' on page 34 undefined on input line 31.
+
+
+LaTeX Warning: Citation `binomial' on page 34 undefined on input line 32.
+
+
+LaTeX Warning: Citation `slowcc-dynamic' on page 34 undefined on input line 34.
+
+
+
+LaTeX Warning: Citation `WebRTCdraft' on page 34 undefined on input line 36.
+
+
+LaTeX Warning: Citation `Floyd93' on page 34 undefined on input line 55.
+
+
+LaTeX Warning: Citation `BLUE' on page 34 undefined on input line 56.
+
+
+LaTeX Warning: Citation `AVQ' on page 34 undefined on input line 56.
+
+
+LaTeX Warning: Citation `CoDel' on page 34 undefined on input line 61.
+
+
+LaTeX Warning: Citation `bufferbloat' on page 34 undefined on input line 65.
+
+[34]) (./sprout_limit.tex) (./sprout_concl.tex [35]) (./sprout_acks.tex))
+(./remy.tex [36]
+Chapter 3.
+(./remy_abstract.tex
+Overfull \hbox (7.31947pt too wide) in paragraph at lines 34--40
+[]\T1/cmr/m/n/12 In sim-u-la-tions with ns-2, Remy-generated al-go-rithms out-p
+er-formed human-designed
+ []
+
+
+Overfull \hbox (12.34464pt too wide) in paragraph at lines 34--40
+\T1/cmr/m/n/12 Remy's al-go-rithms also out-per-formed meth-ods that re-quire i
+n-tru-sive in-network changes,
+ []
+
+) (./remy_intro.tex [37
+
+] <remy.pdf, id=490, 314.00635pt x 212.82327pt>
+File: remy.pdf Graphic file (type pdf)
+
+<use remy.pdf>
+Package pdftex.def Info: remy.pdf used on input line 21.
+(pdftex.def)             Requested size: 325.215pt x 220.42169pt.
+
+
+LaTeX Warning: Citation `hotnets2011' on page 38 undefined on input line 68.
+
+
+LaTeX Warning: Citation `Clark88' on page 38 undefined on input line 77.
+
+[38 <./remy.pdf>]
+
+LaTeX Warning: Citation `slowcc' on page 39 undefined on input line 86.
+
+
+LaTeX Warning: Citation `rfc3819' on page 39 undefined on input line 88.
+
+[39]
+Overfull \hbox (8.42744pt too wide) in paragraph at lines 175--179
+\T1/cmr/m/n/12 work gate-ways, in-clud-ing Cubic-over-sfqCoDel and XCP, Remy ge
+n-er-ally matched
+ []
+
+[40]) (./remy_related.tex
+
+LaTeX Warning: Citation `decbit' on page 41 undefined on input line 4.
+
+
+LaTeX Warning: Citation `Jacobson88' on page 41 undefined on input line 5.
+
+
+Overfull \hbox (9.3857pt too wide) in paragraph at lines 4--14
+\T1/cmr/m/n/12 Tahoe (and Reno) al-go-rithms [[]], con-ges-tion con-trol over h
+et-ero-ge-neous packet-switched
+ []
+
+
+LaTeX Warning: Citation `chiujain' on page 41 undefined on input line 16.
+
+
+LaTeX Warning: Citation `newreno' on page 41 undefined on input line 27.
+
+
+LaTeX Warning: Citation `vegas' on page 41 undefined on input line 28.
+
+
+LaTeX Warning: Citation `compound' on page 41 undefined on input line 28.
+
+
+LaTeX Warning: Citation `cubic' on page 41 undefined on input line 28.
+
+
+LaTeX Warning: Citation `dctcp' on page 41 undefined on input line 29.
+
+
+LaTeX Warning: Citation `card' on page 41 undefined on input line 38.
+
+
+LaTeX Warning: Citation `dual' on page 41 undefined on input line 39.
+
+[41]
+
+LaTeX Warning: Citation `compound' on page 42 undefined on input line 50.
+
+
+LaTeX Warning: Citation `binomial' on page 42 undefined on input line 55.
+
+
+LaTeX Warning: Citation `bic' on page 42 undefined on input line 60.
+
+
+LaTeX Warning: Citation `htcp' on page 42 undefined on input line 61.
+
+
+LaTeX Warning: Citation `ebcc' on page 42 undefined on input line 68.
+
+
+LaTeX Warning: Citation `binomial' on page 42 undefined on input line 68.
+
+
+LaTeX Warning: Citation `fasttcp' on page 42 undefined on input line 69.
+
+
+LaTeX Warning: Citation `westwood' on page 42 undefined on input line 69.
+
+
+LaTeX Warning: Citation `ecn' on page 42 undefined on input line 72.
+
+
+LaTeX Warning: Citation `vcp' on page 42 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Floyd93' on page 42 undefined on input line 74.
+
+
+LaTeX Warning: Citation `BLUE' on page 42 undefined on input line 74.
+
+
+LaTeX Warning: Citation `choke' on page 42 undefined on input line 74.
+
+
+LaTeX Warning: Citation `AVQ' on page 42 undefined on input line 75.
+
+
+LaTeX Warning: Citation `CoDel' on page 42 undefined on input line 75.
+
+
+LaTeX Warning: Citation `xcp' on page 42 undefined on input line 76.
+
+
+LaTeX Warning: Citation `rcp' on page 42 undefined on input line 76.
+
+
+LaTeX Warning: Citation `Kelly98' on page 42 undefined on input line 97.
+
+
+LaTeX Warning: Citation `stochasticnum' on page 42 undefined on input line 99.
+
+
+LaTeX Warning: Citation `dukkipati2010argument' on page 42 undefined on input l
+ine 107.
+
+
+LaTeX Warning: Citation `chu2012increasing' on page 42 undefined on input line 
+107.
+
+
+LaTeX Warning: Citation `allman2010init' on page 42 undefined on input line 108
+.
+
+
+LaTeX Warning: Citation `touch2012automating' on page 42 undefined on input lin
+e 108.
+
+) (./remy_model.tex [42]
+Underfull \vbox (badness 5563) has occurred while \output is active []
+
+ [43]
+
+LaTeX Warning: Citation `Srikant' on page 44 undefined on input line 80.
+
+
+LaTeX Warning: Citation `Srikant' on page 44 undefined on input line 99.
+
+
+LaTeX Warning: Citation `Tan09' on page 44 undefined on input line 105.
+
+
+LaTeX Warning: Citation `Kelly98' on page 44 undefined on input line 110.
+
+[44]) (./remy_design.tex
+
+LaTeX Warning: Citation `Akella02' on page 45 undefined on input line 27.
+
+
+LaTeX Warning: Citation `hofstadter1985metamagical' on page 45 undefined on inp
+ut line 33.
+
+
+LaTeX Warning: Citation `dccp' on page 45 undefined on input line 44.
+
+
+LaTeX Warning: Citation `cm' on page 45 undefined on input line 44.
+
+[45]
+
+LaTeX Warning: Citation `Oliehoek2012' on page 46 undefined on input line 52.
+
+
+LaTeX Warning: Citation `Bernstein2002' on page 46 undefined on input line 70.
+
+[46]<<ot1tt.cmap>> [47] <dumbbell.pdf, id=587, 449.08127pt x 162.07579pt>
+File: dumbbell.pdf Graphic file (type pdf)
+
+<use dumbbell.pdf>
+Package pdftex.def Info: dumbbell.pdf used on input line 193.
+(pdftex.def)             Requested size: 433.62pt x 156.50107pt.
+ [48 <./dumbbell.pdf>]
+
+LaTeX Warning: Citation `octree' on page 49 undefined on input line 268.
+
+) (./remy_eval.tex [49]
+
+LaTeX Warning: Citation `sfq' on page 50 undefined on input line 14.
+
+
+LaTeX Warning: Citation `CoDel' on page 50 undefined on input line 15.
+
+[50] <flowlength.pdf, id=639, 481.8pt x 385.44pt>
+File: flowlength.pdf Graphic file (type pdf)
+ <use flowlength.pdf>
+Package pdftex.def Info: flowlength.pdf used on input line 79.
+(pdftex.def)             Requested size: 433.62pt x 346.90456pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--82
+
+ []
+
+
+LaTeX Warning: Citation `allman-ccr-trace' on page 51 undefined on input line 1
+00.
+
+
+LaTeX Warning: Reference `f:flowcdf' on page 51 undefined on input line 102.
+
+[51] [52 <./flowlength.pdf>]
+
+LaTeX Warning: Reference `f:flowcdf' on page 53 undefined on input line 151.
+
+[53]
+Overfull \hbox (2.32481pt too wide) in paragraph at lines 231--236
+\T1/cmr/m/n/12 We start by in-ves-ti-gat-ing per-for-mance over the sim-ple, cl
+as-sic single-bottleneck ``dumb-
+ []
+
+<eth8-final-bytes.pdf, id=666, 449.44247pt x 363.6187pt>
+File: eth8-final-bytes.pdf Graphic file (type pdf)
+
+<use eth8-final-bytes.pdf>
+Package pdftex.def Info: eth8-final-bytes.pdf used on input line 239.
+(pdftex.def)             Requested size: 433.62pt x 350.8177pt.
+
+<eth12-final-flowcdf.pdf, id=667, 449.44247pt x 368.00398pt>
+File: eth12-final-flowcdf.pdf Graphic file (type pdf)
+
+<use eth12-final-flowcdf.pdf>
+Package pdftex.def Info: eth12-final-flowcdf.pdf used on input line 254.
+(pdftex.def)             Requested size: 433.62pt x 355.04861pt.
+
+
+LaTeX Warning: Reference `f:flowcdf' on page 54 undefined on input line 260.
+
+
+LaTeX Warning: Reference `f:flowcdf' on page 54 undefined on input line 260.
+
+
+LaTeX Warning: Reference `f:tpdelaydb4' on page 54 undefined on input line 274.
+
+
+
+LaTeX Warning: Reference `f:tpdelaydb8' on page 54 undefined on input line 274.
+
+
+[54] [55 <./eth8-final-bytes.pdf>] [56 <./eth12-final-flowcdf.pdf>]
+
+LaTeX Warning: Reference `f:tpdelaydb4' on page 57 undefined on input line 311.
+
+
+
+LaTeX Warning: Reference `f:tpdelaydb8' on page 57 undefined on input line 311.
+
+
+<trace.pdf, id=728, 463.85797pt x 281.77773pt>
+File: trace.pdf Graphic file (type pdf)
+ <use trace.pdf>
+Package pdftex.def Info: trace.pdf used on input line 319.
+(pdftex.def)             Requested size: 433.62pt x 263.41353pt.
+
+
+LaTeX Warning: Reference `f:trace' on page 57 undefined on input line 329.
+
+<vzw-4-final.pdf, id=729, 447.08565pt x 368.00398pt>
+File: vzw-4-final.pdf Graphic file (type pdf)
+ <use vzw-4-final.pdf>
+Package pdftex.def Info: vzw-4-final.pdf used on input line 336.
+(pdftex.def)             Requested size: 433.62pt x 356.93535pt.
+
+<vzw-8-final.pdf, id=730, 447.08565pt x 363.6187pt>
+File: vzw-8-final.pdf Graphic file (type pdf)
+ <use vzw-8-final.pdf>
+Package pdftex.def Info: vzw-8-final.pdf used on input line 347.
+(pdftex.def)             Requested size: 433.62pt x 352.68196pt.
+
+<att-4-final.pdf, id=731, 481.8pt x 385.44pt>
+File: att-4-final.pdf Graphic file (type pdf)
+ <use att-4-final.pdf>
+Package pdftex.def Info: att-4-final.pdf used on input line 357.
+(pdftex.def)             Requested size: 433.62pt x 346.90456pt.
+ [57]
+
+LaTeX Warning: Reference `f:verizon4' on page 58 undefined on input line 400.
+
+
+LaTeX Warning: Reference `f:verizon8' on page 58 undefined on input line 400.
+
+<rttfairness.pdf, id=741, 481.8pt x 385.44pt>
+File: rttfairness.pdf Graphic file (type pdf)
+ <use rttfairness.pdf>
+Package pdftex.def Info: rttfairness.pdf used on input line 434.
+(pdftex.def)             Requested size: 433.62pt x 346.90456pt.
+
+
+LaTeX Warning: Reference `f:fairness' on page 58 undefined on input line 453.
+
+
+LaTeX Warning: Citation `dctcp' on page 58 undefined on input line 458.
+
+[58 <./trace.pdf>] [59 <./vzw-4-final.pdf>] [60 <./vzw-8-final.pdf>] [61 <./att
+-4-final.pdf>] [62 <./rttfairness.pdf>]
+Overfull \hbox (8.1063pt too wide) in paragraph at lines 465--469
+[]\T1/cmr/m/n/12 We used Remy to de-sign a congestion-control al-go-rithm to ma
+x-i-mize $\OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 =[]$
+ []
+
+
+LaTeX Warning: Reference `f:flowcdf' on page 63 undefined on input line 518.
+
+[63]
+
+LaTeX Warning: Reference `f:spec' on page 64 undefined on input line 588.
+
+<spec2.pdf, id=863, 481.8pt x 385.44pt>
+File: spec2.pdf Graphic file (type pdf)
+ <use spec2.pdf>
+Package pdftex.def Info: spec2.pdf used on input line 598.
+(pdftex.def)             Requested size: 433.62pt x 346.90456pt.
+) (./remy_limits.tex
+[64] [65 <./spec2.pdf>] [66]) (./remy_concl.tex) (./remy_acks.tex))
+(./learnability.tex [67] [68
+
+]
+Chapter 4.
+) (./mosh.tex [69] [70
+
+]
+Chapter 5.
+) (./concl.tex [71] [72
+
+]
+Chapter 6.
+) (./biblio.tex
+No file main.bbl.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 82.
+ [73]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 82.
+ (./main.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 82.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 82.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 20CD79393F8B5693EB428ADB20542840;3007
+(rerunfilecheck)             After:  F5E3EFE3EB47AA977D906112F27EE7BB;4021.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 82.
+ ) 
 Here is how much of TeX's memory you used:
- 7618 strings out of 493307
- 105240 string characters out of 6139904
- 198174 words of memory out of 5000000
- 10802 multiletter control sequences out of 15000+600000
- 24764 words of font info for 68 fonts, out of 8000000 for 9000
+ 8056 strings out of 493307
+ 110752 string characters out of 6139904
+ 203641 words of memory out of 5000000
+ 10992 multiletter control sequences out of 15000+600000
+ 28008 words of font info for 77 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,10n,43p,330b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-bx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
-m0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
-1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share
-/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on main.pdf (25 pages, 418265 bytes).
+ 36i,10n,43p,508b,422s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/typ
+e1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
+fbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/sh
+are/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type
+1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
+bx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
+m1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti
+1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmr8a.pfb>
+Output written on main.pdf (73 pages, 1466456 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 243 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
- 132 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1075 PDF objects out of 1200 (max. 8388607)
+ 860 compressed objects within 9 object streams
+ 201 named destinations out of 1000 (max. 500000)
+ 456 words of extra memory for PDF output out of 10000 (max. 10000000)
 

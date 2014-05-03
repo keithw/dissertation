@@ -1,0 +1,152 @@
+\section{Modeling the Congestion-Control Problem}
+\label{s:model}
+
+We treat congestion control as a problem of distributed
+decision-making under uncertainty. Each endpoint that has pending data
+must decide for itself at every instant: send a packet, or don't
+send a packet.
+
+If all nodes knew in advance the network topology and capacity, and the
+schedule of each node's present and future offered load, such
+decisions could in principle be made perfectly, to achieve a desired
+allocation of throughput on shared links.
+
+In practice, however, endpoints receive observations that only hint at
+this information. These include feedback from receivers concerning the
+timing of packets that arrived and detection of packets that didn't, and
+sometimes signals, such as ECN marks, from within the network itself.
+Nodes then make sending decisions based on this partial information
+about the network.
+
+Our approach hinges on being able to evaluate quantitatively the merit
+of any particular congestion control algorithm, and search for the
+best algorithm for a given network model and objective function. We
+discuss here our models of the network and cross traffic, and how we
+ultimately calculate a figure of merit for an arbitrary congestion
+control algorithm.
+
+\subsection{Expressing prior assumptions about the network}
+
+From a node's perspective, we treat the network as having been drawn
+from a stochastic generative process. We assume the network is
+Markovian, meaning that it is described by some state (e.g.~the
+packets in each queue) and its future evolution will depend only on
+the current state.
+
+Currently, we typically parametrize networks on three axes: the speed
+of bottleneck links, the propagation delay of the network paths, and
+the degree of multiplexing, i.e., the number of senders contending for
+each bottleneck link. We assume that senders have no control over the
+paths taken by their packets to the receiver.
+
+Depending on the range of networks over which the protocol is intended
+to be used, a node may have more or less uncertainty about the
+network's key parameters. For example, in a data center, the topology,
+link speeds, and minimum round-trip times may be known in advance, but
+the degree of multiplexing could vary over a large range. A virtual
+private network between ``clouds'' may have more uncertainty about the
+link speed. A wireless network path may experience less multiplexing,
+but a large range of transmission rates and round-trip times.
+
+As one might expect, we have observed a tradeoff between generality
+and performance; a protocol designed for a broad range of networks may
+be beaten by a protocol that has been supplied with more specific and
+accurate prior knowledge. Our approach allows protocol designers to
+measure this tradeoff and choose an appropriate design range for their
+applications.
+
+\subsection{Traffic model}
+
+Remy models the offered load as a stochastic process that switches
+unicast flows between sender-receivers pairs on or off. In a simple
+model, each endpoint has traffic independent of the other
+endpoints. The sender is ``off'' for some number of seconds, drawn
+from an exponential distribution. Then it switches on for some number
+of bytes to be transmitted, drawn from an empirical distribution of
+flow sizes or a closed-form distribution (e.g.~heavy-tailed
+Pareto). While ``on,'' we assume that the sender will not stall until
+it completes its transfer.
+
+In traffic models characteristic of data center usage, the off-to-on
+switches of contending flows may cluster near one another in time,
+leading to incast. We also model the case where senders are ``on'' for
+some amount of time (as opposed to bytes) and seek maximum throughput,
+as in the case of videoconferences or similar real-time traffic.
+
+\subsection{Objective function}
+
+Resource-allocation theories of congestion control have traditionally
+employed the alpha-fairness metric to evaluate allocations of
+throughput on shared links~\cite{Srikant}. A flow that receives
+steady-state throughput of $x$ is assigned a score of $U_\alpha(x) =
+\frac{x^{1-\alpha}}{1-\alpha}$. As $\alpha \rightarrow 1$, in the
+limit $U_1(x)$ becomes $\log x$.
+
+Because $U_\alpha(x)$ is concave for $\alpha > 0$ and monotonically
+increasing, an allocation that maximizes the total score will prefer
+to divide the throughput of a bottleneck link equally between
+flows. When this is impossible, the parameter $\alpha$ sets the
+tradeoff between fairness and efficiency. For example, $\alpha = 0$
+assigns no value to fairness and simply measures total
+throughput. $\alpha = 1$ is known as proportional fairness, because it
+will cut one user's allocation in half as long as another user's can
+be more than doubled. $\alpha = 2$ corresponds to minimum potential
+delay fairness, where the score goes as the negative inverse of
+throughput; this metric seeks to minimize the total time of
+fixed-length file transfers. As $\alpha \rightarrow \infty$,
+maximizing the total $U_\alpha(x)$ achieves max-min fairness, where
+all that matters is the minimum resource allocations in bottom-up
+order~\cite{Srikant}.
+
+Because the overall score is simply a sum of monotonically increasing
+functions of throughput, an algorithm that maximizes this total is
+Pareto-efficient for any value of $\alpha$; i.e., the metric will
+always prefer an allocation that helps one user and leaves all other
+users the same or better. Tan et al.~\cite{Tan09} proved that, subject
+to the requirement of Pareto-efficiency, alpha-fairness is \emph{the}
+metric that places the greatest emphasis on fairness for a particular
+$\alpha$.
+
+Kelly et al.~\cite{Kelly98} and further analyses showed that TCP
+approximately maximizes minimum potential delay fairness
+asymptotically in steady state, if all losses are congestive and link
+speeds are fixed.
+
+We extend this model to cover dynamic traffic and network
+conditions. Given a network trace, we calculate the average throughput
+$x$ of each flow, defined as the total number of bytes received
+divided by the time that the sender was ``on.'' We calculate the
+average round-trip delay $y$ of the connection.
+
+The flow's score is then 
+\begin{equation}
+U_\alpha(\textrm{x}) - \delta \cdot U_\beta(\textrm{y}),
+\label{eq:util}
+\end{equation}
+where $\alpha$ and $\beta$ express the fairness-vs.-efficiency
+tradeoffs in throughput and delay, respectively, and $\delta$
+expresses the relative importance of delay vs.~throughput.% For the
+%rest of this paper, we set $\alpha = \beta = 1$ and simply consider
+%the sum of $\log(\textrm{throughput}) - \delta \cdot
+%\log(\textrm{delay})$ for each flow.
+
+%We also consider the metric of average flow completion time. This also
+%expresses a throughput-vs.-delay tradeoff.
+
+We emphasize that the purpose of the objective function is to supply a
+quantitative goal from a protocol-design perspective. It need not
+(indeed, does not) precisely represent users' ``true'' preferences or
+utilities. In real usage, different users may have different
+objectives; a videoconference may not benefit from more throughput, or
+some packets may be more important than others. We have not yet
+addressed the problem of how to accommodate diverse objectives or how
+endpoints might learn about the differing preferences of other
+endpoints.
+
+%In summary, this framework provides a unitary metric for evaluating
+%the performance of any congestion-control endpoint algorithm (e.g.~TCP
+%Cubic, Vegas, or Compound) on a given ensemble of network and traffic
+%models. In the next section, we describe the design of the Remy
+%program, which attempts to design a congestion-control algorithm to
+%optimize this metric.
+

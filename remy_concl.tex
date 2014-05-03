@@ -1,0 +1,30 @@
+\section{Conclusion}
+\label{s:concl}
+
+This paper asks whether the design of distributed congestion-control
+algorithms for heterogeneous and dynamic networks can be done by
+specifying the assumptions that such algorithms are entitled to have
+and the policy they ought to achieve, and letting computers work out
+the details of the per-endpoint mechanisms.
+
+Much future work remains before this question can be answered for
+the real-world Internet, but our findings suggest that this approach
+has considerable potential.
+
+We developed and evaluated Remy, a program that designs end-to-end
+congestion-control algorithms to human-supplied specifications. Remy's
+outputs handily outperform the best-known techniques, including ones
+that require intrusive in-network changes, in scenarios where network
+parameters varied over one or two orders of magnitude.
+
+Our results, and many others in the literature, indicate that there is
+no existing single congestion-control method that is the best in all
+situations. Moreover, the set of ``all situations'' is rapidly growing
+as new subnetworks and link technologies proliferate.  A
+computer-generated approach that maximizes an explicit function of the
+throughput and delay to generate algorithms may be the right way
+forward for the networking community.  Today's informal approach of
+hampering lower layers or providing vague advice on how best to
+accommodate TCP should be replaced by end-to-end algorithms (in TCP
+and elsewhere) that adapt to {\em whatever} the lower layers are
+doing.  Remy provides a way to achieve this goal.

@@ -1,0 +1,117 @@
+\section{Related Work}
+\label{remy:related}
+
+Starting with Ramakrishnan and Jain's DECBit scheme~\cite{decbit} and
+Jacobson's TCP Tahoe (and Reno) algorithms~\cite{Jacobson88},
+congestion control over heterogeneous packet-switched networks has
+been an active area of research. End-to-end algorithms typically
+compute a congestion window (or, in some cases, a transmission rate)
+as well as the round-trip time (RTT) using the stream of
+acknowledgments (ACKs) arriving from the receiver. In response to
+congestion, inferred from packet loss or, in some cases, rising
+delays, the sender reduces its window; conversely, when no congestion
+is perceived, the sender increases its window.
+
+There are many different ways to vary the window. Chiu and
+Jain~\cite{chiujain} showed that among linear methods, additive
+increase / multiplicative decrease (AIMD) converges to high
+utilization and a fair allocation of throughputs, under some
+simplifying assumptions (long-running connections with synchronized
+and instantaneous feedback). Our work relaxes these assumptions to
+handle flows that enter and leave the network, and users who care
+about latency as well as throughput. Remy's algorithms are not
+necessarily linear, and can use both a window and a rate pacer to
+regulate transmissions.
+
+In this paper, we compare Remy's generated algorithms with several
+end-to-end schemes, including NewReno~\cite{newreno},
+Vegas~\cite{vegas}, Compound TCP~\cite{compound}, Cubic~\cite{cubic},
+and DCTCP for datacenters~\cite{dctcp}. NewReno has the same
+congestion-control strategy as Reno---slow start at the beginning, on
+a timeout, or after an idle period of about one retransmission timeout
+(RTO), additive increase every RTT when there is no congestion, and a
+one-half reduction in the window on receiving three duplicate ACKs
+(signaling packet loss). We compare against NewReno rather than Reno
+because NewReno's loss recovery is better.
+
+Brakmo and Peterson's Vegas is a delay-based algorithm, motivated by
+the insight from Jain's CARD scheme~\cite{card} and Wang and Crowcroft's
+DUAL scheme~\cite{dual} that increasing RTTs may be a congestion
+signal.  Vegas computes a BaseRTT, defined as the RTT in the absence
+of congestion, and usually estimated as the first RTT on the
+connection before the windows grow. The expected throughput of the
+connection is the ratio of the current window size and BaseRTT, if
+there is no congestion; Vegas compares the {\em actual} sending rate,
+and considers the difference, {\em diff}, between the expected and
+actual rates.  Depending on this difference, Vegas either increases
+the congestion window linearly ({\em diff} $< \alpha$), reduces it
+linearly ({\em diff} $> \beta$), or leaves it unchanged.
+
+Compound TCP~\cite{compound} combines ideas from Reno and Vegas: when
+packet losses occur, it uses Reno's adaptation, while reacting to
+delay variations using ideas from Vegas. Compound TCP is more
+complicated than a straightforward hybrid of Reno and Vegas; for
+example, the delay-based window adjustment uses a binomial
+algorithm~\cite{binomial}. Compound TCP uses the delay-based window to
+identify the absence of congestion rather than its onset, which is a
+key difference from Vegas.
+
+Rhee and Xu's Cubic algorithm is an improvement over their previous
+work on BIC~\cite{bic}. Cubic's growth is independent of the RTT (like
+H-TCP~\cite{htcp}), and depends only on the packet loss rate,
+incrementing as a cubic function of ``real'' time. Cubic is known to
+achieve high throughput and fairness independent of RTT, but it also
+aggressively increases its window size, inflating queues and bloating
+RTTs (see \S\ref{remy:eval}).
+
+Other schemes developed in the literature include equation-based
+congestion control~\cite{ebcc}, binomial control~\cite{binomial},
+FastTCP~\cite{fasttcp}, HSTCP, and TCP Westwood~\cite{westwood}.
+
+End-to-end control may be improved with explicit router participation,
+as in Explicit Congestion Notification (ECN)~\cite{ecn},
+VCP~\cite{vcp}, active queue management schemes like
+RED~\cite{Floyd93}, BLUE~\cite{BLUE}, CHOKe~\cite{choke},
+AVQ~\cite{AVQ}, and CoDel~\cite{CoDel} fair queueing, and explicit
+methods such as XCP~\cite{xcp} and RCP~\cite{rcp}.  AQM schemes aim to
+prevent persistent queues, and have largely focused on reacting to
+growing queues by marking packets with ECN or dropping them even
+before the queue is full. CoDel changes the model from reacting to
+specific average queue lengths to reacting when the delays measured
+over some duration are too long, suggesting a persistent
+queue. Scheduling algorithms isolate flows or groups of flows from
+each other, and provide weighted fairness between them.  In XCP and
+RCP, routers place information in packet headers to help the senders
+determine their window (or rate). One limitation of XCP is that it
+needs to know the bandwidth of the outgoing link, which is difficult
+to obtain accurately for a time-varying wireless channel.
+
+In \S\ref{remy:eval}, we compare Remy's generated algorithm with XCP and
+with end-to-end schemes running through a gateway with the CoDel AQM and
+stochastic fair queueing (sfqCoDel).
+
+TCP congestion control was not designed with an explicit optimization
+goal in mind, but instead allows overall network behavior to emerge
+from its rules. Kelly et al.~present an interpretation of various TCP
+congestion-control variants in terms of the implicit goals they
+attempt to optimize~\cite{Kelly98}.  This line of work has become
+known as Network Utility Maximization (NUM); more recent work has
+modeled stochastic NUM problems~\cite{stochasticnum}, in which flows
+enter and leave the network. Remy may be viewed as combining the
+desire for practical distributed endpoint algorithms with the explicit
+utility-maximization ethos of stochastic NUM.
+
+We note that TCP stacks have adapted in some respects to the changing
+Internet; for example, increasing bandwidth-delay products have
+produced efforts to increase the initial congestion
+window~\cite{dukkipati2010argument,chu2012increasing}, including
+recent proposals \cite{allman2010init,touch2012automating} for this
+quantity to automatically increase on the timescale of months or
+years. What we propose in this paper is an automated means by which
+TCP's entire congestion-control algorithm, not just its initial
+window, could adapt in response to empirical variations in underlying
+networks.
+
+
+
+%Remy is a distributed POMDP-style method... Say something more here.

@@ -1,0 +1,56 @@
+\begin{abstract}
+
+  This paper describes a new approach to end-to-end congestion control
+  on a multi-user network. Rather than manually formulate each
+  endpoint's reaction to congestion signals, as in traditional
+  protocols, we developed a program called Remy that generates
+  congestion-control algorithms to run at the endpoints.
+
+  In this approach, the protocol designer specifies their prior
+  knowledge or assumptions about the network and an objective that the
+  algorithm will try to achieve, e.g., high throughput and low
+  queueing delay.  Remy then produces a distributed algorithm---the
+  control rules for the independent endpoints---that tries to achieve
+  this objective.
+
+% Traditionally, congestion-control protocols
+%  were developed by specifying the algorithm that endpoints run, so as
+%  to achieve good performance and prevent congestion collapse.
+%  We reverse this tradition. Instead of hand-crafting rules for
+%  endpoint behavior, 
+%In this approach, we specify an uncertain model of network scenarios
+%and a utility function of throughput and delay. Remy then produces a
+%distributed algorithm---that is, the control rules for the
+%endpoints---that attempts to maximize the total utility.  Remy's
+%output depends on the model of the network and workload, so it can
+%change with time as network scenarios and workloads evolve.
+%
+% A computer
+ % program called Remy then designs a congestion-control algorithm from
+ % first principles in response to these inputs.
+%The algorithm can be used by a TCP
+%  sender, without changes to the receiver.
+
+  In simulations with ns-2, Remy-generated algorithms
+  outperformed human-designed end-to-end techniques, including TCP
+  Cubic, Compound, and Vegas. In many cases, Remy's algorithms also
+  outperformed methods that require intrusive in-network changes,
+  including XCP and Cubic-over-sfqCoDel (stochastic fair queueing with
+  CoDel for active queue management).
+
+  Remy can generate algorithms both for networks where some parameters
+  are known tightly \textit{a priori}, e.g.~datacenters, and for
+  networks where prior knowledge is less precise, such as cellular
+  networks. We characterize the sensitivity of the resulting
+  performance to the specificity of the prior knowledge, and the
+  consequences when real-world conditions contradict the assumptions
+  supplied at design-time.
+
+%\category{C.2.1}{Computer-Communication Networks}{Network Architecture
+%  and Design --- Network communications}
+
+%\keywords{congestion control, computer-generated algorithms}
+
+%\terms{Design, Performance}
+
+\end{abstract}

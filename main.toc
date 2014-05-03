@@ -1,0 +1,58 @@
+\contentsline {chapter}{Previously Published Material}{7}{chapter*.3}
+\contentsline {chapter}{Acknowledgements}{9}{chapter*.4}
+\contentsline {chapter}{\numberline {1}Introduction}{11}{chapter.1}
+\contentsline {chapter}{\numberline {2}Sprout}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{13}{section.2.1}
+\contentsline {section}{\numberline {2.2}Context and Challenges}{16}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Cellular Networks}{17}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Measurement Example}{18}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Challenges}{18}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}The Sprout Algorithm}{19}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Inferring the rate of a varying Poisson process}{21}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Evolution of the probability distribution on $\lambda $}{22}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Making the packet delivery forecast}{23}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}The control protocol}{23}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Using the forecast}{24}{subsection.2.3.5}
+\contentsline {section}{\numberline {2.4}Experimental Testbed}{25}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Saturator}{25}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Cellsim}{26}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}SproutTunnel}{27}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Evaluation}{28}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Metrics}{28}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Comparative performance}{29}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Benefits of forecasting}{29}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Comparison with in-network changes}{31}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.5}Effect of confidence parameter}{33}{subsection.2.5.5}
+\contentsline {subsection}{\numberline {2.5.6}Loss resilience}{33}{subsection.2.5.6}
+\contentsline {subsection}{\numberline {2.5.7}Sprout as a tunnel for competing traffic}{33}{subsection.2.5.7}
+\contentsline {section}{\numberline {2.6}Related Work}{34}{section.2.6}
+\contentsline {paragraph}{End-to-end algorithms.}{34}{section*.6}
+\contentsline {section}{\numberline {2.7}Limitations and Future Work}{35}{section.2.7}
+\contentsline {section}{\numberline {2.8}Conclusion}{36}{section.2.8}
+\contentsline {section}{\numberline {2.9}Acknowledgments}{36}{section.2.9}
+\contentsline {chapter}{\numberline {3}Remy}{37}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduction}{37}{section.3.1}
+\contentsline {section}{\numberline {3.2}Related Work}{41}{section.3.2}
+\contentsline {section}{\numberline {3.3}Modeling the Congestion-Control Problem}{43}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Expressing prior assumptions about the network}{43}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Traffic model}{44}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Objective function}{44}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}How Remy Produces a Congestion-Control Algorithm}{45}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Compactly representing the sender's state}{46}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}RemyCC: Mapping the memory to an action}{47}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Remy's automated design procedure}{48}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Evaluation}{50}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Simulation setup and metrics}{50}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Single Bottleneck Results}{54}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Cellular Wireless Links}{57}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.4}Differing RTTs}{58}{subsection.3.5.4}
+\contentsline {subsection}{\numberline {3.5.5}Datacenter-like topology}{58}{subsection.3.5.5}
+\contentsline {subsection}{\numberline {3.5.6}Competing protocols}{63}{subsection.3.5.6}
+\contentsline {subsection}{\numberline {3.5.7}How helpful is prior knowledge about the network?}{64}{subsection.3.5.7}
+\contentsline {subsection}{\numberline {3.5.8}Summary of results}{64}{subsection.3.5.8}
+\contentsline {section}{\numberline {3.6}Discussion}{66}{section.3.6}
+\contentsline {section}{\numberline {3.7}Conclusion}{67}{section.3.7}
+\contentsline {section}{\numberline {3.8}Acknowledgments}{67}{section.3.8}
+\contentsline {chapter}{\numberline {4}Learnability}{69}{chapter.4}
+\contentsline {chapter}{\numberline {5}Mosh}{71}{chapter.5}
+\contentsline {chapter}{\numberline {6}Critiques \& Conclusion}{73}{chapter.6}

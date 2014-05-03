@@ -10,3 +10,48 @@
 \BOOKMARK [1][-]{section.2.3}{The Sprout Algorithm}{chapter.2}% 10
 \BOOKMARK [2][-]{subsection.2.3.1}{Inferring the rate of a varying Poisson process}{section.2.3}% 11
 \BOOKMARK [2][-]{subsection.2.3.2}{Evolution of the probability distribution on }{section.2.3}% 12
+\BOOKMARK [2][-]{subsection.2.3.3}{Making the packet delivery forecast}{section.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.3.4}{The control protocol}{section.2.3}% 14
+\BOOKMARK [2][-]{subsection.2.3.5}{Using the forecast}{section.2.3}% 15
+\BOOKMARK [1][-]{section.2.4}{Experimental Testbed}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.4.1}{Saturator}{section.2.4}% 17
+\BOOKMARK [2][-]{subsection.2.4.2}{Cellsim}{section.2.4}% 18
+\BOOKMARK [2][-]{subsection.2.4.3}{SproutTunnel}{section.2.4}% 19
+\BOOKMARK [1][-]{section.2.5}{Evaluation}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.5.1}{Metrics}{section.2.5}% 21
+\BOOKMARK [2][-]{subsection.2.5.2}{Comparative performance}{section.2.5}% 22
+\BOOKMARK [2][-]{subsection.2.5.3}{Benefits of forecasting}{section.2.5}% 23
+\BOOKMARK [2][-]{subsection.2.5.4}{Comparison with in-network changes}{section.2.5}% 24
+\BOOKMARK [2][-]{subsection.2.5.5}{Effect of confidence parameter}{section.2.5}% 25
+\BOOKMARK [2][-]{subsection.2.5.6}{Loss resilience}{section.2.5}% 26
+\BOOKMARK [2][-]{subsection.2.5.7}{Sprout as a tunnel for competing traffic}{section.2.5}% 27
+\BOOKMARK [1][-]{section.2.6}{Related Work}{chapter.2}% 28
+\BOOKMARK [1][-]{section.2.7}{Limitations and Future Work}{chapter.2}% 29
+\BOOKMARK [1][-]{section.2.8}{Conclusion}{chapter.2}% 30
+\BOOKMARK [1][-]{section.2.9}{Acknowledgments}{chapter.2}% 31
+\BOOKMARK [0][-]{chapter.3}{Remy}{}% 32
+\BOOKMARK [1][-]{section.3.1}{Introduction}{chapter.3}% 33
+\BOOKMARK [1][-]{section.3.2}{Related Work}{chapter.3}% 34
+\BOOKMARK [1][-]{section.3.3}{Modeling the Congestion-Control Problem}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.3.1}{Expressing prior assumptions about the network}{section.3.3}% 36
+\BOOKMARK [2][-]{subsection.3.3.2}{Traffic model}{section.3.3}% 37
+\BOOKMARK [2][-]{subsection.3.3.3}{Objective function}{section.3.3}% 38
+\BOOKMARK [1][-]{section.3.4}{How Remy Produces a Congestion-Control Algorithm}{chapter.3}% 39
+\BOOKMARK [2][-]{subsection.3.4.1}{Compactly representing the sender's state}{section.3.4}% 40
+\BOOKMARK [2][-]{subsection.3.4.2}{RemyCC: Mapping the memory to an action}{section.3.4}% 41
+\BOOKMARK [2][-]{subsection.3.4.3}{Remy's automated design procedure}{section.3.4}% 42
+\BOOKMARK [1][-]{section.3.5}{Evaluation}{chapter.3}% 43
+\BOOKMARK [2][-]{subsection.3.5.1}{Simulation setup and metrics}{section.3.5}% 44
+\BOOKMARK [2][-]{subsection.3.5.2}{Single Bottleneck Results}{section.3.5}% 45
+\BOOKMARK [2][-]{subsection.3.5.3}{Cellular Wireless Links}{section.3.5}% 46
+\BOOKMARK [2][-]{subsection.3.5.4}{Differing RTTs}{section.3.5}% 47
+\BOOKMARK [2][-]{subsection.3.5.5}{Datacenter-like topology}{section.3.5}% 48
+\BOOKMARK [2][-]{subsection.3.5.6}{Competing protocols}{section.3.5}% 49
+\BOOKMARK [2][-]{subsection.3.5.7}{How helpful is prior knowledge about the network?}{section.3.5}% 50
+\BOOKMARK [2][-]{subsection.3.5.8}{Summary of results}{section.3.5}% 51
+\BOOKMARK [1][-]{section.3.6}{Discussion}{chapter.3}% 52
+\BOOKMARK [1][-]{section.3.7}{Conclusion}{chapter.3}% 53
+\BOOKMARK [1][-]{section.3.8}{Acknowledgments}{chapter.3}% 54
+\BOOKMARK [0][-]{chapter.4}{Learnability}{}% 55
+\BOOKMARK [0][-]{chapter.5}{Mosh}{}% 56
+\BOOKMARK [0][-]{chapter.6}{Critiques \046 Conclusion}{}% 57

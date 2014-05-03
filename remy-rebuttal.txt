@@ -1,0 +1,54 @@
+We thank the reviewers for their detailed and thoughtful feedback.
+
+Reviewer A: We agree that the sec-5.5 results on these RemyCCs when
+run concurrently vs. CUBIC/Compound aren't great, but emphasize that
+they weren't yet trained to compete with "buffer-filling" TCPs. When
+we train against possible buffer-filling cross-traffic, we expect to
+demonstrate throughput gains. Please note: CUBIC isn't fair to Newreno
+or Compound either.
+
+Reviewer B: We agree with the suggestion to cite Chiu/Jain, who found
+that among linear schemes where flows start at the same time with
+uniform RTT and last forever, AIMD converges to fairness. RemyCCs
+aren't necessarily linear. Beyond [42], we don't know of a theoretical
+treatment with these assumptions removed, but our work can give
+feasibility results.
+
+We also seek intuition about why RemyCCs do well. The short answer is:
+they can switch between pacing and window-based control, and respond
+quickly to entry/exit of flows.  We can now trace executing RemyCCs
+and could expand the explanation.
+
+Reviewer C:
+
+1. Remy is intended solely for *offline* creation of
+congestion-control schemes, which then run at the sender (top-right of
+pg. 2; fig. 1; sec. 4.3). Connections start immediately.
+
+2. Remy doesn't assume network paths are fixed. We evaluated on traces
+of time-varying Verizon and AT&T LTE networks (figs. 6-8), with actual
+flow lengths (fig. 3). Only in *offline training* did we use a mean
+on/off time of 5 seconds. (Training parameters are on pg. 7, right
+column; evaluation scenarios are under "Topologies.") Other reported
+simulation results varied cross traffic, RTT, etc.
+
+3. The network model used for training captures a 64-fold *range* of
+BDP-per-user. We evaluated on networks inside and outside this range
+(pg. 7, col. 2). 
+
+4. Re: XCP, it is *XCP* that needs to know the exact throughput of the
+bottleneck link (footnote 8). Remy does not.
+
+5. Remy doesn't assume the exact traffic model is provided; we trained
+on a model but evaluated on a real (untrained) flow-length
+distribution.
+
+6. We don't claim Remy is optimal; there is an optimal scheme in
+principle (sec 4.1), which we attempt to approximate. Section 3.3
+stresses that the utility function is a tool used to design
+protocols. It need not capture users' "true" utilities (cf. remarks in
+Related Work re: stochastic NUM [42]).
+
+7. The evaluation looked at more than just queueing latency. Our
+tables (sec. 1) and charts (figs. 4-7,9) show delay-vs-throughput and
+delay-fairness and throughput-fairness (shaded ovals).
