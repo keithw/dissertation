@@ -1,0 +1,70 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+my %fairshare;
+
+sub rnd {
+  my ( $num ) = @_;
+  return sprintf "%.02f", $num;
+}
+
+open FAIRSHARE, "proportional-fairness-crosspath.txt" or die;
+
+while ( <FAIRSHARE> ) {
+  chomp;
+
+  my ( $link1, $link2, $proportional_fair_throughput ) = split /\s+/, $_;
+
+  $fairshare{ rnd $link1 }{ rnd $link2 } = $proportional_fair_throughput;
+}
+
+close FAIRSHARE or die;
+
+while ( <> ) {
+  chomp;
+  my ( $link1, $link2, $tput1 ) = split /\s+/, $_;
+
+  if ( not defined $fairshare{ rnd $link1 }{ rnd $link2 } ) {
+    my ($x, $y) = (rnd $link1, rnd $link2);
+    die "no fairshare found for $link1=$x $link2=$y";
+  }
+
+  my $proportion_of_fair = $tput1 / $fairshare{ rnd $link1 }{ rnd $link2 };
+
+  print "$link1 $link2 $proportion_of_fair\n";
+}
+
+__END__
+
+Mathematica code to generate proportional fair share of the A-C flow:
+
+AC[a_, b_] := 
+ ac /. First[
+   Rest[NMaximize[{0 Log[ab] + 0 Log[bc] + Log[ac], ab > 0, bc > 0, 
+      ac > 0, ab + ac < a, bc + ac < b}, {ab, bc, ac}]]]
+
+ACAB[a_, b_] := 
+ ac /. First[
+   Rest[NMaximize[{Log[ab] + 0 Log[bc] + Log[ac], ab > 0, bc > 0, 
+      ac > 0, ab + ac < a, bc + ac < b}, {ab, bc, ac}]]]
+
+ACBC[a_, b_] := 
+ ac /. First[
+   Rest[NMaximize[{0 Log[ab] + Log[bc] + Log[ac], ab > 0, bc > 0, 
+      ac > 0, ab + ac < a, bc + ac < b}, {ab, bc, ac}]]]
+
+ACABBC[a_, b_] := 
+ ac /. First[
+   Rest[NMaximize[{Log[ab] + Log[bc] + Log[ac], ab > 0, bc > 0, 
+      ac > 0, ab + ac < a, bc + ac < b}, {ab, bc, ac}]]]
+
+ACprofair[a_, 
+  b_] := .25 AC[a, b] + .25 ACAB[a, b] + .25 ACBC[a, b] + .25 ACABBC[
+    a, b]
+
+AC2[{a_, b_}] := {a, b, ACprofair[a, b]}
+
+f[x_] := N[10 10^(x/31)]
+
+Map[AC2, CartesianProduct[Map[f, Range[0, 31]], Map[f, Range[0, 31]]]]

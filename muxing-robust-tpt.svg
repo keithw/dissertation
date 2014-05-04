@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"  standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg 
+ width="600" height="480" 
+ viewBox="0 0 600 480"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+<title>Gnuplot</title>
+<desc>Produced by GNUPLOT 4.6 patchlevel 3 </desc>
+
+<g id="gnuplot_canvas">
+
+<rect x="0" y="0" width="600" height="480" fill="none"/>
+<defs>
+
+	<circle id='gpDot' r='0.5' stroke-width='0.5'/>
+	<path id='gpPt0' stroke-width='0.222' stroke='currentColor' d='M-1,0 h2 M0,-1 v2'/>
+	<path id='gpPt1' stroke-width='0.222' stroke='currentColor' d='M-1,-1 L1,1 M1,-1 L-1,1'/>
+	<path id='gpPt2' stroke-width='0.222' stroke='currentColor' d='M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1'/>
+	<rect id='gpPt3' stroke-width='0.222' stroke='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<rect id='gpPt4' stroke-width='0.222' stroke='currentColor' fill='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<circle id='gpPt5' stroke-width='0.222' stroke='currentColor' cx='0' cy='0' r='1'/>
+	<use xlink:href='#gpPt5' id='gpPt6' fill='currentColor' stroke='none'/>
+	<path id='gpPt7' stroke-width='0.222' stroke='currentColor' d='M0,-1.33 L-1.33,0.67 L1.33,0.67 z'/>
+	<use xlink:href='#gpPt7' id='gpPt8' fill='currentColor' stroke='none'/>
+	<use xlink:href='#gpPt7' id='gpPt9' stroke='currentColor' transform='rotate(180)'/>
+	<use xlink:href='#gpPt9' id='gpPt10' fill='currentColor' stroke='none'/>
+	<use xlink:href='#gpPt3' id='gpPt11' stroke='currentColor' transform='rotate(45)'/>
+	<use xlink:href='#gpPt11' id='gpPt12' fill='currentColor' stroke='none'/>
+</defs>
+<g style="fill:none; color:white; stroke:black; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path stroke='black'  d='M71.9,422.4 L80.9,422.4 M575.0,422.4 L566.0,422.4  h0.01'/>	<g transform="translate(63.6,426.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 0.4</text>
+	</g>
+	<path stroke='black'  d='M71.9,381.5 L80.9,381.5 M575.0,381.5 L566.0,381.5  h0.01'/>	<g transform="translate(63.6,386.0)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 0.6</text>
+	</g>
+	<path stroke='black'  d='M71.9,340.6 L80.9,340.6 M575.0,340.6 L566.0,340.6  h0.01'/>	<g transform="translate(63.6,345.1)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 0.8</text>
+	</g>
+	<path stroke='black'  d='M71.9,299.6 L80.9,299.6 M575.0,299.6 L566.0,299.6  h0.01'/>	<g transform="translate(63.6,304.1)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 1</text>
+	</g>
+	<path stroke='black'  d='M71.9,258.7 L80.9,258.7 M575.0,258.7 L566.0,258.7  h0.01'/>	<g transform="translate(63.6,263.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 1.2</text>
+	</g>
+	<path stroke='black'  d='M71.9,217.8 L80.9,217.8 M575.0,217.8 L566.0,217.8  h0.01'/>	<g transform="translate(63.6,222.3)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 1.4</text>
+	</g>
+	<path stroke='black'  d='M71.9,176.9 L80.9,176.9 M575.0,176.9 L566.0,176.9  h0.01'/>	<g transform="translate(63.6,181.4)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 1.6</text>
+	</g>
+	<path stroke='black'  d='M71.9,135.9 L80.9,135.9 M575.0,135.9 L566.0,135.9  h0.01'/>	<g transform="translate(63.6,140.4)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 1.8</text>
+	</g>
+	<path stroke='black'  d='M71.9,95.0 L80.9,95.0 M575.0,95.0 L566.0,95.0  h0.01'/>	<g transform="translate(63.6,99.5)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 2</text>
+	</g>
+	<path stroke='black'  d='M71.9,54.1 L80.9,54.1 M575.0,54.1 L566.0,54.1  h0.01'/>	<g transform="translate(63.6,58.6)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 2.2</text>
+	</g>
+	<path stroke='black'  d='M71.9,422.4 L71.9,413.4 M71.9,54.1 L71.9,63.1  h0.01'/>	<g transform="translate(71.9,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 0</text>
+	</g>
+	<path stroke='black'  d='M122.2,422.4 L122.2,413.4 M122.2,54.1 L122.2,63.1  h0.01'/>	<g transform="translate(122.2,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 2</text>
+	</g>
+	<path stroke='black'  d='M172.5,422.4 L172.5,413.4 M172.5,54.1 L172.5,63.1  h0.01'/>	<g transform="translate(172.5,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 4</text>
+	</g>
+	<path stroke='black'  d='M222.8,422.4 L222.8,413.4 M222.8,54.1 L222.8,63.1  h0.01'/>	<g transform="translate(222.8,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 6</text>
+	</g>
+	<path stroke='black'  d='M273.1,422.4 L273.1,413.4 M273.1,54.1 L273.1,63.1  h0.01'/>	<g transform="translate(273.1,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 8</text>
+	</g>
+	<path stroke='black'  d='M323.5,422.4 L323.5,413.4 M323.5,54.1 L323.5,63.1  h0.01'/>	<g transform="translate(323.5,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 10</text>
+	</g>
+	<path stroke='black'  d='M373.8,422.4 L373.8,413.4 M373.8,54.1 L373.8,63.1  h0.01'/>	<g transform="translate(373.8,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 12</text>
+	</g>
+	<path stroke='black'  d='M424.1,422.4 L424.1,413.4 M424.1,54.1 L424.1,63.1  h0.01'/>	<g transform="translate(424.1,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 14</text>
+	</g>
+	<path stroke='black'  d='M474.4,422.4 L474.4,413.4 M474.4,54.1 L474.4,63.1  h0.01'/>	<g transform="translate(474.4,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 16</text>
+	</g>
+	<path stroke='black'  d='M524.7,422.4 L524.7,413.4 M524.7,54.1 L524.7,63.1  h0.01'/>	<g transform="translate(524.7,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 18</text>
+	</g>
+	<path stroke='black'  d='M575.0,422.4 L575.0,413.4 M575.0,54.1 L575.0,63.1  h0.01'/>	<g transform="translate(575.0,444.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text> 20</text>
+	</g>
+	<path stroke='black'  d='M71.9,54.1 L71.9,422.4 L575.0,422.4 L575.0,54.1 L71.9,54.1 Z  h0.01'/>	<g transform="translate(17.6,238.3) rotate(270)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>Utilization</text>
+	</g>
+	<g transform="translate(323.4,471.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>Senders</text>
+	</g>
+	<g transform="translate(323.4,31.6)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>Muxing Robustness</text>
+	</g>
+</g>
+	<g id="gnuplot_plot_1" ><title>gnuplot_plot_1</title>
+<g style="fill:none; color:white; stroke:black; stroke-width:4.00; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:red; stroke:currentColor; stroke-width:4.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(507.9,336.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>100x link range, [1, 4, 7, 10] senders</text>
+	</g>
+	<path  d='M516.2,332.4 L558.4,332.4 M97.1,367.3 L122.2,282.7 L147.4,232.8 L172.5,192.2 L197.7,174.3 L222.8,158.7 
+		L248.0,142.9 L273.1,143.3 L298.3,135.1 L323.5,127.3 L348.6,122.2 L373.8,123.0 L398.9,118.0 L424.1,113.6 
+		L449.2,102.9 L474.4,106.8 L499.5,107.8 L524.7,104.7 L549.8,98.9 L575.0,99.2  h0.01'/>	<use xlink:href='#gpPt0' transform='translate(97.1,367.3) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(122.2,282.7) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(147.4,232.8) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(172.5,192.2) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(197.7,174.3) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(222.8,158.7) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(248.0,142.9) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(273.1,143.3) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(298.3,135.1) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(323.5,127.3) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(348.6,122.2) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(373.8,123.0) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(398.9,118.0) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(424.1,113.6) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(449.2,102.9) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(474.4,106.8) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(499.5,107.8) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(524.7,104.7) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(549.8,98.9) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(575.0,99.2) scale(4.50)'/>
+	<use xlink:href='#gpPt0' transform='translate(537.3,332.4) scale(4.50)'/>
+</g>
+	</g>
+	<g id="gnuplot_plot_2" ><title>gnuplot_plot_2</title>
+<g style="fill:none; color:green; stroke:currentColor; stroke-width:4.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(507.9,354.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>100x link range 2 senders</text>
+	</g>
+	<path  d='M516.2,350.4 L558.4,350.4 M97.1,335.8 L122.2,255.3 L147.4,210.2 L172.5,170.6 L197.7,157.6 L222.8,139.5 
+		L248.0,123.3 L273.1,123.6 L298.3,114.8 L323.5,107.0 L348.6,104.9 L373.8,103.3 L398.9,101.4 L424.1,98.3 
+		L449.2,89.8 L474.4,95.9 L499.5,104.6 L524.7,103.6 L549.8,116.1 L575.0,121.3  h0.01'/>	<use xlink:href='#gpPt1' transform='translate(97.1,335.8) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(122.2,255.3) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(147.4,210.2) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(172.5,170.6) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(197.7,157.6) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(222.8,139.5) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(248.0,123.3) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(273.1,123.6) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(298.3,114.8) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(323.5,107.0) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(348.6,104.9) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(373.8,103.3) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(398.9,101.4) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(424.1,98.3) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(449.2,89.8) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(474.4,95.9) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(499.5,104.6) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(524.7,103.6) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(549.8,116.1) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(575.0,121.3) scale(4.50)'/>
+	<use xlink:href='#gpPt1' transform='translate(537.3,350.4) scale(4.50)'/>
+</g>
+	</g>
+	<g id="gnuplot_plot_3" ><title>gnuplot_plot_3</title>
+<g style="fill:none; color:blue; stroke:currentColor; stroke-width:4.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(507.9,372.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>[1, 2, ... 10] senders 10**1.5 Mbps</text>
+	</g>
+	<path  d='M516.2,368.4 L558.4,368.4 M97.1,328.1 L122.2,262.6 L147.4,226.0 L172.5,191.7 L197.7,181.3 L222.8,163.2 
+		L248.0,145.9 L273.1,144.7 L298.3,133.8 L323.5,122.4 L348.6,117.7 L373.8,114.4 L398.9,109.4 L424.1,104.2 
+		L449.2,94.5 L474.4,97.5 L499.5,99.2 L524.7,95.8 L549.8,91.6 L575.0,92.6  h0.01'/>	<use xlink:href='#gpPt2' transform='translate(97.1,328.1) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(122.2,262.6) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(147.4,226.0) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(172.5,191.7) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(197.7,181.3) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(222.8,163.2) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(248.0,145.9) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(273.1,144.7) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(298.3,133.8) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(323.5,122.4) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(348.6,117.7) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(373.8,114.4) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(398.9,109.4) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(424.1,104.2) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(449.2,94.5) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(474.4,97.5) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(499.5,99.2) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(524.7,95.8) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(549.8,91.6) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(575.0,92.6) scale(4.50)'/>
+	<use xlink:href='#gpPt2' transform='translate(537.3,368.4) scale(4.50)'/>
+</g>
+	</g>
+	<g id="gnuplot_plot_4" ><title>gnuplot_plot_4</title>
+<g style="fill:none; color:cyan; stroke:currentColor; stroke-width:4.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(507.9,390.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Cubic</text>
+	</g>
+	<path  d='M516.2,386.4 L558.4,386.4 M97.1,320.7 L122.2,309.0 L147.4,307.1 L172.5,292.9 L197.7,302.9 L222.8,280.5 
+		L248.0,295.7 L273.1,299.0 L298.3,302.8 L323.5,298.7 L348.6,286.2 L373.8,284.2 L398.9,278.1 L424.1,276.5 
+		L449.2,271.8 L474.4,260.6 L499.5,255.7 L524.7,268.9 L549.8,277.4 L575.0,263.8  h0.01'/>	<use xlink:href='#gpPt3' transform='translate(97.1,320.7) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(122.2,309.0) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(147.4,307.1) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(172.5,292.9) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(197.7,302.9) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(222.8,280.5) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(248.0,295.7) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(273.1,299.0) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(298.3,302.8) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(323.5,298.7) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(348.6,286.2) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(373.8,284.2) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(398.9,278.1) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(424.1,276.5) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(449.2,271.8) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(474.4,260.6) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(499.5,255.7) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(524.7,268.9) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(549.8,277.4) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(575.0,263.8) scale(4.50)'/>
+	<use xlink:href='#gpPt3' transform='translate(537.3,386.4) scale(4.50)'/>
+</g>
+	</g>
+	<g id="gnuplot_plot_5" ><title>gnuplot_plot_5</title>
+<g style="fill:none; color:#157545; stroke:currentColor; stroke-width:4.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(507.9,408.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Cubic-sfqCoDel</text>
+	</g>
+	<path  d='M516.2,404.4 L558.4,404.4 M97.1,421.0 L122.2,369.5 L147.4,336.9 L172.5,312.0 L197.7,288.2 L222.8,270.3 
+		L248.0,252.0 L273.1,243.9 L298.3,229.4 L323.5,222.3 L348.6,206.9 L373.8,205.3 L398.9,197.0 L424.1,194.9 
+		L449.2,181.7 L474.4,178.9 L499.5,173.2 L524.7,169.1 L549.8,164.6 L575.0,164.9  h0.01'/>	<use xlink:href='#gpPt4' transform='translate(97.1,421.0) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(122.2,369.5) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(147.4,336.9) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(172.5,312.0) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(197.7,288.2) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(222.8,270.3) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(248.0,252.0) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(273.1,243.9) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(298.3,229.4) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(323.5,222.3) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(348.6,206.9) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(373.8,205.3) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(398.9,197.0) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(424.1,194.9) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(449.2,181.7) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(474.4,178.9) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(499.5,173.2) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(524.7,169.1) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(549.8,164.6) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(575.0,164.9) scale(4.50)'/>
+	<use xlink:href='#gpPt4' transform='translate(537.3,404.4) scale(4.50)'/>
+</g>
+	</g>
+<g style="fill:none; color:white; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path stroke='black'  d='M71.9,54.1 L71.9,422.4 L575.0,422.4 L575.0,54.1 L71.9,54.1 Z  h0.01'/></g>
+</g>
+</svg>
+

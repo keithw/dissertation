@@ -1,0 +1,96 @@
+\section{Related Work}
+\label{s: learnability}
+
+This section discusses closely related work on congestion control and
+explains how our work has an analogy with theoretical notions of
+learnability.
+
+\subsection{Congestion control}
+
+Congestion control over packet-switched networks has been a productive
+area of research since the seminal work of the 1980s, including
+Ramakrishnan and Jain's DECBit scheme~\cite{decbit} and Jacobson's TCP
+Tahoe and Reno algorithms~\cite{Jacobson88}. End-to-end algorithms
+typically compute a congestion window or a paced transmission rate
+using the stream of acknowledgments (ACKs) arriving from the
+receiver. In response to congestion, inferred from packet loss or, in
+some cases, rising delays, the sender reduces its window or rate;
+conversely, when no congestion is perceived, the sender increases its
+window or rate.
+
+In this paper, we use the Remy~\cite{remy} protocol-design tool to
+generate end-to-end Tao congestion-control schemes from first
+principles. The Remy work showed that such an approach can produce
+schemes whose performance is competitive with, and often out-performs,
+human-generated schemes, including most varieties of TCP congestion
+control, on intended target networks.
+
+By contrast, this paper use Remy program as a tool for understanding
+the nature of the problem of protocol design without being able to
+fully define the intended target networks. We use the program's output
+as a proxy for the ``best possible'' Tao congestion-control protocol
+intended for a particular imperfect network model, and then ask how
+that protocol performs on a different set of networks that varies from
+the model in some respect (topology, link speed, behavior of
+contending endpoints, etc.).
+
+For reference, we also compare with the most prevalent
+congestion-control protocols in wide use, including Linux's TCP
+Cubic~\cite{cubic}, and the less-aggressive NewReno
+algorithm~\cite{newreno}. End-to-end congestion control may be
+assisted with explicit router participation; we also measure the
+CoDel~\cite{CoDel} algorithm running with stochastic fair
+queueing~\cite{sfq} for ``controlled delay'' at bottleneck gateways.
+
+\subsection{Learnability}
+
+TCP congestion control was not designed with an explicit objective
+function in mind. Kelly et al.~present an interpretation of TCP
+congestion-control variants in terms of the implicit goals they
+attempt to optimize~\cite{Kelly98}.  This line of work is known as
+Network Utility Maximization (NUM); more recent work has modeled
+stochastic NUM problems~\cite{stochasticnum}, where flows enter and
+leave the network with time.
+
+We extend this problem by examining the difficulty of designing a
+network protocol given an \emph{imperfect} model of the network where
+it will be deployed, in order to understand the inherent difficulties
+of the problem of congestion control.
+
+Formally speaking, designing such a protocol is a problem in
+sequential decision-making under uncertain and can be modeled as a
+Partially-Observable Markov Decision Process~\cite{pomdp}. In that
+context, the purpose of this paper is to ask: how well can a protocol
+designer ``learn'' the solution to one POMDP or set of networks and
+successfully apply the result (a protocol) to a different set of networks?
+
+In doing so, we draw an explicit analogy to the concept of
+``learnability'' employed in machine
+learning~\cite{learnable,schapire}. A canonical machine-learning
+problem attempts to design a classifier for a large population of data
+points, supplied with only a smaller (and possibly skewed) ``training
+set'' meant to teach the classifier about the full population of
+data. Subsequently, the performance of the resulting classifier is
+evaluated in how well it correctly classifies points in a ``testing
+set,'' generally drawn from the actual population. Learnability theory
+measures the difficulty of inferring an accurate classifier for the
+testing set, given a training set.
+
+Just as a classifier design procedure may minimize the error rate or
+the width of the margin as a proxy for maximizing predictive
+performance on unseen inputs, the Remy tool uses an objective function
+in terms of throughput and delay, averaged over the design model, as a
+proxy for performance on as-yet-unseen networks.
+
+In our work, we envision a protocol designer working to generate a
+congestion-control protocol for a large set of real networks (e.g.,
+the Internet), supplied with only an imperfect model of the range of
+variation and behavior of those networks. The imperfect model is the
+``training scenarios''---a model of the target networks used for design
+purposes. The ``testing scenarios'' are drawn from the population of actual
+target networks.
+
+Learnability here measures the difficulty of designing an adequate
+protocol for a network \emph{model}, and then deploying it on real
+networks that cannot be perfectly envisioned at the time of design.
+
