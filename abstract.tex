@@ -18,7 +18,7 @@ performance on newer networks---cellular networks, datacenters---and
 makes it challenging to roll out networking technologies that break
 markedly with the past.
 
-Working with collaborators at MIT, I have built three systems that
+Working with collaborators at MIT, I have built two systems that
 explore an objective-driven, computer-generated approach to protocol
 design. My thesis is that making protocols a \emph{function} of stated
 assumptions and objectives can improve application performance and
@@ -34,18 +34,19 @@ This work led to Remy, a tool that programmatically generates
 protocols for an uncertain multi-agent network. Remy's
 computer-generated algorithms can achieve higher performance and
 greater fairness than some sophisticated human-designed schemes,
-including ones that put intelligence inside the network. The Remy tool
-can then be used to probe open questions of Internet congestion
-control---e.g., what is the cost of maintaining backwards
+including ones that put intelligence inside the network.
+
+The Remy tool can then be used to probe open questions of Internet
+congestion control---e.g., what is the cost of maintaining backwards
 compatibility with existing algorithms? Is there a tradeoff between a
 protocol's performance now and its ability to adapt to networks of the
 future? How easy is it to ``learn'' a network protocol to achieve
 desired goals, given a necessarily imperfect model of the networks
 where it ultimately will be deployed?
 
-A third system, Mosh (mobile shell), is a remote-terminal application
-and protocol that supports roaming, intermittent connectivity, and
-rolling latency compensation. Mosh explicitly models the application
-state at the client and server, allowing it to decide at runtime how
-to most efficiently keep the client up to date, based on application
-objectives and semantics.
+%A third system, Mosh (mobile shell), is a remote-terminal application
+%and protocol that supports roaming, intermittent connectivity, and
+%rolling latency compensation. Mosh explicitly models the application
+%state at the client and server, allowing it to decide at runtime how
+%to most efficiently keep the client up to date, based on application
+%objectives and semantics.
