@@ -73,7 +73,7 @@ user-visible outage do they switch to a lower rate.
 packet's delay less than 100~ms with 95\% probability.}
 \label{fig:skypevssprout}
 \vspace{\baselineskip}
-\footnotesize\def\svgwidth{\columnwidth}\input{newfigure1.pdf_tex}
+\def\svgwidth{\columnwidth}\input{newfigure1.pdf_tex}
 \end{figure}
 
 %\paragraph{Contributions.}
@@ -232,19 +232,22 @@ T-Mobile's 3G UMTS). We compared Sprout with Skype, Hangout, Facetime,
 and several TCP congestion-control algorithms, running in both
 directions (uplink and downlink).
 
-The following table summarizes the average relative throughput
+Figure~\ref{f:sproutcompe2e} summarizes the average relative throughput
 improvement and reduction in self-inflicted queueing
 delay\footnote{This metric expresses a lower bound on the amount of
   time necessary between a sender's input and receiver's output, so
   that the receiver can reconstruct more than 95\% of the input
   signal. We define the metric more precisely in \S\ref{sprout:eval}.} for
 Sprout compared with the various other schemes, averaged over all four
-cellular networks in both directions. Metrics where Sprout did not
-outperform the existing algorithm are highlighted in red:
+cellular networks in both directions.
 
-\vspace{\baselineskip}
+\begin{figure}
+\caption{Sprout compared with other end-to-end schemes. Metrics where
+  Sprout did not outperform the existing algorithm are highlighted in
+  red.}
+\label{f:sproutcompe2e}
 
-\begin{centering}
+\begin{center}
 \noindent \begin{tabular}{|l|c|c|}
 \hline
 App/protocol & Avg.~speedup & Delay reduction \\
@@ -267,10 +270,9 @@ Cubic-CoDel & \cellcolor{red!20}$0.70\times$ & $1.6\times$ (0.50~s) \\
 %Compound/CoDel & & \\
 \hline
 \end{tabular}
+\end{center}
 
-\end{centering}
-
-\vspace{\baselineskip}
+\end{figure}
 
 Cubic-CoDel indicates TCP Cubic running over the CoDel
 queue-management algorithm~\cite{CoDel}, which would be implemented in the
@@ -289,10 +291,14 @@ preference for throughput versus delay.  As expected, Sprout-EWMA
 achieved greater throughput, but also greater delay, than Sprout. It
 outperformed TCP Cubic on both throughput and delay. Despite being
 end-to-end, Sprout-EWMA outperformed Cubic-over-CoDel on throughput
-and approached it on delay:
+and approached it on delay (Figure~\ref{f:sproutvsaqm}).
 
-\vspace{\baselineskip}
-\begin{centering}
+\begin{figure}
+\caption{Sprout and Sprout-EWMA achieve comparable results to Cubic
+  assisted by in-network active queue management.}
+\label{f:sproutvsaqm}
+
+\begin{center}
 \noindent \begin{tabular}{|l|c|c|}
 \hline
 Protocol & Avg.~speedup & Delay reduction \\
@@ -308,9 +314,9 @@ Cubic-CoDel & 1.3 $\times$ & \cellcolor{red!20}$0.95\times$ (0.50~s)\\
 \hline
 \end{tabular}
 
-\end{centering}
+\end{center}
 
-\vspace{\baselineskip}
+\end{figure}
 
 % Alfalfa achieved a bit rate 2.2$\times$ higher than Skype, while
 % reducing self-inflicted end-to-end delay by 87\%, or from 2,519~ms to
