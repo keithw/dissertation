@@ -139,19 +139,23 @@ designed to carry high-throughput interactive traffic, such as a
 videoconference, over a cellular network. Sprout includes an explicit
 model of the dynamics of cellular networks and makes predictions about
 future network performance by inferring, with uncertainty, the current
-state of the network and then extrapolating forward. Its control
-strategy---how much data to send at a given moment---is a function
-of those predictions and of an explicit objective: maximize
-throughput, but bound in-network delays to be at most 100~ms with high probability.
+state of the network and evolving the model forward. Its control
+strategy---how much data to send at a given moment---is a function of
+those predictions and of an explicit objective: maximize throughput,
+but bound in-network delays to be at most 100~ms with high
+probability. On commercial cellular networks, Sprout gives 2-to-4
+times the throughput and 7-to-9 times less delay than Skype, Apple
+Facetime, and Google Hangouts.
 
 \textbf{Remy} (Chapter~\ref{chap:remy}) expands Sprout to the
 classical problem of \emph{multi-agent} congestion control, where many
 applications may contend for the same limited network resource. Remy
-is a protocol-design tool that takes, as input, a set of
-assumptions about the uncertain network and workload, and an objective
-to pursue on behalf of the application. Remy generates
-congestion-control protocols, which we compare with conventional
-protocols in simulation.
+is a protocol-design tool that takes, as input, a set of assumptions
+about the uncertain network and workload, and an objective to pursue
+on behalf of the application. Remy's computer-generated algorithms can
+achieve higher performance and greater fairness than some
+sophisticated human-designed schemes, including ones that put
+intelligence inside the network.
 
 Once we had a computerized protocol designer, we explored using it as
 a tool to gain understanding about the problem of congestion control.
@@ -160,5 +164,7 @@ goals, given a necessarily imperfect model of the networks where it
 ultimately will be deployed? Is there a tradeoff between the
 performance of an algorithm now---if optimized for a very specific
 network---versus the protocol's ability to perform adequately as the
-network evolves? Our experimentation into these questions of
-``learnability'' is reported in Chapter~\ref{chap:learnability}.
+network evolves? What is the cost of compatibility with existing TCP
+congestion-control mechanisms? Our experimentation into these
+questions of ``learnability'' is reported in
+Chapter~\ref{chap:learnability}.
