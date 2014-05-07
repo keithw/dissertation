@@ -1,4 +1,4 @@
-%% Creator: Inkscape inkscape 0.48.3.1, www.inkscape.org
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'codelcomp.pdf' (pdf, eps, ps)
 %%
@@ -66,10 +66,10 @@
     \put(0.13842019,0.04731575){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{30000}}}%
     \put(0.01975427,0.3338505){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{Average utilization (percent)}}}}%
     \put(0.54398263,0.00571032){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Average self-inflicted delay (ms)}}}%
-    \put(0.81242812,0.29513938){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}Sprout}}}%
-    \put(0.60082801,0.48001217){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{Orange}\color{blue}Sprout-EWMA}}}%
+    \put(0.82689958,0.29513938){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}Sprout}}}%
+    \put(0.63700664,0.48001217){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{Orange}\color{blue}Sprout-EWMA}}}%
     \put(0.17676954,0.39155542){\color[rgb]{1,0.6,0}\makebox(0,0)[lb]{\smash{\color{Orange}Cubic}}}%
-    \put(0.63370565,0.38848026){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Cubic-CoDel}}}%
+    \put(0.66988428,0.38848026){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Cubic-CoDel}}}%
     \put(0.47189607,0.24335917){\color[rgb]{0,0,0}\rotatebox{40.20053346}{\makebox(0,0)[lb]{\smash{Better}}}}%
   \end{picture}%
 \endgroup%
