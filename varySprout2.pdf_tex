@@ -1,4 +1,4 @@
-%% Creator: Inkscape inkscape 0.48.3.1, www.inkscape.org
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'varySprout2.pdf' (pdf, eps, ps)
 %%
@@ -69,18 +69,18 @@
     \put(0.15642398,0.05294379){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{30000}}}%
     \put(0.01910993,0.32757189){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{Throughput (kbps)}}}}%
     \put(0.56414651,0.00547286){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Self-inflicted delay (ms)}}}%
-    \put(0.80723879,0.45958999){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{Orange}\color{blue}{\scriptsize Sprout-EWMA}}}}%
-    \put(0.46269936,0.32159408){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}Compound TCP}}}%
-    \put(0.44529336,0.45644667){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}LEDBAT}}}%
+    \put(0.84240244,0.45958999){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{Orange}\color{blue}{\scriptsize Sprout-EWMA}}}}%
+    \put(0.49083028,0.32159408){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}Compound TCP}}}%
+    \put(0.45935882,0.45644667){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}LEDBAT}}}%
     \put(0.15150108,0.52360923){\color[rgb]{1,0.6,0}\makebox(0,0)[lb]{\smash{\color{Orange}Cubic}}}%
-    \put(0.61583706,0.16581912){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Skype}}}%
-    \put(0.43351352,0.23667386){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Facetime}}}%
-    \put(0.4110088,0.13171034){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Google Hangout}}}%
-    \put(0.66489034,0.36924079){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}Vegas}}}%
-    \put(0.77143627,0.16177527){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}Sprout (95\%)}}}%
+    \put(0.62990252,0.16581912){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Skype}}}%
+    \put(0.45461171,0.23667386){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Facetime}}}%
+    \put(0.44265609,0.13171034){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Google Hangout}}}%
+    \put(0.68247217,0.36924079){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}Vegas}}}%
+    \put(0.80308355,0.16177527){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}Sprout (95\%)}}}%
     \put(0.79921547,0.36853754){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}75\%}}}%
-    \put(0.73504181,0.42515101){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}50\%}}}%
-    \put(0.70796581,0.49231358){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}25\%}}}%
+    \put(0.74559091,0.42515101){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}50\%}}}%
+    \put(0.71851491,0.49231358){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}25\%}}}%
     \put(0.64484707,0.44238121){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}5\%}}}%
   \end{picture}%
 \endgroup%

@@ -13,7 +13,7 @@
    viewBox="0 0 568.76917 320.61279"
    id="svg6790"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="varySprout2.pdf">
   <metadata
      id="metadata7038">
@@ -154,11 +154,11 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="3.1096955"
-     inkscape:cx="450.20691"
-     inkscape:cy="187.61421"
+     inkscape:zoom="1.23125"
+     inkscape:cx="400.44034"
+     inkscape:cy="184.61279"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg6790" />
   <title
@@ -371,7 +371,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#0000ff;stroke:none;font-family:Arial"
      id="text6949"
-     x="459.13254"
+     x="479.13254"
      y="59.212177">\color{Orange}\color{blue}{\scriptsize Sprout-EWMA}</text>
   <use
      xlink:href="#gpPt2"
@@ -385,7 +385,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#008000;stroke:none;font-family:Arial"
      id="text6955"
-     x="263.16913"
+     x="279.16913"
      y="137.7">\color{ForestGreen}Compound TCP</text>
   <use
      xlink:href="#gpPt1"
@@ -399,7 +399,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#008000;stroke:none;font-family:Arial"
      id="text6961"
-     x="253.26913"
+     x="261.26913"
      y="61">\color{ForestGreen}LEDBAT</text>
   <use
      xlink:href="#gpPt1"
@@ -427,7 +427,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#ff0000;stroke:none;font-family:Arial"
      id="text6973"
-     x="350.26913"
+     x="358.26913"
      y="226.29999">\color{red}Skype</text>
   <use
      xlink:href="#gpPt0"
@@ -441,7 +441,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#ff0000;stroke:none;font-family:Arial"
      id="text6979"
-     x="246.56912"
+     x="258.56912"
      y="186">\color{red}Facetime</text>
   <use
      xlink:href="#gpPt0"
@@ -455,7 +455,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#ff0000;stroke:none;font-family:Arial"
      id="text6985"
-     x="233.76913"
+     x="251.76913"
      y="245.70001">\color{red}Google Hangout</text>
   <use
      xlink:href="#gpPt0"
@@ -469,7 +469,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#008000;stroke:none;font-family:Arial"
      id="text6991"
-     x="378.16913"
+     x="388.16913"
      y="110.60001">\color{ForestGreen}Vegas</text>
   <use
      xlink:href="#gpPt1"
@@ -483,7 +483,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#0000ff;stroke:none;font-family:Arial"
      id="text6997"
-     x="438.76917"
+     x="456.76917"
      y="228.60001">\color{blue}Sprout (95\%)</text>
   <use
      xlink:href="#gpPt2"
@@ -511,7 +511,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#0000ff;stroke:none;font-family:Arial"
      id="text7009"
-     x="418.06912"
+     x="424.06912"
      y="78.800003">\color{blue}50\%</text>
   <use
      xlink:href="#gpPt6"
@@ -525,7 +525,7 @@
   <text
      style="font-size:15px;text-anchor:start;color:#000000;fill:#0000ff;stroke:none;font-family:Arial"
      id="text7015"
-     x="402.66913"
+     x="408.66913"
      y="40.600006">\color{blue}25\%</text>
   <use
      xlink:href="#gpPt6"
