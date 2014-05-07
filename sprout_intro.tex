@@ -73,11 +73,11 @@ user-visible outage do they switch to a lower rate.
 packet's delay less than 100~ms with 95\% probability.}
 \label{fig:skypevssprout}
 \vspace{\baselineskip}
-\scriptsize\def\svgwidth{\columnwidth}\input{newfigure1.pdf_tex}
+\footnotesize\def\svgwidth{\columnwidth}\input{newfigure1.pdf_tex}
 \end{figure}
 
 %\paragraph{Contributions.}
-This paper presents {\em Sprout}, a transport protocol designed for
+This chapter describes Sprout, a transport protocol designed for
 interactive applications on variable-quality networks. Sprout uses the
 receiver's observed packet arrival times as the primary signal to
 determine how the network path is doing, rather than the packet loss,
@@ -244,7 +244,7 @@ outperform the existing algorithm are highlighted in red:
 
 \vspace{\baselineskip}
 
-%\begin{center}
+\begin{centering}
 \noindent \begin{tabular}{|l|c|c|}
 \hline
 App/protocol & Avg.~speedup & Delay reduction \\
@@ -267,7 +267,8 @@ Cubic-CoDel & \cellcolor{red!20}$0.70\times$ & $1.6\times$ (0.50~s) \\
 %Compound/CoDel & & \\
 \hline
 \end{tabular}
-%\end{center}
+
+\end{centering}
 
 \vspace{\baselineskip}
 
@@ -278,9 +279,10 @@ the baseband modem or radio-interface driver of a cellular phone for an
 uplink.
 
 We also evaluated a simplified version of Sprout, called Sprout-EWMA,
-that tracks the network bitrate with a simple exponentially-weighted
-moving average, rather than making a cautious forecast of future
-packet deliveries with 95\% probability.
+that estimates the network's future packet-delivery rate with a simple
+exponentially-weighted moving average, rather than using its
+probabilistic model to make a cautious forecast of future packet
+deliveries with 95\% probability.
 
 Sprout and Sprout-EWMA represents different tradeoffs in their
 preference for throughput versus delay.  As expected, Sprout-EWMA
@@ -290,7 +292,7 @@ end-to-end, Sprout-EWMA outperformed Cubic-over-CoDel on throughput
 and approached it on delay:
 
 \vspace{\baselineskip}
-
+\begin{centering}
 \noindent \begin{tabular}{|l|c|c|}
 \hline
 Protocol & Avg.~speedup & Delay reduction \\
@@ -305,6 +307,8 @@ Cubic & $1.8\times$ & $48 \times$ (25~s)\\
 Cubic-CoDel & 1.3 $\times$ & \cellcolor{red!20}$0.95\times$ (0.50~s)\\
 \hline
 \end{tabular}
+
+\end{centering}
 
 \vspace{\baselineskip}
 
@@ -341,6 +345,7 @@ flows from one another, dramatically improving the performance of
 Skype when run at the same time as a TCP Cubic flow.
 
 The source code for Sprout, our wireless network trace capture
-utility, and our trace-based network emulator is available at
-\texttt{http://alfalfa.mit.edu/} .
+utility, our trace-based network emulator, and instructions to
+reproduce the experiments in this chapter are available at
+\url{http://alfalfa.mit.edu/} .
 %\texttt{http://github.com/keithw/alfalfa}.

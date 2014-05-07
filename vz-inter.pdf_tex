@@ -64,8 +64,8 @@
     \put(0.43463383,0.05388622){\makebox(0,0)[b]{\smash{10}}}%
     \put(0.62279141,0.05388622){\makebox(0,0)[b]{\smash{100}}}%
     \put(0.81094899,0.05388622){\makebox(0,0)[b]{\smash{1000}}}%
-    \put(0.01918618,0.45646839){\rotatebox{90}{\makebox(0,0)[b]{\smash{Percent interarrivals}}}}%
-    \put(0.57990649,0.00564069){\makebox(0,0)[b]{\smash{interarrival time (ms)}}}%
-    \put(0.87920748,0.75380382){\makebox(0,0)[rb]{\smash{$t^{-3.27}$}}}%
+    \put(0.01918618,0.45646839){\rotatebox{90}{\makebox(0,0)[b]{\normalsize\smash{Percent interarrivals}}}}%
+    \put(0.57990649,0.00564069){\makebox(0,0)[b]{\normalsize\smash{interarrival time (ms)}}}%
+    \put(0.87920748,0.75380382){\makebox(0,0)[rb]{\large\smash{$t^{-3.27}$}}}%
   \end{picture}%
 \endgroup%
