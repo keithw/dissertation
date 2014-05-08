@@ -18,10 +18,10 @@ sometimes signals, such as ECN marks, from within the network itself.
 Nodes then make sending decisions based on this partial information
 about the network.
 
-Our approach hinges on being able to evaluate quantitatively the merit
-of any particular congestion control algorithm, and search for the
-best algorithm for a given network model and objective function. We
-discuss here our models of the network and cross traffic, and how we
+The Remy approach hinges on being able to evaluate quantitatively the
+merit of any particular congestion control algorithm, and search for
+the best algorithm for a given network model and objective function. I
+describe here our models of the network and cross traffic, and how we
 ultimately calculate a figure of merit for an arbitrary congestion
 control algorithm.
 
@@ -33,9 +33,9 @@ Markovian, meaning that it is described by some state (e.g.~the
 packets in each queue) and its future evolution will depend only on
 the current state.
 
-Currently, we typically parametrize networks on three axes: the speed
-of bottleneck links, the propagation delay of the network paths, and
-the degree of multiplexing, i.e., the number of senders contending for
+We have typically parametrized networks on three axes: the speed of
+bottleneck links, the propagation delay of the network paths, and the
+degree of multiplexing, i.e., the number of senders contending for
 each bottleneck link. We assume that senders have no control over the
 paths taken by their packets to the receiver.
 
@@ -48,12 +48,11 @@ private network between ``clouds'' may have more uncertainty about the
 link speed. A wireless network path may experience less multiplexing,
 but a large range of transmission rates and round-trip times.
 
-As one might expect, we have observed a tradeoff between generality
+We have observed only weak evidence for a tradeoff between generality
 and performance; a protocol designed for a broad range of networks may
 be beaten by a protocol that has been supplied with more specific and
-accurate prior knowledge. Our approach allows protocol designers to
-measure this tradeoff and choose an appropriate design range for their
-applications.
+accurate prior knowledge. Quantifying and characterizing these kind of
+tradeoffs is the subject of Chapter~\ref{chap:learnability}.
 
 \subsection{Traffic model}
 
@@ -138,10 +137,9 @@ quantitative goal from a protocol-design perspective. It need not
 (indeed, does not) precisely represent users' ``true'' preferences or
 utilities. In real usage, different users may have different
 objectives; a videoconference may not benefit from more throughput, or
-some packets may be more important than others. We have not yet
-addressed the problem of how to accommodate diverse objectives or how
-endpoints might learn about the differing preferences of other
-endpoints.
+some packets may be more important than others. In
+Chapter~\ref{chap:learnability}, we discuss the problem of how to
+accommodate diverse objectives on the same network.
 
 %In summary, this framework provides a unitary metric for evaluating
 %the performance of any congestion-control endpoint algorithm (e.g.~TCP

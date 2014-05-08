@@ -70,39 +70,44 @@ intractable; on a general Dec-POMDP it is
 NEXP-complete~\cite{Bernstein2002}.
 
 Instead, we approximate the solution by greatly abridging the sender's
-state. A RemyCC tracks just three state variables, which it updates
-each time it receives a new acknowledgment:
+state. A RemyCC tracks three or four features of the history, which it
+updates each time it receives a new acknowledgment:
 
 \begin{enumerate}
 
 \item An exponentially-weighted moving average (EWMA) of the
   interarrival time between new acknowledgments received ({\tt
-    ack\_ewma}).
+    ack\_ewma}), where each new sample contributes 1/8 of the weight
+  of the moving average.
+
+\item In some RemyCCs, where the goal is operation over a broad range
+  of networks, we consider the same feature but with a longer-term
+  moving average, using a weight of 1/256 for the newest sample.
 
 \item An exponentially-weighted moving average of the time between TCP
   sender timestamps reflected in those acknowledgments ({\tt
-    send\_ewma}). A weight of $1/8$ is given to the new sample in both
-  EWMAs.
+    send\_ewma}), again with a weight of 1/8 to each new sample.
 
 \item The ratio between the most recent RTT and the minimum RTT seen
   during the current connection (\tt{rtt\_ratio}).
 
 \end{enumerate}
 
-Together, we call these three variables the {\em RemyCC memory}. It is
-worth reflecting on these variables, which are the
-``congestion signals'' used by any RemyCC. We narrowed the memory to
-this set after examining and discarding quantities like the
-most-recent RTT sample, the smoothed RTT estimate, and the difference
-between the long-term EWMA and short-term EWMA of the observed packet
-rate or RTT. In our experiments, adding extra state variables didn't improve
-the performance of the resulting protocol, and each additional
-dimension slows down the design procedure considerably. But we don't
-claim that Remy's three state variables are the only set that works,
-or that they are necessarily optimal for all situations a protocol
-might encounter. We expect that any group of estimates that roughly
-summarizes the recent history could form the basis of a workable
-congestion-control scheme.
+Together, we call these variables the {\em RemyCC memory}. It is worth
+reflecting on these variables, which are the ``congestion signals''
+used by any RemyCC. The value of these signals can be measured
+empirically, by ``knocking out'' a signal and examining the resulting
+effect on performance. We narrowed the memory to this set after
+examining and discarding quantities like the most-recent RTT sample,
+the smoothed RTT estimate, and the difference between the long-term
+EWMA and short-term EWMA of the observed packet rate or RTT. In our
+experiments, adding extra state variables didn't improve the
+performance of the resulting protocol, and each additional dimension
+slows down the design procedure considerably. But we cannot claim that
+Remy's state variables are necessarily optimal for all situations a
+protocol might encounter. We expect that any group of estimates that
+roughly summarizes the recent history could form the basis of a
+workable congestion-control scheme.
 
 We note that a RemyCC's memory does not include the two
 factors that traditional TCP congestion-control schemes use: packet
@@ -157,9 +162,9 @@ If the number of outstanding packets is greater than {\tt cwnd}, the
 sender will transmit segments to close the window, but no faster than
 one segment every $r$ milliseconds.
 
-A RemyCC is defined by a set of piecewise-constant \emph{rules}, each one
-mapping a three-dimensional rectangular region of the
-three-dimensional memory space to a three-dimensional action:
+A RemyCC is defined by a set of piecewise-constant \emph{rules}, each
+one mapping a rectangular region of the three- or four-dimensional
+memory space to a three-dimensional action:
 $$
 \langle {\tt ack\_ewma}, {\tt send\_ewma}, {\tt rtt\_ratio} \rangle \rightarrow
 \langle m, b, r \rangle.
@@ -175,10 +180,7 @@ assumptions. These parameters include the link rates, delays, the
 number of sources, and the on-off distributions of the
 sources. Offline, Remy
 evaluates candidate algorithms on
-millions of randomly generated network configurations. Because of the
-high speed of current computers and the ``embarrassingly parallel''
-nature of the task, Remy is able to generate congestion-control
-algorithms within a few hours.
+millions of randomly generated network configurations.
 
 %For example, if one training
 %network is the single-bottleneck (dumbbell) configuration (Figure
@@ -196,25 +198,25 @@ algorithms within a few hours.
 
 \end{figure}
 
-A single evaluation step, the innermost loop of Remy's design process,
-consists of drawing 16 or more network specimens from the network
-model, then simulating the RemyCC algorithm at each sender for 100
-seconds on each network specimen. At the end of the simulation, the
-objective function for each sender, given by Equation~\ref{eq:util},
-is totaled to produce an overall figure of merit for the RemyCC. We
-explore two cases, $\alpha = \beta = 1$ and $\alpha=2, \delta =
-0$. The first case corresponds to proportional throughput and delay
-fairness, maximizing $$U = \log (\mbox{throughput}) - \delta \cdot
-\log (\mbox{delay}),$$ with $\delta$ specifying the importance placed
-on delay vs.~throughput. The second case corresponds to minimizing the
+A single evaluation step consists of drawing somewhere between 16 and
+100 network specimens from the network model, then simulating the
+RemyCC algorithm at each sender an extended length of time on each
+network specimen. At the end of the simulation, the objective function
+for each sender, given by Equation~\ref{eq:util}, is totaled to
+produce an overall figure of merit for the RemyCC. We explore two
+cases, $\alpha = \beta = 1$ and $\alpha=2, \delta = 0$. The first case
+corresponds to proportional throughput and delay fairness,
+maximizing $$U = \log (\mbox{throughput}) - \delta \cdot \log
+(\mbox{delay}),$$ with $\delta$ specifying the importance placed on
+delay vs.~throughput. The second case corresponds to minimizing the
 potential delay of a fixed-length transfer, by maximizing $$U =
 -\frac{1}{\mbox{throughput}}.$$
 
 %\subsection{The optimization procedure}
 
 Remy initializes a RemyCC with only a single rule. Any values of the
-three state variables (between 0 and 16,384) are mapped to a default
-action where $m = 1$, $b = 1$, $r = 0.01$.
+state variables (between 0 and 16,384) are mapped to a default action
+where $m = 1$, $b = 1$, $r = 0.01$.
 
 Each entry in the rule table has an ``epoch.''
 Remy maintains a global epoch number, initialized to 0. Remy's search
@@ -254,25 +256,23 @@ steps to build and improve the rule table:
   balance structural improvements vs.~honing the existing structure.
 
 \item \textbf{Subdivide the most-used rule.} Recall that each rule
-  represents a mapping from a three-dimensional rectangular region of
-  memory space to a single action. In this step, find the most-used
-  rule, and the median memory value that triggers it. Split the rule
-  at this point, producing eight new rules (one per dimension of the
-  memory-space), each with the same action as before. Then return to
-  step 1.
+  represents a mapping from a rectangular region of memory space to a
+  single action. In this step, find the most-used rule, and the median
+  memory value that triggers it. Split the rule at this point,
+  producing eight new rules (one per dimension of the memory-space),
+  each with the same action as before. Then return to step 1.
 
 \end{enumerate}
 
 By repeating this procedure, the structure of a RemyCC's rule table
-becomes an
-octree~\cite{octree}
-of memory regions. Areas of the memory space more likely to occur
-receive correspondingly more attention from the optimizer, and are
-subdivided into smaller bins that yield a more granular function
-relating memory to action. \emph{Which} rules are more often triggered
-depends on every endpoint's behavior as well as the network's
-parameters, so the task of finding the right structure for the rule
-table is best run alongside the process of optimizing existing rules.
+becomes an octree~\cite{octree} or hextree of memory regions. Areas of
+the memory space more likely to occur receive correspondingly more
+attention from the optimizer, and are subdivided into smaller bins
+that yield a more granular function relating memory to
+action. \emph{Which} rules are more often triggered depends on every
+endpoint's behavior as well as the network's parameters, so the task
+of finding the right structure for the rule table is best run
+alongside the process of optimizing existing rules.
 
 To the best of our knowledge, this dynamic partitioning approach is
 novel in the context of multi-agent optimization. The ``greedy''
@@ -280,7 +280,4 @@ approach in step 2 is key to the computational tractability and
 efficiency of the search because it allows us to prune the search
 space. Dividing the memory space into cells of different size
 proportional to their activity produces a rule table
-whose granularity is finer in regions of higher use. An improvement to
-consider in the future is to divide a cell only if the actions at its
-boundaries markedly disagree.\footnote{We thank Leslie Kaelbling for
-  this suggestion.}
+whose granularity is finer in regions of higher use.

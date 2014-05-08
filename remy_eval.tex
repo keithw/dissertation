@@ -170,15 +170,15 @@ queue capacity & modified RED & (for DCTCP) \\
 
 \end{enumerate}
 
-In addition, we investigate:
-\begin{enumerate} 
-\item[5.] {\bf Competing protocols:} We assessed how a RemyCC ``played with''
-  existing congestion-control schemes (Cubic and Compound) when contending
-  for the same bottleneck link.
-\item [6.] {\bf Sensitivity of design range:} We investigated how
-  helpful prior knowledge of the network is to the performance of
-  Remy's generated algorithms.
-\end{enumerate}
+%In addition, we investigate:
+%\begin{enumerate} 
+%\item[5.] {\bf Competing protocols:} We assessed how a RemyCC ``played with''
+%  existing congestion-control schemes (Cubic and Compound) when contending
+%  for the same bottleneck link.
+%\item [6.] {\bf Sensitivity of design range:} We investigated how
+%  helpful prior knowledge of the network is to the performance of
+%  Remy's generated algorithms.
+%\end{enumerate}
 
 
 \medskip
@@ -432,9 +432,9 @@ assistance. See Figures~\ref{f:verizon4} and \ref{f:verizon8}.
 %\vspace{\baselineskip}
 
 \includegraphics[width=\columnwidth]{rttfairness.pdf}
-\caption{Remy's RTT unfairness compares favorably to
-  Cubic-over-sfqCoDel. Error bar represents standard error of the
-  mean over 128 100-second simulations.}
+\caption{The RemyCCs' RTT unfairness compares favorably to
+  Cubic-over-sfqCoDel. Error bar represents standard error of the mean
+  over 128 100-second simulations.}
 
 \label{f:fairness}
 
@@ -505,6 +505,7 @@ when the instantaneous queue exceeds a certain threshold. Developing
 RemyCC schemes for networks with ECN and AQM is an area for future
 work.
 
+\begin{comment}
 \subsection{Competing protocols}
 
 We investigated the possibility of incremental deployment of a RemyCC,
@@ -636,3 +637,5 @@ and sfqCoDel when it was 8 or less. However, as the network conditions
 grew farther afield from the supplied prior assumptions, Remy's
 performance declined, although the algorithms were still competitive
 with traditional TCP congestion control on the networks we examined.
+
+\end{comment}

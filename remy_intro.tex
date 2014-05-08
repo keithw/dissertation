@@ -1,19 +1,27 @@
 %\section{Introduction}
 \label{remy:intro}
 
-Is it possible for a computer to ``discover'' the right rules for
-congestion control in heterogeneous and dynamic networks? Should
-computers, rather than humans, be tasked with developing congestion
-control methods?  And just how well can we make computers perform this
-task?
+Sprout (Chapter~\ref{chap:sprout}) addressed a particular problem in
+congestion control: the compromise between throughput and delay on a
+cellular network, where the user has his or her own queue at the
+bottleneck but does not know the capacity of the link.
 
-We investigated these questions and found that computers can design
-schemes that in some cases surpass the best human-designed methods to
-date, when supplied with the appropriate criteria by which to
-judge a congestion-control algorithm. We attempt to probe the limits
-of these machine-generated protocols, and discuss how this style of
-transport-layer protocol design can give more freedom to network
-architects and link-layer designers.
+The classical problem of distributed resource allocation on the
+Internet, however, is more challenging than this. Algorithms like TCP
+NewReno~\cite{newreno} and Cubic~\cite{cubic} are designed for the
+problem of \emph{multi-agent} congestion control. In general, multiple
+independent users may contend for the same bottleneck---without
+knowing for certain how many other users they are contending with.
+
+Is it possible, then, for a computer to design an algorithm from first
+principles and ``discover'' the right rules for congestion control? We
+found that computers can design schemes that in some cases surpass the
+best human-designed methods to date, when supplied with the
+appropriate criteria by which to judge a congestion-control
+algorithm. We attempt to probe the limits of these machine-generated
+protocols, and discuss how this style of transport-layer protocol
+design can give more freedom to network architects and link-layer
+designers.
 
 \begin{figure}
 \vspace{\baselineskip}
@@ -30,16 +38,17 @@ transmission control libraries, ns-2 modules, etc.).}
 
 \end{figure}
 
-Congestion control, a fundamental problem in multi-user computer
-networks, addresses the question: when should an endpoint transmit
-each packet of data? An ideal scheme would transmit a packet whenever
-capacity to carry the packet was available, but because there are many
-concurrent senders and the network experiences variable delays, this
-question isn't an easy one to answer. On the Internet, the past thirty
-years have seen a number of innovative and influential answers to this
-question, with solutions embedded at the endpoints (mainly in TCP)
-aided occasionally by queue management and scheduling algorithms in
-bottleneck routers that provide signals to the endpoints.
+Congestion control is a fundamental problem in multi-user computer
+networks. Any proposed solution must answer the question: when should
+an endpoint transmit each packet of data? An ideal scheme would
+transmit a packet whenever capacity to carry the packet was available,
+but because there are many concurrent senders and the network
+experiences variable delays, this question isn't an easy one to
+answer. On the Internet, the past thirty years have seen a number of
+innovative and influential answers to this question, with solutions
+embedded at the endpoints (mainly in TCP) aided occasionally by queue
+management and scheduling algorithms in bottleneck routers that
+provide signals to the endpoints.
 
 This area has continued to draw research and engineering effort
 because new link technologies and subnetworks have proliferated and
@@ -64,16 +73,16 @@ papers have shown (\S\ref{remy:related}).
 %packet loss or heavy-tailed jitter, are not easily accounted for.
 
 Without the ability to adapt its congestion-control algorithms to new
-scenarios, TCP's inflexibility constrains architectural evolution, as
-we noted in an earlier position paper~\cite{hotnets2011}. Subnetworks
-and link layers are typically evaluated based on how well TCP performs
-over them.  This scorecard can lead to perverse behavior, because
-TCP's network model is limited. For example, because TCP assumes that
-packet losses are due to congestion and reduces its transmission rate
-in response, some subnetwork designers have worked hard to hide
-losses. This often simply adds intolerably long packet delays. One may
-argue that such designs are misguided, but the difficulties presented
-by ``too-reliable'' link layers have been a perennial challenge for 25
+scenarios, TCP's inflexibility constrains architectural
+evolution~\cite{hotnets2011}. Subnetworks and link layers are
+typically evaluated based on how well TCP performs over them.  This
+scorecard can lead to perverse behavior, because TCP's network model
+is limited. For example, because TCP assumes that packet losses are
+due to congestion and reduces its transmission rate in response, some
+subnetwork designers have worked hard to hide losses. This often
+simply adds intolerably long packet delays. One may argue that such
+designs are misguided, but the difficulties presented by
+``too-reliable'' link layers have been a perennial challenge for 25
 years~\cite{Clark88} and show no signs of abating. With the rise of
 widespread cellular connectivity, these behaviors are increasingly
 common and deeply embedded in deployed infrastructure.
@@ -90,15 +99,15 @@ qualitative best current practice. The challenging and subtle nature
 of this area means that the potential of new subnetworks and network
 architectures is often not realized.
 
-\subsection*{Design overview}
+\section{Design overview}
 
-How should we design network protocols that free subnetworks and links
-to evolve freely, ensuring that the endpoints will adapt properly
-\emph{no matter what} the lower layers do?  We believe that the best
-way to approach this question is to take the design of specific
-algorithmic mechanisms out of the hands of human designers (no matter
-how sophisticated!), and make the end-to-end algorithm be a function
-of the desired overall behavior.
+%How should we design network protocols that free subnetworks and links
+%to evolve freely, ensuring that the endpoints will adapt properly
+%\emph{no matter what} the lower layers do?  We believe that the best
+%way to approach this question is to take the design of specific
+%algorithmic mechanisms out of the hands of human designers (no matter
+%how sophisticated!), and make the end-to-end algorithm be a function
+%of the desired overall behavior.
 
 %These actions should not
 %depend on explicit signals about unusual network behaviors, e.g., if a
@@ -145,22 +154,22 @@ start from the desired objective and work backwards in three steps:
 
 \end{enumerate}
 
-We have developed an optimization tool called Remy that takes these
-models as input, and designs a congestion-control algorithm that tries
-to maximize the total expected value of the objective function, measured over the set of
-network and traffic models. The resulting pre-calculated, optimized
-algorithm is then run on actual endpoints; no further learning happens
-after the offline optimization. The optimized algorithm is run as part
-of an existing TCP sender implementation, or within any
-congestion-control module. No receiver changes are necessary (as of
-now).
+I developed an optimization tool called Remy that takes these models
+as input, and designs a congestion-control algorithm that tries to
+maximize the total expected value of the objective function, measured
+over the set of network and traffic models. The resulting
+pre-calculated, optimized algorithm is then run on actual endpoints;
+no further learning happens after the offline optimization. The
+optimized algorithm is run as part of an existing TCP sender
+implementation, or within any congestion-control module. No receiver
+changes are necessary (as of now).
 
-\subsection*{Summary of results}
+\section{Summary of results}
 
-We have implemented Remy. Running on a 48-core server at MIT, Remy
-generally takes a few hours of wall-clock time (one or two CPU-weeks)
-to generate congestion-control algorithms offline that work on a wide
-range of network conditions.
+I implemented Remy in C++. Running on an 80-core server at MIT, Remy
+generally takes between a few hours to a few days of wall-clock time
+(up to a CPU-year) to generate congestion-control algorithms offline
+that work on a wide range of network conditions.
 
 Our main results from several simulation experiments
 with Remy are as follows:
@@ -176,13 +185,6 @@ with Remy are as follows:
   modifications to network gateways, including Cubic-over-sfqCoDel and
   XCP, Remy generally matched or surpassed these schemes, despite
   being entirely end-to-end.
-
-\item We measured the tradeoffs that come from specificity in the
-  assumptions supplied to Remy at design time. As expected,
-  more-specific prior information turned out to be helpful when it was
-  correct, but harmful when wrong. We found that RemyCC schemes
-  performed well even when designed for an order-of-magnitude
-  variation in the values of the underlying network parameters.
 \end{enumerate}
 
 %\subsection*{Outline}
@@ -221,7 +223,10 @@ an RTT of 150~ms, a computer-generated congestion-control algorithm
 achieved the following improvements in median throughput and
 reductions in median queueing delay over these existing protocols:
 
-{\footnotesize
+\label{sec:remyresults}
+
+\begin{center}
+
 \begin{tabular}{|l|c|c|}
 \hline
 Protocol & Median speedup & Median delay reduction \\
@@ -236,13 +241,14 @@ Cubic/sfqCoDel & $1.4\times$ & $7.8\times$ \\
 XCP & $1.4\times$ & $4.3\times$ \\
 \hline
 \end{tabular}
-}
+
+\end{center}
 
 In a trace-driven simulation of the Verizon LTE downlink with four
 senders contending, the \emph{same} computer-generated protocol achieved these
 speedups and reductions in median queueing delay:
 
-{\footnotesize
+\begin{center}
 \begin{tabular}{|l|c|c|}
 \hline
 Protocol & Median speedup & Median delay reduction \\
@@ -251,13 +257,16 @@ Protocol & Median speedup & Median delay reduction \\
 Compound & $1.3\times$ & $1.3\times$ \\
 NewReno & $1.5\times$ & $1.2\times$ \\
 Cubic & $1.2\times$ & $1.7\times$ \\
-Vegas & $2.2\times$ & $0.44\times \downarrow$ \\
+Vegas & $2.2\times$ & \cellcolor{red!20}$0.44\times$ \\
 \hline
 Cubic/sfqCoDel & $1.3\times$ & $1.3\times$ \\
-XCP & $1.7\times$ & $0.78\times \downarrow$ \\
+XCP & $1.7\times$ & \cellcolor{red!20}$0.78\times$ \\
 \hline
 \end{tabular}
-}
 
-The source code for Remy, our ns-2 models, and the algorithms that Remy
-designed are available from \mbox{\url{http://web.mit.edu/remy}}.
+\end{center}
+
+The source code for Remy, our ns-2 models, the algorithms that Remy
+designed, and instructions for replicating the experiments and
+reproducing the figures in this chapter are available from
+\mbox{\url{http://mit.edu/remy}}.

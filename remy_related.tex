@@ -23,16 +23,17 @@ about latency as well as throughput. Remy's algorithms are not
 necessarily linear, and can use both a window and a rate pacer to
 regulate transmissions.
 
-In this paper, we compare Remy's generated algorithms with several
-end-to-end schemes, including NewReno~\cite{newreno},
-Vegas~\cite{vegas}, Compound TCP~\cite{compound}, Cubic~\cite{cubic},
-and DCTCP for datacenters~\cite{dctcp}. NewReno has the same
-congestion-control strategy as Reno---slow start at the beginning, on
-a timeout, or after an idle period of about one retransmission timeout
-(RTO), additive increase every RTT when there is no congestion, and a
-one-half reduction in the window on receiving three duplicate ACKs
-(signaling packet loss). We compare against NewReno rather than Reno
-because NewReno's loss recovery is better.
+In evaluating Remy, we compare its output---the computer-generated
+algorithms---with several end-to-end schemes, including
+NewReno~\cite{newreno}, Vegas~\cite{vegas}, Compound
+TCP~\cite{compound}, Cubic~\cite{cubic}, and DCTCP for
+datacenters~\cite{dctcp}. NewReno has the same congestion-control
+strategy as Reno---slow start at the beginning, on a timeout, or after
+an idle period of about one retransmission timeout (RTO), additive
+increase every RTT when there is no congestion, and a one-half
+reduction in the window on receiving three duplicate ACKs (signaling
+packet loss). We compare against NewReno rather than Reno because
+NewReno's loss recovery is better.
 
 Brakmo and Peterson's Vegas is a delay-based algorithm, motivated by
 the insight from Jain's CARD scheme~\cite{card} and Wang and Crowcroft's
@@ -107,10 +108,9 @@ produced efforts to increase the initial congestion
 window~\cite{dukkipati2010argument,chu2012increasing}, including
 recent proposals \cite{allman2010init,touch2012automating} for this
 quantity to automatically increase on the timescale of months or
-years. What we propose in this paper is an automated means by which
-TCP's entire congestion-control algorithm, not just its initial
-window, could adapt in response to empirical variations in underlying
-networks.
+years. Remy represents an automated means by which TCP's entire
+congestion-control algorithm, not just its initial window, could adapt
+in response to empirical variations in underlying networks.
 
 
 

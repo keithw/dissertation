@@ -133,12 +133,12 @@ the current contents of the text terminal as efficiently as possible,
 even across intermittent, roaming connectivity.
 
 By having an explicit model of the user interface at both sides of the
-connection, the Mosh client is able to predict the application's
-behavior in response to user keystrokes and (if confident in its
-predictions) can speculatively display the result---generally an
-echoed keystroke or cursor motion---before it has been confirmed by
-the server. In practice, in a trace-based evaluation using 40 hours of
-real-world usage, Mosh was able to show immediately the results of
+connection, the Mosh client can predict the application's behavior in
+response to user keystrokes and (if confident in its predictions)
+speculatively display the result---generally an echoed keystroke or
+cursor motion---before it has been confirmed by the server. In a
+trace-based evaluation over 40 hours of real-world usage, Mosh was
+able to successfully predict and immediately display the result of
 \textbf{70\%} of user keystrokes.
 
 Mosh is primarily a remote terminal application and is not further
@@ -192,15 +192,41 @@ Cubic & \cellcolor{red!20}$0.91\times$ & $79\times$\\
 
 \subsection{Remy (2013--)}
 
-\textbf{Remy} (Chapter~\ref{chap:remy}) expands Sprout to the
-classical problem of \emph{multi-agent} congestion control, where many
-independent users may contend for the same limited network resource. Remy
+\textbf{Remy} (Chapter~\ref{chap:remy}) generalizes Sprout to address
+the classical problem of \emph{multi-agent} congestion control, where
+independent users contend for the same limited network resource. Remy
 is a protocol-design tool that takes, as input, a set of assumptions
 about the uncertain network and workload, and an objective to pursue
 on behalf of the application. Remy's computer-generated algorithms can
 achieve higher performance and greater fairness than some
 sophisticated human-designed schemes, including ones that put
 intelligence inside the network.
+
+On a simulated 15~Mbps fixed-rate link with eight senders contending and
+an RTT of 150~ms, a computer-generated congestion-control algorithm
+achieved the following improvements in median throughput and
+reductions in median queueing delay over these existing protocols:
+
+\begin{center}
+
+\begin{tabular}{|l|c|c|}
+\hline
+Protocol & Median speedup & Median delay reduction \\
+\hline
+\hline
+Compound & $2.1\times$ & $2.7\times$ \\
+NewReno & $2.6\times$ & $2.2\times$ \\
+Cubic & $1.7\times$ & $3.4\times$ \\
+Vegas & $3.1\times$ & $1.2\times$ \\
+\hline
+Cubic/sfqCoDel & $1.4\times$ & $7.8\times$ \\
+XCP & $1.4\times$ & $4.3\times$ \\
+\hline
+\end{tabular}
+
+{\footnotesize Adapted from \S\ref{sec:remyresults}.}
+
+\end{center}
 
 Once we had a computerized protocol designer, we explored using it as
 a tool to gain understanding about the problem of congestion control.
