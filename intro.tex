@@ -98,7 +98,7 @@ then retrace the same design process that was followed by a protocol's
 designers, in order to explore the mechanism they would have produced
 given a different starting point.
 
-\section{Showing our work in protocol design}
+%\section{Showing our work in protocol design}
 
 This thesis proposes essentially that approach to protocol design. The
 transport layer should adapt to whatever the layers below may do, and
@@ -115,8 +115,12 @@ adjacent layers to evolve. My colleagues and I have also found that
 this approach can yield better performance than conventional,
 human-designed protocols.
 
+\section{Summary of results}
+
 Over the last three years, my colleagues and I have built a series of
-systems to explore this approach:
+systems to explore this approach.
+
+\subsection{Mosh (2011)}
 
 \textbf{Mosh} (mobile shell)~\cite{mosh} is a replacement for SSH
 (secure shell) in which the client and server each explicitly model
@@ -128,28 +132,69 @@ efficiently satisfy an explicit objective: update the client screen to
 the current contents of the text terminal as efficiently as possible,
 even across intermittent, roaming connectivity.
 
+By having an explicit model of the user interface at both sides of the
+connection, the Mosh client is able to predict the application's
+behavior in response to user keystrokes and (if confident in its
+predictions) can speculatively display the result---generally an
+echoed keystroke or cursor motion---before it has been confirmed by
+the server. In practice, in a trace-based evaluation using 40 hours of
+real-world usage, Mosh was able to show immediately the results of
+\textbf{70\%} of user keystrokes.
+
 Mosh is primarily a remote terminal application and is not further
 discussed in this dissertation, but its design ideas---maintain an
-explicit model at runtime, and pursue a stated objective on behalf
-of the user---formed the basis of our subsequent work on transport
-protocol design.
+explicit model at runtime, and pursue a stated objective on behalf of
+the user---formed the basis of my subsequent work on
+transport-protocol design.
+
+\subsection{Sprout (2012)}
 
 \textbf{Sprout} (Chapter~\ref{chap:sprout}) is a transport protocol
 designed to carry high-throughput interactive traffic, such as a
 videoconference, over a cellular network. Sprout includes an explicit
 model of the dynamics of cellular networks and makes predictions about
-future network performance by inferring, with uncertainty, the current
-state of the network and evolving the model forward. Its control
+future performance by inferring, with uncertainty, the current state
+of the network and evolving the model forward. Its control
 strategy---how much data to send at a given moment---is a function of
 those predictions and of an explicit objective: maximize throughput,
 but bound in-network delays to be at most 100~ms with high
-probability. On commercial cellular networks, Sprout gives 2-to-4
-times the throughput and 7-to-9 times less delay than Skype, Apple
-Facetime, and Google Hangouts.
+probability.
+
+In a trace-driven experimental evaluation (details in
+\S\ref{sprout:eval}), Sprout gave 2-to-4 times the throughput and
+7-to-9 times less delay than Skype, Apple Facetime, and Google
+Hangouts:
+
+\begin{center}
+\noindent \begin{tabular}{|l|c|c|}
+\hline
+Sprout vs. & Avg.~speedup & Delay reduction \\
+\hline
+\hline
+Skype & $2.2\times$ & $7.9\times$\\
+Hangout & $4.4\times$ & $7.2\times$\\
+Facetime & $1.9\times$ & $8.7\times$\\
+\hline
+Compound & $1.3\times$ & $4.8\times$\\
+TCP Vegas & $1.1\times$ & $2.1\times$\\
+LEDBAT & no change & $2.8\times$\\
+Cubic & \cellcolor{red!20}$0.91\times$ & $79\times$\\
+%\hline
+%Cubic-CoDel & \cellcolor{red!20}$0.70\times$ & $1.6\times$ (0.50~s) \\
+%CUBIC/CoDel & & \\
+%Compound/CoDel & & \\
+\hline
+\end{tabular}
+
+{\footnotesize Adapted from Figure~\ref{f:sproutcompe2e}.}
+
+\end{center}
+
+\subsection{Remy (2013--)}
 
 \textbf{Remy} (Chapter~\ref{chap:remy}) expands Sprout to the
 classical problem of \emph{multi-agent} congestion control, where many
-applications may contend for the same limited network resource. Remy
+independent users may contend for the same limited network resource. Remy
 is a protocol-design tool that takes, as input, a set of assumptions
 about the uncertain network and workload, and an objective to pursue
 on behalf of the application. Remy's computer-generated algorithms can
@@ -168,3 +213,4 @@ network evolves? What is the cost of compatibility with existing TCP
 congestion-control mechanisms? Our experimentation into these
 questions of ``learnability'' is reported in
 Chapter~\ref{chap:learnability}.
+
