@@ -66,15 +66,15 @@ identical to the training scenario. The results are shown Figure~\ref{fig:breadt
 %\begin{subfigure}[b]{0.49\textwidth}
 %\includegraphics[width=\textwidth]{tradeoff-util.pdf}
 %\end{subfigure}
-\includegraphics[width=\columnwidth]{figures/parametric-oprange/oprange-manual.pdf}
+\includegraphics[width=\columnwidth]{oprange-manual.pdf}
 \caption{Evidence of a weak tradeoff between operating range of a
-  congestion-control protocol and performance. The Tao protocols
-  designed with more specific network models (Tao-2x and Tao-10x)
+  congestion-control protocol and performance. The RemyCC protocols
+  designed with more specific network models (RemyCC-2x and RemyCC-10x)
   performed modestly better---within their design ranges---than protocols
-  designed for a broader range of networks (Tao-100x and Tao-1000x),
+  designed for a broader range of networks (RemyCC-100x and RemyCC-1000x),
   at a cost of deterioration when the actual network did not fall
-  within the training scenarios. The four Tao protocols outperformed
-  Cubic and Cubic-over-sfqCoDel over their design ranges.}
+  within the training scenarios. The four RemyCC protocols outperformed
+  Cubic and Cubic-over-sfqCoDel over their respective design ranges.}
 \label{fig:breadth}
 \end{figure}
 
@@ -119,6 +119,20 @@ crosses both links and encounters both bottlenecks. It contends with
 Flow 2 for access to the bottleneck queue and note A, and contends
 with Flow 3 for access to the bottleneck queue at node B.
 
+\begin{figure}[t!]
+\includegraphics[width=\columnwidth]{multilink-all.pdf}
+\caption{How well do endpoints need to understand the network around
+  them? To assess this, we measure the throughput of four
+  congestion-control schemes across a simulated two-hop network path,
+  as the rate of each link is swept between 10 and 100~Mbps, with
+  75~ms of delay per hop. A RemyCC designed for a simplified
+  one-bottleneck model of the network performs 17\% worse, on average,
+  than a RemyCC designed with knowledge of the network's true
+  two-bottleneck structure. Both RemyCCs outperform TCP Cubic assisted
+  by per-flow queueing and CoDel at the bottlenecks.}
+\label{f:multihop}
+\end{figure}
+
 The results for Flow 1 (the flow that crosses both links) are shown in
 Figure~\ref{f:multihop}.\footnote{Results for Flow 2 and Flow 3
   (flows crossing only a single link) were nearly identical between
@@ -129,15 +143,33 @@ the full locus of throughputs seen by Flow 1. For each pair of rates
 proportionally-fair throughput allocation, and plot the locus of these
 points as well.
 
+Figure~\ref{f:multihop} shows the end-to-end throughput of connections
+traversing two bottleneck links for different protocols, including two
+RemyCCs. In each experiment, there were three flows: one that
+traversed two hops (the measured connection), a cross-traffic flow
+that traversed only the first bottleneck, and another cross-traffic
+flow that traversed only the second bottleneck.
+
+%of two Tao protocols, running over a simulated two-hop network path
+%and contending with cross traffic that runs over the first or
+%second link only.
+
+As the rate of the first and second link are swept between 10 and 100
+Mbps, the RemyCC that was designed for the actual network achieves
+close to the ideal proportionally-fair throughput allocation across
+the two links. This ideal serves as an upper bound on performance.
+
+A RemyCC that was designed for a simplified model of the network with
+only one hop also performs adequately, but a little worse than the
+``full-complexity'' RemyCC. However, both computer-generated protocols
+come closer to the ideal than contemporary protocols in wide use, TCP
+Cubic~\cite{cubic}, the default TCP in Linux, running over per-flow
+queueing and CoDel~\cite{CoDel}, an active queue management (AQM)
+scheme that runs at both bottlenecks.
+
 The results suggest that a congestion-control protocol designed for a
 simplified model of the network's structure will experience a small,
-but quantifiable, penalty to its performance, indicated on the figure
-as the gap between the two Tao protocols. Results from Cubic and
-Cubic-over-sfqCoDel are shown for comparison.
-
-These results give some rigorous support to a protocol designer's
-intuition that understanding the true network in all its complexity
-may not be crucial.
+but quantifiable, penalty to its performance.
 
 \begin{table}
 \centering
