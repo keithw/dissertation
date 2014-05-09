@@ -1,59 +1,54 @@
 \section{Ratatouille, a tool for understanding RemyCCs}
 
-The use of computer-generated congestion-control algorithms presents
-different engineering challenges than conventional designs. In
-practice, RemyCCs \emph{increase} endpoint complexity in order to
-\emph{reduce} the complexity of overall network behavior.
-
-Traditional TCP congestion control specifies simpler behavior for each
-endpoint, but the resulting emergent behavior of a multiuser network
-is not easily specified and is often suboptimal and variable, and even
-unstable. By contrast, our approach focuses on maximizing a
-well-specified overall objective at the cost of complex endpoint
-algorithms.
+In our experience, high-performing computer-generated
+congestion-control algorithms present a different kind of complexity
+than existing mechanisms. Traditional TCP congestion control schemes
+specify relatively simple rules for each endpoint, but the resulting
+emergent behavior of a multiuser network is not easily specified and
+can be suboptimal and unstable. By contrast, Remy's algorithms specify
+hundreds of rules at the endpoints, but produce more consistent
+overall behavior.
 
 We think this tradeoff is ultimately worth taking: today's endpoints
-can execute complex algorithms almost as easily as simple ones (and
-with Remy, the bulk of the intelligence is computed offline). What
-users and system designers ultimately care about, we believe, is the
-quality and consistency of overall behavior.
+can execute complex algorithms almost as easily as simple ones, and
+with Remy, the bulk of the intelligence is computed offline.
 
-But when endpoint algorithms become very complex, figuring out
-\emph{why} a particular RemyCC works involves a reverse-engineering
-challenge. To help with this task, I built a visualization and
-debugging tool for RemyCCs, called Ratatouille.
+But when endpoint algorithms become so complex, it is challenging to
+explain \emph{why} a particular RemyCC works without considerable
+effort spent reverse-engineering it. To help with this task, I built a
+visualization and debugging tool for RemyCCs, called Ratatouille.
 
 Ratatouille displays real-time output from the Remy network simulator,
 and plots the current number of packets-in-flight for each concurrent
-flow as it evolves over time. The user interacts with a physical USB
-control surface---originally intended to control a software music
-mixing application---to vary the network parameters: the number of
-flows with offered load, the link rate, propagation delay, and buffer
-size at the bottleneck queue. The user can then observe how the flows
-respond to the changing conditions. (For comparison, Ratatouille can
-also run a conventional AIMD TCP-like algorithm.)
+flow as it evolves over time. The user adjusts a physical USB control
+surface (a software mixing board) to vary network parameters,
+including the number of flows with offered load and the link rate,
+propagation delay, and buffer size at the bottleneck queue. The user
+can then observe how the flows respond to the changing
+conditions. Ratatouille can also run conventional AIMD TCP-like flows
+for comparison.
 
-By exploring the evolving values of the congestion signals at each
-sender as the network changes, we have gained some intuition into how
-a RemyCC can achieve good throughput and low delay. When the network
-is in steady state, the congestion signals of a RemyCC sender tend to
-fall into an orbit, or limit cycle, in which the average number of
-packets in flight over the cycle is close to the ``ideal'' number: the
-bandwidth-delay product of the bottleneck link divided by the degree
-of multiplexing.
+By exploring the evolving values of the congestion signals, we have
+gained some intuition into how a RemyCC can achieve good
+performance. When the network is in steady state, the congestion
+signals of a RemyCC sender tend to fall into an orbit, or limit cycle,
+in which the average number of packets-in-flight over the cycle is
+close to the ``ideal'' number: the bandwidth-delay product of the
+bottleneck link divided by the degree of multiplexing.
 
-The period of the limit cycles is generally a small number of
-minRTTs. By contrast, TCP's congestion window typically oscillates on
-a much longer timescale that depends on the buffer size, because the
-``multiplicative decrease'' feature of TCP's control rules is only
-triggered when packet loss is detected (in other words, only after
-buffer overflow occurs in the bottleneck queue).
+Examining the RemyCCs that are successful in the simulations we
+evaluated, we found that the period of the limit cycles is generally a
+small number of minRTTs. By contrast, TCP's congestion window
+generally oscillates on a much longer timescale that depends on the
+buffer size, because the ``multiplicative decrease'' feature of TCP's
+control rules is only triggered when packet loss is detected (in other
+words, only after buffer overflow occurs in the bottleneck queue).
 
-This suggests that a RemyCC's ability to achieve better throughput
-than TCP on finite-length flows is mostly due to its quicker response
-to changes in conditions---a RemyCC will generally ``ramp up'' to the
-ideal number of packets-in-flight more quickly than the TCP
-slow-start algorithm.
+Our observations suggest that a RemyCC's ability to achieve better
+throughput than TCP on finite-length flows is mostly due to its
+quicker response to changes in conditions---a RemyCC will generally
+``ramp up'' to the ideal number of packets-in-flight more quickly than
+the TCP slow-start algorithm.
 
 Although Ratatouille has allowed us to make observations that suggest
 ``why'' RemyCCs achieve their good performance compared with
