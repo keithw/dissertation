@@ -47,13 +47,13 @@ congestion-control protocol and what simplifications are acceptable:
   (e.g.~the new protocol needs to divide a contended link evenly with
   TCP), versus a clean-slate design?  (\S\ref{s:tcpaware})
 
-\item \textbf{Different kinds of breadth.} Will a protocol designed
-  for a large range in one kind of network parameter (e.g., the link
-  rate) also have broad applicability when other network parameters
-  vary, such as the RTT or degree of multiplexing?  Which pairs of
-  network parameters are related in this way---such that a protocol's
-  breadth in one implies breadth in the other---and which aren't?
-  (\S\ref{ss:parameter})
+%\item \textbf{Different kinds of breadth.} Will a protocol designed
+%  for a large range in one kind of network parameter (e.g., the link
+%  rate) also have broad applicability when other network parameters
+%  vary, such as the RTT or degree of multiplexing?  Which pairs of
+%  network parameters are related in this way---such that a protocol's
+%  breadth in one implies breadth in the other---and which aren't?
+%  (\S\ref{ss:parameter})
 
 %\item \textbf{Knowledge of network signals.} What kinds of congestion
 %  signals are important for an endpoint to listen to? How much
@@ -130,8 +130,8 @@ RemyCC protocol matched or outperformed TCP Cubic and
 Cubic-over-sfqCoDel over the entire range
 (Figure~\ref{fig:breadth}). This result suggests that it may be
 possible to construct ``one size fits all'' end-to-end
-congestion-control protocols that perform considerably better than
-TCP, even when TCP is assisted by in-network algorithms.
+congestion-control protocols that outperform TCP, even when TCP is
+assisted by in-network algorithms.
 
 \vspace{\baselineskip}
 
