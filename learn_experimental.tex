@@ -1,16 +1,15 @@
-\section{Experimental Setup}
+\section{Experimental setup}
 
 \label{s:experiment}
 We describe our experimental procedure below.  First, we specify a set
 of \textit{training scenarios}: a set of network configurations
 (\S\ref{ss:nwkcfg}) that express the designer's imperfect model of the
 network. Next, we specify an \textit{objective function}
-(\S\ref{ss:objective}). The protocol-design process synthesizes a
-congestion-control protocol that maximizes the value of this function,
-averaged over the set of training scenarios. Finally
-(\S\ref{ss:eval}), we specify a \textit{testing scenario} of network
-configurations, which may be similar or dissimilar to the training
-scenarios.
+(\S\ref{ss:objective}). Remy synthesizes a congestion-control protocol
+that attempts to maximize the value of this function, averaged over
+the set of training scenarios. Finally (\S\ref{ss:eval}), we specify a
+\textit{testing scenario} of network configurations, which may be
+similar or dissimilar to the training scenarios.
 
 We evaluate the synthesized congestion-control protocol on the testing
 scenario to assess the questions of this study---how easy is it to
@@ -71,6 +70,8 @@ function expresses a preference for ``proportionally-fair'' resource
 allocation---for example, it is worthwhile to cut one connection's
 throughput in half, as long as this enables another connection's
 throughput to be more-than-doubled.
+
+\begin{comment}
 
 \subsection{Protocol-design process}
 \label{ss:learning}
@@ -143,23 +144,26 @@ scenarios and objective function, we refer to such protocols as
 ``tractable attempts at optimal'' congestion control, or Tao
 protocols.
 
+\end{comment}
+
 \subsection{Evaluation procedure}
 \label{ss:eval}
 To measure the difficulty of learning a congestion-control protocol
 with an imperfect model of the eventual network, we choose a testing
-scenario of network configurations and evaluate the Tao protocol on
-it. All evaluations are performed in the ns-2
-simulator. Using a different simulator for training and
-testing helps give confidence that the congestion-control protocols
-learned are robust to quirks in a simulator implementation.
+scenario of network configurations and evaluate the RemyCC on it. All
+evaluations are performed in the ns-2 simulator.\footnote{Using one
+  simulator for training (Remy's internal simulator) and a different
+  one for evaluation helps give confidence that the congestion-control
+  protocols learned are robust to quirks in a simulator
+  implementation.}
 
-We compare the performance of Tao protocols optimized for ``accurate''
-models of the network against Tao protocols optimized for various
+We compare the performance of RemyCCs optimized for an ``accurate''
+model of the network against RemyCCs optimized for various
 kinds of imperfect models, in order to measure how faithfully protocol
 designers need to understand the network they are designing for. We
 give the training and testing scenarios in a table.
 
-For reference, we also compare the Tao protocols with two common schemes in wide use today:
+For reference, we also compare the RemyCCs with two common schemes in wide use today:
 
 \begin{enumerate}
 \item TCP Cubic~\cite{cubic}, the default congestion-control protocol in Linux

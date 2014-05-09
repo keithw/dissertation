@@ -1,5 +1,7 @@
-\section{Related Work}
+\section{Protocol design as a problem of learnability}
 \label{s: learnability}
+
+\begin{comment}
 
 This section discusses closely related work on congestion control and
 explains how our work has an analogy with theoretical notions of
@@ -44,6 +46,8 @@ queueing~\cite{sfq} for ``controlled delay'' at bottleneck gateways.
 
 \subsection{Learnability}
 
+\end{comment}
+
 TCP congestion control was not designed with an explicit objective
 function in mind. Kelly et al.~present an interpretation of TCP
 congestion-control variants in terms of the implicit goals they
@@ -57,12 +61,14 @@ network protocol given an \emph{imperfect} model of the network where
 it will be deployed, in order to understand the inherent difficulties
 of the problem of congestion control.
 
+\begin{comment}
 Formally speaking, designing such a protocol is a problem in
 sequential decision-making under uncertain and can be modeled as a
 Partially-Observable Markov Decision Process~\cite{pomdp}. In that
 context, the purpose of this paper is to ask: how well can a protocol
 designer ``learn'' the solution to one POMDP or set of networks and
 successfully apply the result (a protocol) to a different set of networks?
+\end{comment}
 
 In doing so, we draw an explicit analogy to the concept of
 ``learnability'' employed in machine
