@@ -197,6 +197,7 @@ true network & two, 75~ms delay each & 3 \\
 
 \subsection{Knowledge about other endpoints}
 
+\begin{comment}
 \begin{figure*}[b!]
 %\centering
 %\begin{subfigure}[b]{\columnwidth}
@@ -217,6 +218,7 @@ true network & two, 75~ms delay each & 3 \\
 \includegraphics[width=\textwidth]{figures/manual/compatibility-drawn.pdf}
 \end{center}
 \end{figure*}
+\end{comment}
 
 \label{s:tcpaware}
 
@@ -255,18 +257,45 @@ from the same protocol, and one whose model included a training
 scenario where the cross-traffic was from traditional TCP half the
 time.
 
-The results are shown in Figure~\ref{fig:tcpaware}. In the left panel,
-protocols compete only with cross-traffic from the same protocol. In
-this homogeneous setting, adding TCP-awareness to a RemyCC builds
-up standing queues, more than doubling the queueing delay without
-affecting throughput.
+\begin{figure}
+\caption{Performance of two flows of the same congestion-control
+  scheme contending for a 10~Mbps link, for three different
+  congestion-control schemes. The ``TCP-naive'' RemyCC is designed
+  under the assumption that its competition, when present, is governed
+  by the same RemyCC---an assumption that holds here. The
+  ``TCP-aware'' RemyCC is designed under the assumption that its cross
+  traffic has a 50\% chance of being governed by a TCP AIMD-like
+  scheme. The results quantify the degree to which designing a
+  protocol to play well with TCP can exact a cost when TCP is absent.}
+\label{fig:tcphomog}
+\begin{center}
+\includegraphics[width=\textwidth]{homo-3.pdf}
+\end{center}
+\end{figure}
 
-But in a mixed setting (Figure~\ref{fig:tcpaware}, right panel) where a RemyCC competes against TCP
-NewReno, the TCP-naive RemyCC is squeezed out and does not get its fair
-share of the link. In the shaded region showing the results when
-NewReno competes with the TCP-aware RemyCC, TCP-awareness allows the RemyCC
-to claim its fair share of the link and reduces the queueing delay
-experienced both by itself and by TCP NewReno.
+\begin{figure}
+\caption{When cross traffic is governed by TCP NewReno, the TCP-aware
+  RemyCC achieves a more equitable division of the link---and better
+  delay for both flows---than the TCP-naive RemyCC. The results
+  demonstrate the benefit of TCP-awareness when TCP is present.}
+\label{fig:tcpheterog}
+\begin{center}
+\includegraphics[width=\textwidth]{hetero-3.pdf}
+\end{center}
+\end{figure}
+
+In Figure~\ref{fig:tcphomog}, protocols compete only with
+cross-traffic from the same protocol. In this homogeneous setting,
+adding TCP-awareness to a RemyCC builds up standing queues, more than
+doubling the queueing delay without affecting throughput.
+
+But in a mixed setting (Figure~\ref{fig:tcpheterog}) where a RemyCC
+competes against TCP NewReno, the TCP-naive RemyCC is squeezed out and
+does not get its fair share of the link. In the shaded region showing
+the results when NewReno competes with the TCP-aware RemyCC,
+TCP-awareness allows the RemyCC to claim its fair share of the link
+and reduces the queueing delay experienced both by itself and by TCP
+NewReno.
 
 The results suggest that new delay-minded protocols \emph{can} avoid
 being squeezed out by traditional loss-triggered TCP, but building in
