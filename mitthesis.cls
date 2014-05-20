@@ -415,9 +415,7 @@ reserved.\par\permission}}
 %% notice.
 %\ifodd\vithesis \copyrightnoticetext{\copyright\ \@author,
 %\uppercase\expandafter{\romannumeral\@degreeyear}.  All rights reserved.\par\permission}
-\ifodd\vithesis \copyrightnoticetext{Copyright 2014 Keith Winstein.\par
-%{\centering \includegraphics[scale=.618]{by.pdf}\par}
-\permission}
+\ifodd 1 \copyrightnoticetext{Copyright 2014 Keith Winstein. {\footnotesize \permission}}
 %% or just
 %%\@degreeyear}}
 \typeout{Copyright given to author,
