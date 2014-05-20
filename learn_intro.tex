@@ -147,10 +147,11 @@ When contending only with other endpoints of the same kind, the
 ``TCP-naive'' protocol achieved \textbf{55\% less queueing delay} than
 the TCP-aware protocol. In other words, ``TCP-awareness'' has a cost
 measured in lost performance when TCP cross-traffic is absent
-(Figure~\ref{fig:tcpaware}).
+(Figure~\ref{fig:tcpawarehomo}).
 
 But when contending against TCP, the ``TCP-naive'' protocol was
 squeezed out by the more-aggressive cross-traffic. By contrast, the
 ``TCP-aware'' protocol achieved \textbf{36\% more throughput} and
 \textbf{37\% less queueing delay} than the ``TCP-naive'' protocol,
-and reached an equitable division of the available capacity with TCP.
+and reached an equitable division of the available capacity with TCP
+(Figure~\ref{fig:tcpawarehetero}).
