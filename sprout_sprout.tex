@@ -31,10 +31,9 @@ we mean the maximum possible bit rate or throughput) of cellular links
 is challenging, because they do not have a directly observable rate
 {\em per se}. Even in the middle of the night, when average throughput
 is high and an LTE device may be completely alone in its cell, packet
-arrivals on a saturated link do not follow an observable
-isochronicity. This is a roadblock for packet-pair techniques
-(\cite{packetpair}) and other schemes to measure the available
-throughput.
+inter-arrival intervals on a saturated link are highly variable. This
+is a roadblock for packet-pair techniques (\cite{packetpair}) and
+other schemes to measure the available throughput.
 
 Figure~\ref{f:vzinter} illustrates the {\em interarrival} distribution
 of 1.2 million MTU-sized packets received at a stationary cell phone
@@ -76,12 +75,12 @@ averaging interval necessary to achieve an acceptable estimate.
 Sprout needs to be able to estimate the link speed, both now and in
 the future, in order to predict how many packets it is safe to send
 without risking their waiting in a network queue for too long. An
-uncertain estimate of future link speed is worth more caution than a
-certain estimate, so we need to quantify our uncertainty as well as
+uncertain estimate of future link speed deserves more caution than a
+precise estimate, so we quantify our uncertainty as well as
 our best guess.
 
 We therefore treat the problem in two parts. We model the link and
-estimate its behavior at any given time, preserving our full
+estimate its behavior at any given time, preserving the full
 uncertainty. We then use the model to make forecasts about how many
 bytes the link will be willing to transmit from its queue in the near
 future. Most steps in this process can be precalculated at program
@@ -200,10 +199,10 @@ $$
 $$
 \end{enumerate}
 
-These steps constitute Bayesian updating of the probability
+Steps 2 and 3 constitute Bayesian updating of the probability
 distribution on the current value of $\lambda$.
 
-One important practical difficulty concerns how to deal with the
+One challenge concerns the
 situation where the queue is underflowing because the sender has not
 sent enough. To the receiver, this case is indistinguishable from an
 outage of the service process, because in either case the receiver
@@ -245,7 +244,7 @@ distribution as the cautious forecast for each tick. Most
 of these steps can also be precalculated, so the only work at
 runtime is to take a weighted sum over each $\lambda$.
 
-\subsection{The control protocol}
+\subsection{Feedback from the receiver to sender}
 
 The Sprout receiver sends a new forecast to the sender by piggybacking
 it onto its own outgoing packets.

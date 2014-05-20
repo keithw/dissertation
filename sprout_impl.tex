@@ -60,14 +60,14 @@ gathering about 17 minutes of data from each. Because the traces were
 collected at different times and places, the measurements cannot be
 used to compare different commercial services head-to-head.
 
-For the device under test, the Verizon LTE and 1xEV-DO (3G) traces
-used a Samsung Galaxy Nexus smartphone running Android 4.0. The AT\&T
-trace used a Samsung Galaxy S3 smartphone running Android 4.0. The
+The Verizon LTE and 1xEV-DO (3G) traces
+were collected with a Samsung Galaxy Nexus smartphone running Android 4.0. The AT\&T
+trace used a Samsung Galaxy S3 smartphone running Android 4.0, and the
 T-Mobile trace used a Samsung Nexus S smartphone running Android 4.1.
 
 \subsection{Cellsim}
 
-We then replay the traces in a network emulator, which we call
+We then replayed the traces in a network emulator, which we call
 Cellsim (Figure~\ref{f:cellsim}). It runs on a PC and takes in packets
 on two Ethernet interfaces, delays them for a configurable amount of
 time (the propagation delay), and adds them to the tail of a
@@ -75,7 +75,7 @@ queue. Cellsim releases packets from the head of the queue to the
 other network interface according to the same trace that was
 previously recorded by Saturator. If a scheduled packet delivery
 occurs while the queue is empty, nothing happens and the opportunity
-to delivery a packet is wasted.\footnote{This accounting is done on a
+to deliver a packet is wasted.\footnote{This accounting is done on a
   per-byte basis. If the queue contains 15 100-byte packets, they will
   all be released when the trace records delivery of a single
   1500-byte (MTU-sized) packet.}

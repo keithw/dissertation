@@ -50,7 +50,7 @@
   \makeatother%
   \begin{picture}(1,0.2626036)%
     \put(0,0){\includegraphics[width=\unitlength]{emu.pdf}}%
-    \put(0.33602004,0.19226005){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Internet}}}%
+    \put(0.35602004,0.20226005){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Internet}}}%
     \put(0.05131205,0.24787002){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.16179259\unitlength}\raggedright Application\\ Send/Recv\end{minipage}}}%
     \put(0.5576969,0.14183112){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Cellsim}}}%
     \put(0.79303651,0.24366762){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.16179259\unitlength}\raggedright Application\\ Send/Recv\end{minipage}}}%

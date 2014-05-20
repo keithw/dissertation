@@ -37,7 +37,7 @@ We are interested in performance metrics appropriate for a real-time
 interactive application. In our evaluation, we report the
 \emph{average throughput} achieved and the 95th-percentile
 \emph{self-inflicted delay} incurred by each protocol, based on
-measurement at the Cellsim.
+measurement of packet entry and exit from the Cellsim.
 
 The \emph{throughput} is the total number of bits received by an
 application, divided by the duration of the experiment. We use this as
@@ -46,7 +46,7 @@ a measure of bulk transfer rate.
 The {\em self-inflicted delay} is a lower bound on the end-to-end
 delay that must be experienced between a sender and receiver, given
 observed network behavior. We define it as follows: At any point in
-time, we find the most recently-sent packet to have arrived at the
+time, we find the most recently sent packet to have arrived at the
 receiver. The amount of time since this packet was sent is a lower
 bound on the instantaneous delay that must exist between the sender's
 input and receiver's output in order to avoid a gap in playback or
@@ -309,11 +309,11 @@ Skype 95\% delay & 6.0~s & 0.17~s & \cellcolor{blue!20}$-97\%$ \\
 }
 \end{center}
 
-The results suggest that interactive applications can be
-greatly aided by having their traffic run through Sprout along
-with bulk transfers. Without Sprout to mediate, Cubic squeezes
-out Skype and builds up huge delays. However, Sprout's conservatism about
-delay also imposes a substantial penalty to Cubic's throughput.
+The results suggest that interactive applications can be greatly aided
+by running their traffic---and any concurrent bulk transfers---through
+Sprout. Without Sprout to mediate, Cubic squeezes out Skype and builds
+up huge delays. However, Sprout's conservatism about delay
+substantially reduces Cubic's throughput.
 
 \vspace{\baselineskip}
 

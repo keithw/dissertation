@@ -26,7 +26,7 @@ networks enqueue each user's traffic in a separate queue. The base
 station schedules data transmissions taking both per-user
 (proportional) fairness and channel quality into
 consideration~\cite{propfair}. Typically, each user's device is
-scheduled for a fixed time slice over which a variable number of
+scheduled for a time slice or resource block in which a variable number of
 payload bits may be sent, depending on the channel conditions, and
 users are scheduled in roughly round-robin fashion. The isolation
 between users' queues means that the dominant factor in the end-to-end
@@ -44,7 +44,7 @@ receives.
 
 Many cellular networks employ a non-trivial amount of packet
 buffering. For TCP congestion control with a small degree of
-statistical multiplexing, a good rule-of-thumb is that the buffering
+statistical multiplexing, a good rule of thumb is that the buffering
 should not exceed the bandwidth-delay product of the connection. For
 cellular networks where the ``bandwidth'' may vary by two orders of
 magnitude within seconds, this guideline is not particularly useful. A
@@ -99,13 +99,13 @@ Sprout is not a traditional congestion-control scheme, in that its
 focus is directed at adapting to varying link conditions, not to
 varying cross traffic that contends for the same bottleneck queue. Its
 improvements over existing schemes are found when queueing delays are
-imposed by one user's traffic. This is typically the case
-when the application is running on a mobile device, because cellular
-network operators generally maintain a separate queue for each
-customer, and the wireless link is typically the bottleneck.  An
-important limitation of this approach is that in cases where these
-conditions don't hold, Sprout's traffic will experience the same
-delays as other flows.
+imposed by the user's own traffic.% This is typically the case
+%when the application is running on a mobile device, because cellular
+%network operators generally maintain a separate queue for each
+%customer, and the wireless link is typically the bottleneck.  An
+%important limitation of this approach is that in cases where these
+%conditions don't hold, Sprout's traffic will experience the same
+%delays as other flows.
 %We believe this is an unavoidable consequence
 %of an end-to-end approach.
 
