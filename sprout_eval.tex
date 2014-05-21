@@ -60,9 +60,9 @@ delay.''
 For a given trace, there is a lower limit on the 95\%~end-to-end delay
 that can be achieved even by an omniscient protocol: one that sends
 packets timed to arrive exactly when the network is ready to dequeue
-and transmit a packet. This ``omniscient'' protocol will achieve
+and transmit a packet. This protocol will achieve
 100\%~of the available throughput of the link and its packets will
-never sit in a queue. Even so, the ``omniscient'' protocol will have
+never sit in a queue. Even so, the omniscient protocol will have
 fluctuations in its 95\%~end-to-end delay, because the link may have
 delivery outages. If the link does not deliver any packets for 5
 seconds, there must be at least 5 seconds of end-to-end delay to avoid
@@ -75,7 +75,7 @@ a glitch, no matter how smart the protocol is.\footnote{If packets are
   95\%~end-to-end delay.}
 
 The difference between the 95\%~end-to-end delay measured for a
-particular protocol and for an ``omniscient'' one is known as the
+particular protocol and for an omniscient one is known as the
 \emph{self-inflicted delay}. This is the appropriate figure to assess
 a real-time interactive protocol's ability to compromise between
 throughput and the delay experienced by users.
