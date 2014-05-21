@@ -96,7 +96,7 @@ network. There's no way to tweak the requirements and then retrace the
 same design process that the protocol's designers followed, to find the
 mechanism they would have produced given a different starting point.
 
-\section{Showing our work in protocol design}
+%\section{Showing our work in protocol design}
 
 This thesis proposes that the transport layer should adapt
 programmatically to whatever the layers below may do, and whatever the
@@ -106,30 +106,30 @@ network and what kind of performance the application is interested
 in---and let computers worry about translating this into the mechanism
 of congestion control.
 
-By ``showing our work'' in this way, clearly enough for a computer to
-recreate the same design, tweaking the assumptions is a matter of
-changing the inputs to a computer program and running it again. My
-colleagues and I have found that this approach yields better
-peformance than conventional protocols, while allowing adjacent layers
-to evolve more freely.
+By ``showing our work'' clearly enough for a computer to create the
+design, tweaking a protocol's assumptions becomes a matter of changing
+the inputs to a computer program and running it again. My colleagues
+and I have found that this approach yields better peformance than
+conventional protocols, while allowing adjacent layers to evolve more
+freely. It's not clear when computer-generated protocols will be
+practically deployed on the broad Internet, but what computers can
+teach us about protocol design can be applied to help humans create
+better protocols now.
 
 \section{Summary of results}
 
-Over the last three years, my colleagues and I built a series of
-systems that demonstrate the benefits of automated, objective-driven
-protocol design.
-
-\subsection{Sprout}
+My colleagues and I have built two systems that explore the benefits
+of automated, objective-driven congestion-control protocol design.
 
 \textbf{Sprout} (Chapter~\ref{chap:sprout}) is a transport protocol
 designed to carry high-throughput interactive traffic, such as a
 videoconference, over a cellular network. Sprout includes an explicit
 model of the dynamics of cellular networks and makes predictions about
-future performance by inferring, with uncertainty, the current state
+future performance by inferring a distribution over the current state
 of the network and evolving the model forward. Its control
 strategy---how much data to send at a given moment---is a function of
 those predictions and of an explicit objective: maximize throughput,
-but bound in-network delays to be at most 100~ms with high
+but cap in-network delays to be at most 100~ms with high
 probability.
 
 In a trace-driven experimental evaluation (details in
@@ -162,22 +162,17 @@ Cubic & \cellcolor{red!20}$0.91\times$ & $79\times$\\
 
 \end{center}
 
-\subsection{Remy}
-
 \textbf{Remy} (Chapter~\ref{chap:remy}) generalizes Sprout to address
 the classical problem of \emph{multi-agent} congestion control, where
 independent users contend for the same limited network resource. Remy
 is a protocol-design tool that takes, as input, a set of assumptions
 about the uncertain network and workload, and an objective to pursue
-on behalf of the application. Remy's computer-generated algorithms can
-achieve higher performance and greater fairness than some
-sophisticated human-designed schemes, including ones that put
-intelligence inside the network.
+on behalf of the application.
 
-On a simulated 15~Mbps fixed-rate link with eight senders contending and
-an RTT of 150~ms, a computer-generated congestion-control algorithm
-achieved the following improvements in median throughput and
-reductions in median queueing delay over these existing protocols:
+On a simulated 15~Mbps link with eight senders contending and an RTT
+of 150~ms, a computer-generated congestion-control algorithm achieved
+the following improvements in median throughput and reductions in
+median queueing delay over these existing protocols:
 
 \begin{center}
 
@@ -200,55 +195,48 @@ XCP & $1.4\times$ & $4.3\times$ \\
 
 \end{center}
 
-Once we had a computerized protocol designer, we explored using it as
-a tool to gain understanding about the problem of congestion control.
-How easy is it to ``learn'' a network protocol to achieve desired
-goals, given a necessarily imperfect model of the networks where it
-ultimately will be deployed? Is there a tradeoff between the
-performance of an algorithm now---if optimized for a very specific
-network---versus the protocol's ability to perform adequately as the
-network evolves? What is the cost of compatibility with existing TCP
-congestion-control mechanisms?
+\section{What computers can teach us about congestion control}
 
-Our research into these questions is reported in
-Chapter~\ref{chap:learnability}. We found weak evidence of a tradeoff
-between the breadth of the operating range of a computer-generated
-protocol and its performance, but also that a single
-computer-generated protocol was able to outperform existing schemes
-over a thousand-fold range of link rates.
+We can learn about transport-protocol design by observing what makes
+automated protocol-design tools successful. By looking at \emph{what
+  information} turned out to be valuable to Sprout and Remy, and
+\emph{what behaviors} characterize the successful computer-generated
+algorithms, we have been able to develop an intuition as to what
+successful new designs might look like and why Sprout and Remy are
+able to outperform current protocols.
 
-We also measured the benefits and costs of adding ``TCP-awareness'' to
-a computer-generated congestion-control protocol protocol. Including
-the possibility of TCP cross-traffic in the network model improved
-performance when TCP cross traffic was actually present---but hurt
-performance when TCP cross traffic was absent, compared with a
-``TCP-naive'' protocol designed only to interoperate with itself.
+\subsection{Algorithms should collect rate estimates as signals}
 
-\begin{comment}
-\subsection{Mosh}
+Today's congestion-control protocols generally pay attention to a
+small number of signals derived from packets arriving at the receiver,
+or acknowledgments arriving back at the sender. Classical TCP schemes,
+such as NewReno~\cite{newreno} and Cubic~\cite{cubic}, attempt to
+detect packet loss as a proxy for in-network buffer
+overflow. Delay-based schemes such as Vegas~\cite{vegas} detect
+increasing round-trip delay, as a proxy for growing standing queues
+inside the network.
 
-\textbf{Mosh} (mobile shell)~\cite{mosh} is a replacement for SSH
-(secure shell) in which the client and server each explicitly model
-the dynamic contents of the text terminal. Unlike SSH, which transmits all
-output from an application through a reliable TCP connection and
-doesn't attempt to interpret the stream, Mosh's modeling allows it
-to choose which data to send to the client when, in order to most
-efficiently satisfy an explicit objective: update the client screen to
-the current contents of the text terminal as efficiently as possible,
-even across intermittent, roaming connectivity.
+Researchers and practitioners have proposed that the network should
+provide additional information helpful for inferring the presence of
+congestion~\cite{ecn,xcp,rcp}, but these schemes have not been widely
+deployed.
 
-By having an explicit model of the user interface at both sides of the
-connection, the Mosh client can predict the application's behavior in
-response to user keystrokes and (if confident in its predictions)
-speculatively display the result---generally an echoed keystroke or
-cursor motion---before it has been confirmed by the server. In a
-trace-based evaluation over 40 hours of real-world usage, Mosh was
-able to successfully predict and immediately display the result of
-\textbf{70\%} of user keystrokes.
+Sprout and Remy have found that more useful information is available
+from the data already provided by today's networks. In particular,
+estimates of the rates of packet transmission and reception proved to
+be crucial to helping these systems outperform existing algorithms.
 
-Mosh is primarily a remote terminal application and is not further
-discussed in this dissertation, but its design ideas---maintain an
-explicit model at runtime, and pursue a stated objective on behalf of
-the user---formed the basis of my subsequent work on
-transport-protocol design.
-\end{comment}
+\begin{figure}
+\caption{Sprout measures the \textbf{rate} of packet arrivals at the
+  receiver, forecasts the time required to drain the current queue,
+  and tries to steer this quantity not to exceed a tenth of a
+  second. Based on this technique, Sprout achieves less end-to-end
+  delay than the other algorithms, while achieving almost as much
+  throughput as TCP Cubic. From Figure~\ref{f:allgraphs} (Verizon LTE
+  Downlink).}
+
+\vspace{\baselineskip}
+
+\def\svgwidth{\textwidth}\footnotesize\import{dotgraphs3/}{VerizonLTE-Downlink-minus1.pdf_tex}
+\end{figure}
+
