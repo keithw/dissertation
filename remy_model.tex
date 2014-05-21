@@ -33,8 +33,8 @@ Markovian, meaning that it is described by some state (e.g.~the
 packets in each queue) and its future evolution will depend only on
 the current state.
 
-We have typically parametrized networks on three axes: the speed of
-bottleneck links, the propagation delay of the network paths, and the
+We have parametrized networks on four axes: the speed of
+bottleneck links, the number of bottlenecks, the propagation delay of the network paths, and the
 degree of multiplexing, i.e., the number of senders contending for
 each bottleneck link. We assume that senders have no control over the
 paths taken by their packets to the receiver.
@@ -77,9 +77,13 @@ as in the case of videoconferences or similar real-time traffic.
 Resource-allocation theories of congestion control have traditionally
 employed the alpha-fairness metric to evaluate allocations of
 throughput on shared links~\cite{Srikant}. A flow that receives
-steady-state throughput of $x$ is assigned a score of $U_\alpha(x) =
-\frac{x^{1-\alpha}}{1-\alpha}$. As $\alpha \rightarrow 1$, in the
-limit $U_1(x)$ becomes $\log x$.
+steady-state throughput of $x$ is assigned a score of:
+
+\begin{equation*}
+U_\alpha(x) = \frac{x^{1-\alpha}}{1-\alpha}
+\end{equation*}
+
+As $\alpha \rightarrow 1$, in the limit $U_1(x)$ becomes $\log x$.
 
 Because $U_\alpha(x)$ is concave for $\alpha > 0$ and monotonically
 increasing, an allocation that maximizes the total score will prefer
@@ -118,10 +122,10 @@ divided by the time that the sender was ``on.'' We calculate the
 average round-trip delay $y$ of the connection.
 
 The flow's score is then 
-\begin{equation}
+\begin{equation*}
 U_\alpha(\textrm{x}) - \delta \cdot U_\beta(\textrm{y}),
 \label{eq:util}
-\end{equation}
+\end{equation*}
 where $\alpha$ and $\beta$ express the fairness-vs.-efficiency
 tradeoffs in throughput and delay, respectively, and $\delta$
 expresses the relative importance of delay vs.~throughput.% For the

@@ -204,7 +204,7 @@ We present the results for the different protocols as {\bf
   throughput-delay plots}, where the log-scale $x$-axis is the
 queueing delay (average per-packet delay in excess of minimum
 RTT). Lower, better, delays are to the right.  The $y$-axis is the
-throughput. Protocols on the ``top right'' are the best on such
+throughput. Protocols on the top right are the best on such
 plots. We take each individual 100-second run from a simulation as one
 point, and then compute the 1-$\sigma$ elliptic contour
 of the maximum-likelihood 2D Gaussian distribution that explains the
@@ -212,19 +212,26 @@ points. To summarize the whole scheme, we plot the median per-sender
 throughput and queueing delay as a circle.
 
 Ellipses that are narrower in the throughput or delay axis correspond
-to protocols that are fairer and more consistent in allocating those
-quantities. Protocols with large ellipses --- where
+to protocols that are more consistent in allocating those
+quantities. Protocols with large ellipses are those where
 identically-positioned users differ widely in experience based on the
-luck of the draw or the timing of their entry to the network --- are
-less fair. The orientation of an ellipse represents the {\em
-  covariance between the throughput and delay} measured for the
-protocol; if the throughput were uncorrelated with the queueing delay
-(note that we show the queueing delay, not the RTT), the ellipse's
-axes would be parallel to the graph's.
-Because of the variability and correlations between these quantities
-in practice, we believe that such throughput-delay plots are an
-instructive way to evaluate congestion-control protocols; they provide
-more information than simply reporting mean throughput and delay values.
+luck of the draw or the timing of their entry to the
+network.\footnote{The ellipse represents the variability of the
+  results for all nodes across all simulation runs. Thus, the notion
+  of ``variability'' here includes both within-run variability or
+  fairness (different results for different nodes that compete
+  concurrently) as well as variability across runs. In practice, our
+  100-second simulation runs were generally long enough, relative to flow
+  durations, that the ellipse can be broadly interpreted as
+  simply a measure of fairness.} The orientation of an ellipse
+represents the {\em covariance between the throughput and delay}
+measured for the protocol; if the throughput were uncorrelated with
+the queueing delay (note that we show the queueing delay, not the
+RTT), the ellipse's axes would be parallel to the graph's.  Because of
+the variability and correlations between these quantities in practice,
+we believe that such throughput-delay plots are an instructive way to
+evaluate congestion-control protocols; they provide more information
+than simply reporting mean throughput and delay values.
 
 \subsection{Single Bottleneck Results}
 

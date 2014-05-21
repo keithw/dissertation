@@ -3,7 +3,7 @@
 
 The above model may be viewed as a cooperative game that endpoints play. Given
 packets to transmit (offered load) at an endpoint, the endpoint must
-decide when to send packets in order to maximize its own objective
+decide when to send packets in order to maximize the global objective
 function. With a particular congestion-control algorithm running on
 each endpoint, we can calculate each endpoint's expected score.
 
@@ -16,7 +16,7 @@ Unfortunately, when greater individual throughput is the desired
 objective, on a best-effort packet-switched network like the Internet,
 it is always advantageous to send a packet. In this setting, if every
 endpoint acted rationally in its own self-interest, the resulting Nash
-equilibrium would be congestion collapse!\footnote{Other researchers
+equilibrium would be congestion collapse.\footnote{Other researchers
   have grappled with this problem; for example, Akella et
   al.~\cite{Akella02} studied a restricted game, in which players are
   forced to obey the same particular flavor of TCP, but with the freedom
@@ -82,7 +82,8 @@ updates each time it receives a new acknowledgment:
 
 \item In some RemyCCs, where the goal is operation over a broad range
   of networks, we consider the same feature but with a longer-term
-  moving average, using a weight of 1/256 for the newest sample.
+  moving average, using a weight of 1/256 for the newest sample ({\tt
+    slow\_ack\_ewma}).
 
 \item An exponentially-weighted moving average of the time between TCP
   sender timestamps reflected in those acknowledgments ({\tt
@@ -153,7 +154,7 @@ Currently, a Remy action has three components:
 
 \item An increment $b$ to the congestion window ($b$ could be negative).
 
-\item A lower bound $r > 0$ milliseconds on the time between
+\item A lower bound $\tau > 0$ milliseconds on the time between
   successive sends.
 
 \end{enumerate}
@@ -164,11 +165,11 @@ one segment every $r$ milliseconds.
 
 A RemyCC is defined by a set of piecewise-constant \emph{rules}, each
 one mapping a rectangular region of the three- or four-dimensional
-memory space to a three-dimensional action:
-$$
-\langle {\tt ack\_ewma}, {\tt send\_ewma}, {\tt rtt\_ratio} \rangle \rightarrow
-\langle m, b, r \rangle.
-$$
+memory space to a three-dimensional action. For each acknowledgment
+received, the RemyCC will update the memory features $\langle {\tt
+  ack\_ewma}, {\tt send\_ewma}, {\tt rtt\_ratio}, \{ {\tt
+  slow\_ack\_ewma} \} \rangle$ and then execute the corresponding action
+$\langle m, b, \tau \rangle$.
 
 \subsection{Remy's automated design procedure}
 
@@ -274,10 +275,10 @@ endpoint's behavior as well as the network's parameters, so the task
 of finding the right structure for the rule table is best run
 alongside the process of optimizing existing rules.
 
-To the best of our knowledge, this dynamic partitioning approach is
-novel in the context of multi-agent optimization. The ``greedy''
-approach in step 2 is key to the computational tractability and
-efficiency of the search because it allows us to prune the search
-space. Dividing the memory space into cells of different size
-proportional to their activity produces a rule table
-whose granularity is finer in regions of higher use.
+%To the best of our knowledge, this dynamic partitioning approach is
+%novel in the context of multi-agent optimization. The ``greedy''
+%approach in step 2 is key to the computational tractability and
+%efficiency of the search because it allows us to prune the search
+%space. Dividing the memory space into cells of different size
+%proportional to their activity produces a rule table
+%whose granularity is finer in regions of higher use.
