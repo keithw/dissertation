@@ -278,18 +278,40 @@ Remy to measure how much the loss would hurt performance.
 
 After investigating many candidate signals, we have ended up with
 computer-generated algorithms that collect four congestion signals
-(Section~\ref{ss:signals}). \textbf{None of these signals} is
-collected by traditional TCP congestion-control schemes. Our
-simulation experiments indicate each signal is individually valuable on
-top of the other three.
+(Section~\ref{ss:signals}):
+
+\begin{enumerate}
+
+\item An exponentially-weighted moving average (EWMA) of the
+  interarrival time between new acknowledgments received ({\tt
+    ack\_ewma}), where each new sample contributes 1/8 of the weight
+  of the moving average.
+
+\item In some RemyCCs, where the goal is operation over a broad range
+  of networks, we consider the same feature but with a longer-term
+  moving average, using a weight of 1/256 for the newest sample ({\tt
+    slow\_ack\_ewma}).
+
+\item An exponentially-weighted moving average of the time between TCP
+  sender timestamps reflected in those acknowledgments ({\tt
+    send\_ewma}), again with a weight of 1/8 to each new sample.
+
+\item The ratio between the most recent RTT and the minimum RTT seen
+  during the current connection (\tt{rtt\_ratio}).
+
+\end{enumerate}
+
+\textbf{None of these signals} is collected by traditional TCP
+congestion-control schemes. Our simulation experiments indicate each
+signal is individually valuable on top of the other three.
 
 \subsection{Windowing and pacing work well together}
 
 Traditional congestion-control algorithms are window-based and
-ack-clocked.~\cite{Srikant} Some proposed algorithms use
+ack-clocked~\cite{Srikant}. Some proposed algorithms use
 \emph{pacing}---transmitting packets according to an internal clock at
 the sender---but the performance of these algorithms can display
-counter-intuitive weaknesses.~\cite{understandingpacing}
+counter-intuitive weaknesses~\cite{understandingpacing}.
 
 After studying the behavior of Remy's algorithms and examining their
 internal logic, we found they often behave as a fine-grained
@@ -397,7 +419,7 @@ application-specific objectives (e.g., the Web ``speed index'').
 Netflix, said to account for the majority of Internet traffic in the
 United States, is working on improving its congestion control in the
 context of rate selection for progressive-download video, after
-research findings that its existing algorithm could produce poor results.~\cite{huang2012confused}
+research findings that its existing algorithm could produce poor results~\cite{huang2012confused}.
 
 Meanwhile, ``big data'' batch processing in specialized datacenters
 continues to explode. Optimizing the communications of computers
