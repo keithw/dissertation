@@ -65,54 +65,53 @@ users---researchers have accommodated new applications and network
 behaviors by devoting considerable effort to develop new
 mechanisms, at least 40 in total so far (Figure \ref{f:march}).
 
-Despite its demonstrable success, this approach can have downsides. In
-defining transport-layer protocols by their \emph{mechanisms}---by the
-actual behavior of endpoints or gateways that execute the
-protocol---we leave implicit the assumptions that the mechanism makes
-about the behavior of other layers and the policy that the mechanism
-is built to pursue.
+Despite its success, this approach imposes costs. In defining
+transport-layer protocols by their \emph{mechanisms}---by the actual
+behavior of endpoints that execute the protocol---we leave implicit
+the assumptions that the mechanism makes about the behavior of other
+layers and the policy that the mechanism is built to pursue.
 
-For contemporary mechanisms (e.g., TCP Cubic, the current default in
-Linux), it's difficult to state the assumptions that the transport
-makes about lower layers and to predict when those assumptions would
-no longer hold. This presents a challenge for link-layer designers who
-wish to design a new networking technology. Because of Cubic's
-popularity, it has become a \emph{de facto} requirement that Cubic perform
-well over any new network. In effect, this means that the designer of
-the new link layer must try to satisfy Cubic's implicit assumptions in
-order to achieve adequate performance.
+For contemporary protocols (e.g., TCP Cubic, the current default in
+Linux), it's challenging to state the assumptions that the transport
+makes about lower layers and to predict when those assumptions will no
+longer hold. This presents a difficulty for link-layer designers who
+wish to create new networking technologies. Because of Cubic's
+prevalence, it has become a \emph{de facto} requirement that Cubic
+perform well over any network. To achieve adequate performance, the
+designer of the new link layer must make sure to satisfy Cubic's
+implicit assumptions.
 
 This has led to the ``bufferbloat''\cite{bufferbloat} problem:
-believing that the transport layer will interpret losses as a
-signal to slow down, the link layer tries to drop packets as
-rarely as possible. It has also led to a lack of parallelism in
-Internet routing---flows only take one path, even if speedups might be
-available by splitting flows across multiple routes---on the grounds
-that the transport protocol might interpret out-of-order packets
-as a pathology.
+believing that the transport layer will interpret losses as a signal
+to slow down, the network tries to drop packets as rarely as
+possible. It has also led to a lack of parallelism in Internet
+routing---flows only take one path, even if striping across
+multiple paths could yield a speedup---on the grounds that the
+transport protocol might interpret out-of-order packets as a
+pathology.
 
-On the flip side, it is usually impossible to adjust the transport
+On the flip side, it is not easy to adjust the transport
 layer's assumptions in order to accommodate a new kind of
-link. There's no way to tweak the assumptions and then retrace the
+network. There's no way to tweak the requirements and then retrace the
 same design process that the protocol's designers followed, to find the
 mechanism they would have produced given a different starting point.
 
-%\section{Showing our work in protocol design}
+\section{Showing our work in protocol design}
 
-This thesis proposes essentially that approach to protocol design. The
-transport layer should adapt to whatever the layers below may do, and
-whatever the application above it wants done. Protocol designers
-should specify the \emph{policy}---namely, what assumptions they want
-to make about the network and what kind of performance the application
-is interested in---and let computers worry about translating that into
-the mechanism of congestion control.
+This thesis proposes that the transport layer should adapt
+programmatically to whatever the layers below may do, and whatever the
+application above it wants. Protocol designers should specify the
+\emph{policy}---namely, what assumptions they want to make about the
+network and what kind of performance the application is interested
+in---and let computers worry about translating this into the mechanism
+of congestion control.
 
 By ``showing our work'' in this way, clearly enough for a computer to
-recreate the same design, altering the assumptions is a matter of
-changing the inputs to a computer program. This makes it easier for
-adjacent layers to evolve. My colleagues and I have also found that
-this approach can yield better performance than conventional,
-human-designed protocols.
+recreate the same design, tweaking the assumptions is a matter of
+changing the inputs to a computer program and running it again. My
+colleagues and I have found that this approach yields better
+peformance than conventional protocols, while allowing adjacent layers
+to evolve more freely.
 
 \section{Summary of results}
 
