@@ -255,7 +255,7 @@ RemyCC, measures the \textbf{rate} of acknowledgment arrivals, and the
 in those acknowledgments. We can quantify the value of these signals
 by removing one of them and rerunning the optimization process. The
 results are markedly worse with either signal removed.  From
-Figure~\ref{f:tpdelaydb4}:
+Figure~\ref{f:tpdelaydb4} (a 15~Mbps link with 8 contending nodes):
 %}
 
 \begin{center}
@@ -263,6 +263,24 @@ Figure~\ref{f:tpdelaydb4}:
 \def\svgwidth{0.8 \textwidth}\footnotesize\input{eth8-annotatedb.pdf_tex}
 \end{center}
 \end{minipage}
+
+More broadly, automated protocol-design tools lead to a style of
+design where the value of information can be evaluated empirically. We
+may give Remy access to a new congestion signal---either derivable
+from existing TCP acknowledgments from the receiver, or based on new
+information from the network---and measure how much the resulting
+congestion-control algorithm improves over the status quo. Similarly,
+we can knock out an existing signal and rerun Remy to measure how much
+the loss hurts the resulting algorithm's performance.
+
+After investigating many candidate signals, this design process led us
+to computer-generated algorithms that collect four congestion signals
+(Section~\ref{ss:signals}). \textbf{None of these signals} is
+collected by existing TCP congestion-control algorithms, but our
+simulation experiments indicate they are each individually valuable on
+top of the other three.
+
+\subsection{Windowing and pacing work well together}
 
 %\end{figure}
 
