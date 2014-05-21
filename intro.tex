@@ -144,7 +144,7 @@ Sprout vs. & Avg.~speedup & Delay reduction \\
 \hline
 \hline
 Skype & $2.2\times$ & $7.9\times$\\
-Hangout & $4.4\times$ & $7.2\times$\\
+Hangouts & $4.4\times$ & $7.2\times$\\
 Facetime & $1.9\times$ & $8.7\times$\\
 \hline
 Compound & $1.3\times$ & $4.8\times$\\
@@ -342,7 +342,7 @@ and end up receiving less than their fair share.\footnote{RemyCCs
   generally try to keep standing queues small, both because we provide
   Remy with an objective that penalizes excess delay, but also because
   the shorter the queueing delay, the quicker the convergence time and
-  the greater the throughput available to new flows. A long-running
+  the greater the throughput rapidly available to new flows. A long-running
   traditional TCP flow will work to fill queues until they overflow.}
 
 This can be corrected, by telling Remy explicitly to assume a nonzero
@@ -355,7 +355,7 @@ of a standing queue when it shares the network only
 with other RemyCCs of the same type. From Figure~\ref{fig:tcphomog}:
 
 \begin{center}
-\includegraphics[width=0.75 \textwidth]{homo-3.pdf}
+\includegraphics[width=0.95 \textwidth]{homo-3.pdf}
 \end{center}
 
 In other words, TCP-friendliness is a beneficial property \emph{when
@@ -389,7 +389,7 @@ been included in the algorithm's prior assumptions. Algorithms with
 more limited imagination fared poorly. From Figure~\ref{fig:breadth}:
 
 \begin{center}
-\includegraphics[width=0.75 \columnwidth]{oprange-manual.pdf}
+\includegraphics[width=0.95 \columnwidth]{oprange-manual.pdf}
 \end{center}
 
 The results suggest that human-generated protocols are also sensitive
