@@ -47,6 +47,7 @@ were run on Amazon EC2 and on an 80-core and 48-core server at MIT. In
 wall-clock time, each RemyCC took a few hours to be constructed.
 The RemyCCs contain between 162 and 204 rules each.
 
+\begin{comment}
 We also used Remy to assess how performance varies based on the
 specificity of the assumptions used at design time, by building
 one RemyCC for a link speed known exactly \emph{a priori}, and
@@ -66,6 +67,7 @@ queue capacity & unlimited & \\
 \end{tabular}
 
 \vspace{\baselineskip}
+\end{comment}
 
 In most experiments, all the sources run the same protocol; in some,
 we pick different protocols for different sources to investigate how
@@ -121,15 +123,13 @@ round-trip time & 150~ms & exact \\
 queue capacity & 1000 pkts (tail drop) \\
 \end{tabular}
 
-\item {\bf Cellular wireless:} We measured the downlink capacity of the
-  Verizon and AT\&T LTE cellular services while mobile, by carefully
-  saturating the downlink (without causing buffer overflow) and
-  recording when packets made it to the user device. We recreate this
-  link within ns-2, queueing packets until they are released to the
+\item {\bf Cellular wireless:} We used the Saturator traces (Section~\ref{ss:saturator}) of the
+  Verizon and AT\&T LTE cellular services. We recreated these
+  links within ns-2, queueing packets until they are released to the
   receiver at the same time they were released in the trace. This
-  setup probes the RemyCC's resilience to ``model mismatch'' --- in
+  setup partly probes the RemyCC's resilience to ``model mismatch'' --- in
   both the Verizon and AT\&T traces, throughput and round-trip time
-  were outside the limits of the RemyCC design range.
+  strayed outside the limits of the RemyCC design range.
   
 %\vspace{\baselineskip}
 
