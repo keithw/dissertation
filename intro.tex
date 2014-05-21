@@ -264,20 +264,20 @@ Figure~\ref{f:tpdelaydb4} (a 15~Mbps link with 8 contending nodes):
 \end{center}
 \end{minipage}
 
-More broadly, automated protocol-design tools lead to a style of
-design where the value of information can be evaluated empirically. We
-may give Remy access to a new congestion signal---either derivable
-from existing TCP acknowledgments from the receiver, or based on new
-information from the network---and measure how much the resulting
-congestion-control algorithm improves over the status quo. Similarly,
-we can knock out an existing signal and rerun Remy to measure how much
-the loss hurts the resulting algorithm's performance.
+More broadly, automated protocol-design tools have led us to a style
+of design where the value of information can be evaluated
+empirically. We may give Remy access to a new congestion
+signal---either a function of existing TCP acknowledgments from the
+receiver, or based on a new source of information---and measure
+how much the resulting congestion-control algorithm improves over the
+status quo. Similarly, we can knock out an existing signal and rerun
+Remy to measure how much the loss would hurt performance.
 
-After investigating many candidate signals, this design process led us
-to computer-generated algorithms that collect four congestion signals
+After investigating many candidate signals, we have ended up with
+computer-generated algorithms that collect four congestion signals
 (Section~\ref{ss:signals}). \textbf{None of these signals} is
-collected by existing TCP congestion-control algorithms, but our
-simulation experiments indicate they are each individually valuable on
+collected by existing TCP congestion-control schemes. Our
+simulation experiments indicate each signal is individually valuable on
 top of the other three.
 
 \subsection{Windowing and pacing work well together}
