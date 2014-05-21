@@ -226,7 +226,7 @@ We investigated the consequences of designing a congestion-control
 protocol with the knowledge that some cross-traffic may the product of
 pre-existing incumbent protocols.
 
-This question has considerable practical relevance; in practice, the
+This question has considerable practical relevance: outside of an internal network controlled by a small number of parties, the
 developer of a new network protocol will rarely be able to arrange a
 ``flag day'' when all endpoints switch to the new
 protocol.\footnote{There has not been a ``flag day'' on the Internet
@@ -235,7 +235,7 @@ protocol.\footnote{There has not been a ``flag day'' on the Internet
 On the broad Internet today, cross-traffic will typically be the
 product of traditional loss-triggered TCP congestion-control
 protocols, such as NewReno or Cubic. This status quo presents a
-serious problem for new protocols that seek to perform differently or
+problem for new protocols that seek to perform differently or
 that try to avoid building up standing queues inside the network.
 
 Some protocols, such as Vegas~\cite{vegas}, perform well when
@@ -299,7 +299,7 @@ TCP-awareness allows the RemyCC to claim its fair share of the link
 and reduces the queueing delay experienced both by itself and by TCP
 NewReno.
 
-The results suggest that new delay-minded protocols \emph{can} avoid
+The results indicate that new delay-minded protocols \emph{can} avoid
 being squeezed out by traditional loss-triggered TCP, but building in
 this behavior comes at a cost to performance in the absence of TCP
 cross-traffic.

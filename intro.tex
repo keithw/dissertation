@@ -109,7 +109,7 @@ of congestion control.
 By ``showing our work'' clearly enough for a computer to create the
 design, tweaking a protocol's assumptions becomes a matter of changing
 the inputs to a computer program and running it again. My colleagues
-and I have found that this approach yields better peformance than
+and I have found that this approach yields better performance than
 conventional protocols, while allowing adjacent layers to evolve more
 freely. It's not clear when computer-generated protocols will be
 practically deployed on the broad Internet, but what computers can
@@ -169,10 +169,11 @@ is a protocol-design tool that takes, as input, a set of assumptions
 about the uncertain network and workload, and an objective to pursue
 on behalf of the application.
 
-On a simulated 15~Mbps link with eight senders contending and an RTT
-of 150~ms, a computer-generated congestion-control algorithm achieved
-the following improvements in median throughput and reductions in
-median queueing delay over these existing protocols:
+On a simulated 15~Mbps link with eight senders contending and a
+round-trip time (RTT) of 150~ms, a computer-generated
+congestion-control algorithm achieved the following improvements in
+median throughput and reductions in median queueing delay over these
+existing protocols:
 
 \begin{center}
 
@@ -205,7 +206,7 @@ algorithms, we have been able to develop an intuition as to what
 successful new designs might look like and why Sprout and Remy are
 able to outperform current protocols.
 
-\subsection{Algorithms should collect rate estimates as signals}
+\subsection{Algorithms could benefit from collecting rate estimates}
 
 Today's congestion-control protocols generally pay attention to a
 small number of signals derived from packets arriving at the receiver,
@@ -242,7 +243,7 @@ Cubic. From Figure~\ref{f:allgraphs} (Verizon LTE Downlink):
 \end{minipage}
 %\end{figure}
 
-\vspace{\baselineskip}
+\vspace{0.85 \baselineskip}
 \enlargethispage{\baselineskip}
 
 %\begin{figure}
@@ -255,7 +256,7 @@ RemyCC, measures the \textbf{rate} of acknowledgment arrivals, and the
 in those acknowledgments. We can quantify the value of these signals
 by removing one of them and rerunning the optimization process. The
 results are markedly worse with either signal removed.  From
-Figure~\ref{f:tpdelaydb4} (a 15~Mbps link with 8 contending nodes):
+Figure~\ref{f:tpdelaydb4}:
 %}
 
 \begin{center}
@@ -264,7 +265,9 @@ Figure~\ref{f:tpdelaydb4} (a 15~Mbps link with 8 contending nodes):
 \end{center}
 \end{minipage}
 
-More broadly, automated protocol-design tools have led us to a style
+\newpage
+
+More broadly, computer-generated protocols have led us to a style
 of design where the value of information can be evaluated
 empirically. We may give Remy access to a new congestion
 signal---either a function of existing TCP acknowledgments from the
@@ -276,11 +279,136 @@ Remy to measure how much the loss would hurt performance.
 After investigating many candidate signals, we have ended up with
 computer-generated algorithms that collect four congestion signals
 (Section~\ref{ss:signals}). \textbf{None of these signals} is
-collected by existing TCP congestion-control schemes. Our
+collected by traditional TCP congestion-control schemes. Our
 simulation experiments indicate each signal is individually valuable on
 top of the other three.
 
 \subsection{Windowing and pacing work well together}
 
+Traditional congestion-control algorithms are window-based and
+ack-clocked.~\cite{Srikant} Some proposed algorithms use
+\emph{pacing}---transmitting packets according to an internal clock at
+the sender---but the performance of these algorithms can display
+counter-intuitive weaknesses.~\cite{understandingpacing}
+
+After studying the behavior of Remy's algorithms and examining their
+internal logic, we found they often behave as a fine-grained
+hybrid of these two techniques, qualitatively different in behavior
+than prior window- or pacing-based algorithms. In steady state, the
+RemyCCs alternate between windowing and
+pacing behavior. Within any interval that is at least 2 RTTs, some of
+the algorithm's transmissions will have been gated by a windowing
+constraint (waiting until the congestion window is larger than the
+number of packets in flight), and some will have been gated by a
+pacing constraint (waiting until the last packet transmitted was sent
+long enough ago).
+
+In practice, this hybrid behavior tends to produce quicker convergence to a
+fair allocation of network resources when a flow starts or finishes
+than traditional TCP-like schemes. We suspect there may be more to say
+on the topic of ``windowing vs.~pacing'' if new algorithms similarly
+attempt to use both techniques nearly concurrently.
+
+\subsection{TCP-friendliness carries a benefit, but also a cost}
+
+Congestion-control protocols are often evaluated for their
+TCP-friendliness~\cite{friendlysurvey}, or in other words, for how
+well they share a contended network resource with traditional TCP
+flows as another TCP would.  By default, RemyCCs do not
+play well with TCP on the same bottleneck---they are too deferential
+and end up receiving less than their fair share.\footnote{RemyCCs
+  generally try to keep standing queues small, both because we provide
+  Remy with an objective that penalizes excess delay, but also because
+  the shorter the queueing delay, the quicker the convergence time and
+  the greater the throughput available to new flows. A long-running
+  traditional TCP flow will work to fill queues until they overflow.}
+
+This can be corrected, by telling Remy explicitly to assume a nonzero
+risk that its algorithm may be contending with a traditional TCP
+flow. In that case, the resulting RemyCCs do manage to claim their
+fair share of the link (Figure~\ref{fig:tcpheterog}). But this
+TCP-friendliness comes at a cost. By making the RemyCC more aggressive
+in order to match up with TCP, the protocol ends up creating more
+of a standing queue when it shares the network only
+with other RemyCCs of the same type. From Figure~\ref{fig:tcphomog}:
+
+\begin{center}
+\includegraphics[width=0.75 \textwidth]{homo-3.pdf}
+\end{center}
+
+In other words, TCP-friendliness is a beneficial property \emph{when
+  traditional TCP flows may be present on the same bottleneck}. But it
+imposes a measurable cost in ``clean-slate'' designs. On internal networks
+under the control of one entity, this may be worth taking into account.
+
+\subsection{Assumptions about link rates and multiplexing are important}
+
+We used Remy as a formalized model of the protocol-design process, to
+ask rigorously: how faithfully do protocol designers really need to
+understand the networks they design for?
+
+We found that when modeling the network and link layers, it was
+important for the designer's assumptions about \emph{some} network
+parameters---the bottleneck link rate and the maximum degree of
+multiplexing at the bottleneck---to include the true values of those
+parameters.
+
+In one experiment, we asked Remy to generate four different
+congestion-control protocols, given different amounts of uncertainty
+in the prior assumptions about the link rate: two-fold uncertainty,
+ten-fold, hundred-fold, or thousand-fold. We then ran each protocol over a
+broad range of actual link rates.
+
+We found that performance fell dramatically when the link rate drifted
+outside an algorithm's ``assumed'' range. It was possible for a
+Remy-generated algorithm to outperform traditional algorithms over the
+full thousand-fold range---but \textbf{only} when this possibility had
+been included in the algorithm's prior assumptions. Algorithms with
+more limited imagination fared poorly. From Figure~\ref{fig:breadth}:
+
+\begin{center}
+\includegraphics[width=0.75 \columnwidth]{oprange-manual.pdf}
+\end{center}
+
+The results suggest that human-generated protocols are also sensitive
+to prior assumptions---the performance of Cubic-over-sfqCoDel trailed
+off at higher link rates, suggesting this scheme may be making an implicit
+assumption about the bandwidth-delay product that no longer holds at
+such rates. However, it would be challenging to state explicitly the
+assumptions of a mechanism like Cubic-over-sfqCoDel.
+
+Among Remy-designed schemes, we also found considerable sensitivity to
+prior assumptions about the maximum degree of multiplexing at a
+bottleneck link. By contrast, we found less sensitivity to prior
+assumptions about the expected distribution of round-trip times or the
+topology of the network (Section~\ref{ss:topological}).
+
 %\end{figure}
 
+\section{Congestion control for all}
+
+Since the 1980s, congestion control has been a well-studied topic in
+the networking community. Its importance to the Internet may still be
+growing. Google is putting congestion control in its Chrome Web
+browser, as part of the QUIC project to send Web traffic over UDP and
+to allocate limited network resources in a way that optimizes
+application-specific objectives (e.g., the Web ``speed index'').
+
+Netflix, said to account for the majority of Internet traffic in the
+United States, is working on improving its congestion control in the
+context of rate selection for progressive-download video, after
+research findings that its existing algorithm could produce poor results.~\cite{huang2012confused}
+
+Meanwhile, ``big data'' batch processing in specialized datacenters
+continues to explode. Optimizing the communications of computers
+connected by a datacenter switching fabric---again, in order to
+achieve application-specific objectives---has drawn considerable
+research and commercial effort~\cite{dctcp, pfabric}.
+
+I believe that application needs and network behaviors will continue
+to evolve as the Internet keeps growing and maturing. Congestion
+control, and the transport layer generally, could adapt gracefully to
+this innovation if they were merely a \emph{function} of a designer's
+network assumptions and application-specific goals. Sprout and Remy
+represent the first steps of showing what that would look
+like.
