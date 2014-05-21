@@ -1,0 +1,77 @@
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'pointplot-withhull.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{507.67998047bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.69335017)%
+    \put(0,0){\includegraphics[width=\unitlength]{pointplot-withhull.pdf}}%
+    \put(0.75177041,0.48932964){\color[rgb]{0,0,0.50196078}\makebox(0,0)[lb]{\smash{Sprout}}}%
+    \put(0.7144432,0.65045315){\color[rgb]{0,0,0.50196078}\makebox(0,0)[lb]{\smash{Omniscient}}}%
+    \put(0.10719778,0.26947108){\color[rgb]{0,0,0.50196078}\makebox(0,0)[lb]{\smash{Skype}}}%
+    \put(0.26272773,0.31500642){\color[rgb]{0,0,0}\rotatebox{40.20053346}{\makebox(0,0)[lb]{\smash{Better}}}}%
+    \put(0.08446971,0.08556423){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.08446971,0.1977609){\makebox(0,0)[rb]{\smash{1}}}%
+    \put(0.08446971,0.30995756){\makebox(0,0)[rb]{\smash{2}}}%
+    \put(0.08446971,0.4223118){\makebox(0,0)[rb]{\smash{3}}}%
+    \put(0.08446971,0.53450847){\makebox(0,0)[rb]{\smash{4}}}%
+    \put(0.08446971,0.64670513){\makebox(0,0)[rb]{\smash{5}}}%
+    \put(0.03745286,0.30250983){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput (Mbps)}}}}%
+    \put(0.73558855,0.05719991){\makebox(0,0)[b]{\smash{100}}}%
+    \put(0.24520088,0.05719991){\makebox(0,0)[b]{\smash{1000}}}%
+    \put(0.31962392,0.02197117){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Delay (ms @ 95th percentile)}}}%
+    \put(0.58785654,0.05719991){\makebox(0,0)[b]{\smash{200}}}%
+    \put(0.39165892,0.05719993){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{500}}}%
+    \put(0.88236173,0.05719991){\makebox(0,0)[b]{\smash{50}}}%
+    \put(0.95310088,0.08556423){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.95310088,0.1977609){\makebox(0,0)[rb]{\smash{1}}}%
+    \put(0.95310088,0.30995756){\makebox(0,0)[rb]{\smash{2}}}%
+    \put(0.95310088,0.4223118){\makebox(0,0)[rb]{\smash{3}}}%
+    \put(0.95310088,0.53450847){\makebox(0,0)[rb]{\smash{4}}}%
+    \put(0.95310088,0.64670513){\makebox(0,0)[rb]{\smash{5}}}%
+  \end{picture}%
+\endgroup%

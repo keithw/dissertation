@@ -1,0 +1,59 @@
+\section{Sprout in context: the protocol-design contest}
+\label{s:cc-contest}
+
+In March and April of 2013, we ran a contest in MIT's graduate course in computer
+networks to develop the ``best'' control protocol for a single long flow
+running over a cellular network. Over a two-week period, we asked
+students to develop algorithms that maximized the throughput divided
+by the delay, also known as the ``power'' of a congestion-control
+algorithm.
+
+Forty students participated in the contest. At the outset, we gave
+students a ``training'' trace from the Verizon LTE network and
+Sprout's source code, and set up a dynamic leaderboard that showed the
+best performance of every other student thus far, as well as results
+from Skype and Sprout.\footnote{We also provided students with a
+  second training trace to evaluate the robustness of their candidate
+  algorithms.} During the course of the contest, the students made
+almost 3,000 attempts to maximize power over the Verizon trace.
+
+At the end of the two-week period, we froze the students' final
+submitted algorithms and collected a fresh trace with the
+Saturator, again while driving in greater Boston. The final results of the
+contest were determined by running each of the submissions, and
+Sprout, over the newly-collected trace. Teams that performed well on
+this final evaluation were rewarded with gift certificates, and two
+top-performing teams became co-authors on a forthcoming journal
+publication describing the contest results and their
+winning algorithms~\cite{cc-contest}.
+
+\begin{figure}
+\caption{Sprout, Skype, and 2,994 student-generated protocols running
+  over an emulated Verizon LTE network trace. Sprout is near the
+  efficient frontier determined empirically by the 40 students who
+  participated in the contest. ``Omniscient'' represents the best
+  achievable performance given foreknowledge of the times when packets
+  will be delivered from the bottleneck queue.}
+\vspace{\baselineskip}
+\def\svgwidth{\columnwidth}\input{pointplot-withhull.pdf_tex}
+\label{fig:convex-hull}
+\end{figure}
+
+Figure~\ref{fig:convex-hull} shows the performance of all of the
+nearly 3,000 student-generated algorithms on the training trace. There
+can be no assurance that the algorithms actually map out the range of
+achievable throughput-delay tradeoffs. Our only rigorous outer bound
+is the point labeled ``Omniscient,'' which represents the best
+possible performance given foreknowledge of the link, so that packets
+arrive at the queue exactly when the link is able to dequeue and
+deliver the packet.
+
+Nonetheless, if we treat the student submissions---trained on this
+trace---as a proxy for the realizable range of throughput-delay
+tradeoffs, Sprout was near the efficient frontier, despite having been
+frozen before the trace was collected.
+
+The results suggest that there may be an unavoidable tradeoff between
+throughput and delay on this problem, and therefore no ``one size fits
+all'' solution. We explore this notion further in
+Chapter~\ref{chap:remy}.
