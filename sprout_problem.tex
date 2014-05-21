@@ -54,9 +54,9 @@ rate suddenly increases, leading to extremely high IP-layer packet
 loss rates (this problem is observed in one
 provider~\cite{Mahajan12}).
 
-The high delays in cellular wireless networks cannot simply be blamed
-on bufferbloat, because there is no single buffer size that will
-always work. It is also not simply a question of using an appropriate
+For this reason, the queueing delays in cellular wireless networks cannot simply be blamed
+on bufferbloat---there is no single buffer size that will
+produce acceptable results across widely varying link conditions. It is also not simply a question of using an appropriate
 Active Queue Management (AQM) scheme, because the difficulties in
 picking appropriate parameters are well-documented and become harder
 when the available rates change quickly, and such a scheme must be
