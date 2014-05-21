@@ -72,7 +72,7 @@
     \put(0.3127859,0.15912356){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Facetime}}}%
     \put(0.6896087,0.12056723){\color[rgb]{1,0,0}\makebox(0,0)[lb]{\smash{\color{red}Google Hangout}}}%
     \put(0.78413399,0.25613633){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{\color{ForestGreen}Vegas}}}%
-    \put(0.76476698,0.38921794){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}\bf This work (Sprout)}}}%
+    \put(0.90335666,0.38921794){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\color{blue}\bf Sprout}}}%
     \put(0.10522228,0.43736899){\color[rgb]{0,0,0}\makebox(0,0)[rb]{\smash{6000}}}%
     \put(0.32439189,0.24548711){\rotatebox{40.20053383}{\makebox(0,0)[lb]{\smash{\large Better}}}}%
   \end{picture}%

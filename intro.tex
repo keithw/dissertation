@@ -213,30 +213,56 @@ or acknowledgments arriving back at the sender. Classical TCP schemes,
 such as NewReno~\cite{newreno} and Cubic~\cite{cubic}, attempt to
 detect packet loss as a proxy for in-network buffer
 overflow. Delay-based schemes such as Vegas~\cite{vegas} detect
-increasing round-trip delay, as a proxy for growing standing queues
+increasing round-trip delay as a proxy for growing standing queues
 inside the network.
 
-Researchers and practitioners have proposed that the network should
-provide additional information helpful for inferring the presence of
-congestion~\cite{ecn,xcp,rcp}, but these schemes have not been widely
-deployed.
+Researchers and practitioners have proposed that the Internet provide
+additional information helpful for inferring the presence of
+congestion~\cite{ecn,xcp,rcp,vcp}, but these schemes have not been
+widely deployed. Sprout and Remy have found that more useful signals
+can already be gleaned from today's networks. In particular, estimates
+of the \emph{rates} of packet transmission and reception proved to be
+crucial to helping these systems outperform existing algorithms.
 
-Sprout and Remy have found that more useful information is available
-from the data already provided by today's networks. In particular,
-estimates of the rates of packet transmission and reception proved to
-be crucial to helping these systems outperform existing algorithms.
+%\begin{figure}
+%\caption{
+\noindent \begin{minipage}{\textwidth}
 
-\begin{figure}
-\caption{Sprout measures the \textbf{rate} of packet arrivals at the
-  receiver, forecasts the time required to drain the current queue,
-  and tries to steer this quantity not to exceed a tenth of a
-  second. Based on this technique, Sprout achieves less end-to-end
-  delay than the other algorithms, while achieving almost as much
-  throughput as TCP Cubic. From Figure~\ref{f:allgraphs} (Verizon LTE
-  Downlink).}
+\textcolor{white}{.}\hspace{\parindent} Sprout measures the \textbf{rate} of packet arrivals at the receiver,
+forecasts the time required to drain the current queue, and tries to
+steer this quantity not to exceed a tenth of a second. Based on this
+technique, Sprout achieves less end-to-end delay than the other
+algorithms, while achieving close to the throughput of TCP
+Cubic. From Figure~\ref{f:allgraphs} (Verizon LTE Downlink):
+%}
 
 \vspace{\baselineskip}
 
 \def\svgwidth{\textwidth}\footnotesize\import{dotgraphs3/}{VerizonLTE-Downlink-minus1.pdf_tex}
-\end{figure}
+\end{minipage}
+%\end{figure}
+
+\vspace{\baselineskip}
+\enlargethispage{\baselineskip}
+
+%\begin{figure}
+%\caption{
+\noindent \begin{minipage}{\textwidth}
+
+\textcolor{white}{.}\hspace{\parindent} A Remy-generated algorithm, or
+RemyCC, measures the \textbf{rate} of acknowledgment arrivals, and the
+\textbf{rate} of transmission implied by the echoed sender timestamps
+in those acknowledgments. We can quantify the value of these signals
+by removing one of them and rerunning the optimization process. The
+results are markedly worse with either signal removed.  From
+Figure~\ref{f:tpdelaydb4}:
+%}
+
+\begin{center}
+%\includegraphics[width=0.8 \columnwidth]{eth8-annotated.pdf}
+\def\svgwidth{0.8 \textwidth}\footnotesize\input{eth8-annotatedb.pdf_tex}
+\end{center}
+\end{minipage}
+
+%\end{figure}
 

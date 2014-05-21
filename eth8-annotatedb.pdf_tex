@@ -1,0 +1,81 @@
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'eth8-annotatedb.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{453.87875977bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.79812111)%
+    \put(0,0){\includegraphics[width=\unitlength]{eth8-annotatedb.pdf}}%
+    \put(0.04231926,0.09802227){\makebox(0,0)[lb]{\smash{0.4}}}%
+    \put(0.04231926,0.19337814){\makebox(0,0)[lb]{\smash{0.6}}}%
+    \put(0.04231926,0.28873396){\makebox(0,0)[lb]{\smash{0.8}}}%
+    \put(0.06436879,0.38408982){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.04231926,0.47944568){\makebox(0,0)[lb]{\smash{1.2}}}%
+    \put(0.04231926,0.57480157){\makebox(0,0)[lb]{\smash{1.4}}}%
+    \put(0.04231926,0.67015743){\makebox(0,0)[lb]{\smash{1.6}}}%
+    \put(0.04231926,0.76551329){\makebox(0,0)[lb]{\smash{1.8}}}%
+    \put(0.97311333,0.04250084){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.79579724,0.04250084){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.61848114,0.04250084){\makebox(0,0)[lb]{\smash{4}}}%
+    \put(0.44098884,0.04250084){\makebox(0,0)[lb]{\smash{8}}}%
+    \put(0.2563143,0.04250084){\makebox(0,0)[lb]{\smash{16}}}%
+    \put(0.07899825,0.04250084){\makebox(0,0)[lb]{\smash{32}}}%
+    \put(0.01915779,0.32709156){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Throughput (Mbps)}}}}%
+    \put(0.41420958,0.00548655){\makebox(0,0)[lb]{\smash{Queueing delay (ms)}}}%
+    \put(0.61978474,0.41368948){\rotatebox{40.20053383}{\makebox(0,0)[lb]{\smash{\large Better}}}}%
+    \put(0.38225177,0.19347719){\makebox(0,0)[lb]{\smash{NewReno}}}%
+    \put(0.67148484,0.17899062){\makebox(0,0)[lb]{\smash{Vegas
+}}}%
+    \put(0.31035055,0.39669552){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Cubic}}}%
+    \put(0.49308069,0.30481746){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Compound}}}%
+    \put(0.37844488,0.50802913){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{XCP}}}%
+    \put(0.11048584,0.45648992){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Cubic/sfqCoDel}}}%
+    \put(0.73552712,0.73083052){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\bf RemyCC}}}%
+    \put(0.86980413,0.63839804){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\bf RemyCC}}}%
+    \put(0.86096888,0.47494521){\color[rgb]{0,0,1}\makebox(0,0)[lb]{\smash{\bf RemyCC}}}%
+  \end{picture}%
+\endgroup%
