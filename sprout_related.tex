@@ -13,7 +13,7 @@ high rate variations.
 Early TCP variants such as Tahoe and Reno~\cite{Jacobson88} do not
 explicitly adapt to delay (other than from ACK clocking), and require
 an appropriate buffer size for good performance. TCP
-Vegas~\cite{Brakmo94}, FAST~\cite{FAST}, and Compound TCP~\cite{CTCP}
+Vegas~\cite{vegas}, FAST~\cite{fasttcp}, and Compound TCP~\cite{compound}
 incorporate round-trip delay explicitly, but the adaptation is
 reactive and does not directly involve the receiver's observed rate.
 
@@ -31,7 +31,7 @@ Schemes such as ``TCP-friendly'' equation-based
 rate control~\cite{ebcc} and binomial congestion
 control~\cite{binomial} exhibit slower transmission rate variations
 than TCP, and in principle could introduce lower delay, but perform
-poorly in the face of sudden rate changes~\cite{slowcc-dynamic}.
+poorly in the face of sudden rate changes~\cite{slowcc}.
 
 Google has proposed a congestion-control scheme~\cite{WebRTCdraft} for
 the WebRTC system that uses an arrival-time filter at the receiver,
