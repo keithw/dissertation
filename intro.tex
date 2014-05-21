@@ -2,7 +2,7 @@
 \label{chap:intro}
 
 \begin{figure}
-\caption{The Internet's four-layer stack model}
+\caption{The Internet's four-layer model}
 \label{f:stack}
 \begin{centering}
 \includegraphics{layers.pdf}
@@ -27,43 +27,42 @@
 
 Over the last 25 years, the Internet has transformed from an academic
 networking experiment into a global utility with billions of
-users. With this rise, every layer of the Internet
+users. As part of this transformation, every layer of the Internet
 ``stack'' has seen dramatic change.
 
-At the \textbf{link} layer, technologies that did not exist 25 years
+At the link layer, technologies that did not exist 25 years
 ago now dominate---including wireless local-area networks (Wi-Fi),
 cellular networks, datacenter interconnects, and transoceanic links
 with high delay.
 
-One layer up, at the \textbf{Internet} layer, mobility is now
+One layer up, at the Internet layer, mobility is now
 ubiquitous. User devices regularly change their interface IP addresses
 as they roam from network to network.
 
-At the top layer of the Internet stack---the \textbf{application}
+At the top layer of the Internet stack---the application
 layer---none of the dominant applications of today existed 25 years
-ago, including the World Wide Web and its short flows,
+ago, including the World Wide Web and its short-length flows,
 progressive-download video applications (e.g., YouTube and Netflix),
 and real-time streaming video (e.g., Skype and Facetime).
 
-The whole Internet has had to grapple with this continuous
-evolution. How should the protocols of the \textbf{transport} layer,
+All of the Internet has had to grapple with this continuous
+evolution. How should the protocols of the transport layer,
 sitting in the middle of the stack between the application and the
-Internet, adapt to evolving application demands above them and
+Internet, adapt to changing applications above them and
 evolving networks below?
 
-One legitimate answer is that these transport-layer protocols won't be
-asked to adapt at all. If the network or applications evolve, our
-current protocols will either be acceptable or not when run on the new
-network or in service of the new application. If a protocol works
-adequately, all is well. If not, we can simply stop using the protocol
-and design a fresh one that matches the new circumstances.
+One legitimate answer may be that transport-layer protocols need not
+adapt. If the network or applications evolve, and a transport
+protocol no longer works adequately alongside then, we can simply stop
+using the protocol and design a fresh one that matches the new
+circumstances.
 
-This approach may sound wasteful, but it describes the extraordinarily
-successful path taken over the last 25 years. Looking at just one
+This approach broadly characterizes the Internet's extraordinarily
+successful path over the last 25 years. Looking at just one
 function of the transport layer---congestion control, the job of
 dividing up the network's resources among contending
 users---researchers have accommodated new applications and network
-behaviors by devoting considerable effort to develop newer and newer
+behaviors by devoting considerable effort to develop new
 mechanisms, at least 40 in total so far (Figure \ref{f:march}).
 
 Despite its demonstrable success, this approach can have downsides. In
@@ -78,25 +77,25 @@ Linux), it's difficult to state the assumptions that the transport
 makes about lower layers and to predict when those assumptions would
 no longer hold. This presents a challenge for link-layer designers who
 wish to design a new networking technology. Because of Cubic's
-popularity, it can be a \emph{de facto} requirement that Cubic perform
+popularity, it has become a \emph{de facto} requirement that Cubic perform
 well over any new network. In effect, this means that the designer of
 the new link layer must try to satisfy Cubic's implicit assumptions in
 order to achieve adequate performance.
 
-This has led to the ``bufferbloat''\cite{bufferbloat} problem, which
-comes from a link layer's attempt to hide losses from the transport,
-on the grounds that the transport will assume that losses are a signal
-to slow down. It has also led to a lack of parallelism in Internet
-routing---flows only take one path, even if speedups might be
+This has led to the ``bufferbloat''\cite{bufferbloat} problem:
+believing that the transport layer will interpret losses as a
+signal to slow down, the link layer tries to drop packets as
+rarely as possible. It has also led to a lack of parallelism in
+Internet routing---flows only take one path, even if speedups might be
 available by splitting flows across multiple routes---on the grounds
-that the transport protocol probably assumes that out-of-order packets
-are a pathology.
+that the transport protocol might interpret out-of-order packets
+as a pathology.
 
-On the flip side, it is nontrivial to adjust the assumptions made by
-the transport layer. There's no clear way to tweak the assumptions and
-then retrace the same design process that was followed by a protocol's
-designers, in order to explore the mechanism they would have produced
-given a different starting point.
+On the flip side, it is usually impossible to adjust the transport
+layer's assumptions in order to accommodate a new kind of
+link. There's no way to tweak the assumptions and then retrace the
+same design process that the protocol's designers followed, to find the
+mechanism they would have produced given a different starting point.
 
 %\section{Showing our work in protocol design}
 
