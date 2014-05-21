@@ -1,1 +1,69 @@
-\chapter{Discussion (XXX TBA)}
+\chapter{Discussion}
+
+The practical impact of Sprout and Remy so far remains
+preliminary. There have been several experiments on Sprout conducted
+by companies interested in using it as a control algorithm for
+videoconferencing or screen-sharing software. Generally speaking, I understand these
+experiments have confirmed the ones in this thesis, under
+the assumption that Sprout's request for bytes from the application
+can always be satisfied.
+
+However, in practice, coupling Sprout to an actual video coder has
+presented several new challenges. Real video coders generally do not
+have the agility to produce frames of exactly the requested coded
+size, immediately on demand. Today's videoconferencing applications
+typically allow the video coder to ``drive'' the application, coding and
+sending video at a particular nominal bit rate until the transport
+receives definitive evidence of congestion. Flipping that around---so
+that Sprout's stochastic forecasts can ``drive'' the video
+coder---may require changes to the video coder to be able to vary
+the coded size of frames more rapidly.
+
+As for Remy, much remains unknown about the capabilities and limits of
+computer-generated algorithms, much less decentralized algorithms that
+cooperate indirectly across a network to achieve a common
+goal. Although the RemyCCs appear to work well on networks whose
+parameters fall within or near the limits of what they were prepared
+for---even beating in-network schemes at their own game and even
+when the design range spans three orders of magnitude---our ability to reason about \emph{why} they
+work is limited.
+
+We can observe apparent limit cycles with the Ratatouille tool in
+simulation and make some statements about the behavior of RemyCCs on
+new kinds of simulated networks, but we do not have a principled
+method to predict a RemyCC's performance on real-world heterogeneous
+networks with unknown link parameters, topology, and cross-traffic.
+Indeed, we have yet to run RemyCCs on real-world networks at all.
+
+Along with the rigor of the computer-generated approach come new
+challenges for protocol designers, who must figure out how to encode
+their intuitions about the problem into an explicit statement of
+assumptions and an objective. How should a protocol designer come up
+with their model of the uncertain network? Our learnability
+experiments in Chapter~\ref{chap:learnability} suggest that, even on
+networks with more-complex structure, it may be sufficient for a
+RemyCC to have been designed for the link rate and degree of
+multiplexing of its \emph{bottleneck} link only. Much work needs to be
+done, however, before we can reliably extrapolate from results on a
+two-bottleneck parking-lot topology to more-complex networks. It may
+also be possible for a RemyCC to ``learn'' different congestion
+policies for different remote IP addresses, but the cross-interaction
+between such adaptive RemyCCs---who might be executing different
+policies at runtime---will need to be studied.
+
+It was a surprising result that computer-generated end-to-end RemyCCs
+were able to outperform some of the most sophisticated human-designed
+in-network schemes, including Cubic-over-sfqCoDel and XCP. On the one
+hand, this result is encouraging---it indicates that end-to-end
+algorithms are more powerful than was previously understood,
+perhaps making it possible to preserve a ``dumb'' network with smart endpoints.
+
+In general, though, an in-network algorithm that can run on the
+bottleneck gateway and enforce fairness among flows (as sfqCoDel and
+XCP both do) is strictly more powerful than a decentralized algorithm
+that runs purely end-to-end. My colleagues and I have
+argued~\cite{sivaraman2013no} that, like endpoint congestion-control
+schemes, in-network algorithms will need to keep evolving with time. I
+expect that if similar methods to Remy are applied to the development
+of in-network algorithms, they will be able to reclaim their
+superiority over the best end-to-end algorithms.

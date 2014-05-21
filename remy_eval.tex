@@ -127,7 +127,7 @@ queue capacity & 1000 pkts (tail drop) \\
   Verizon and AT\&T LTE cellular services. We recreated these
   links within ns-2, queueing packets until they are released to the
   receiver at the same time they were released in the trace. This
-  setup partly probes the RemyCC's resilience to ``model mismatch'' --- in
+  setup partly probes the RemyCC's resilience to ``model mismatch''---in
   both the Verizon and AT\&T traces, throughput and round-trip time
   strayed outside the limits of the RemyCC design range.
   
@@ -195,8 +195,8 @@ for this connection as $\sum s_i / \sum t_i$.%  Of course, this
 We are interested in the end-to-end delay as well; the reasoning
 behind Remy's objective function and the $\delta$ parameter is that
 protocols that fill up buffers to maximize throughput are not as
-desirable as ones that achieve high throughput \emph{and} low delay
---- both for their effect on the user, who may prefer to get his
+desirable as ones that achieve high throughput \emph{and} low
+delay---both for their effect on the user, who may prefer to get his
 packets to the receiver sooner, as well as any other users who share
 the same FIFO queue.
 
@@ -311,15 +311,9 @@ a purely end-to-end scheme can outperform well-designed algorithms
 that involve active router participation.  This demonstrates that
 distributed congestion-control algorithms that explicitly maximize
 well-chosen objective functions can achieve gains over existing
-schemes.  As we will see later, however, this substantially better
-performance will not hold when the design assumptions of a RemyCC are
-contradicted at runtime.
-
-In Figures~\ref{f:tpdelaydb4} and \ref{f:tpdelaydb8}, the RemyCCs do
-not simply have better median performance --- they are also more fair
-to individual flows, in that the performance of an individual sender
-(indicated by the size of the ellipses) is more consistent in both
-throughput and delay.
+schemes.  As we will see in Section~\ref{s:oprangeperftradeoff}, this
+substantially better performance will not hold when the design
+assumptions of a RemyCC are contradicted at runtime.
 
 \begin{figure}
 %\vspace{\baselineskip}
@@ -330,13 +324,16 @@ throughput and delay.
 \label{f:trace}
 \end{figure}
 
-To explain this result, we investigated how multiple RemyCC flows
-share the network. We found that when a new flow starts, the system
-converges to an equitable allocation quickly, generally after little
-more than one RTT. Figure~\ref{f:trace} shows the sequence of
-transmissions of a new RemyCC flow that begins while sharing the link.
-Midway through the flow, the competing traffic departs, allowing
-the flow to start consuming the whole bottleneck rate.
+In Figures~\ref{f:tpdelaydb4} and \ref{f:tpdelaydb8}, the RemyCCs do
+not simply have better median performance: they also give more
+consistent throughput and delay to individual flows. To explain this
+result, we investigated how multiple RemyCC flows share the
+network. We found that when a new flow starts, the system converges to
+an equitable allocation quickly, generally after little more than one
+RTT. Figure~\ref{f:trace} shows the sequence of transmissions of a new
+RemyCC flow that begins while sharing the link.  Midway through the
+flow, the competing traffic departs, allowing the flow to start
+consuming the whole bottleneck rate.
 
 \begin{figure}
 %\vspace{\baselineskip}
@@ -599,7 +596,7 @@ but its performance trails off quickly around that value. Within the
 range of the ``10$\times$'' RemyCC, it beats Cubic-over-sfqCoDel, but
 again deteriorates when the true network violates its design
 assumptions. The results show that more-specific prior knowledge is
-helpful and improves performance --- when it happens to be correct.
+helpful and improves performance---when it happens to be correct.
 
 \begin{figure}
 %\vspace{\baselineskip}
