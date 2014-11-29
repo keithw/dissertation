@@ -76,7 +76,7 @@
     \put(0.83648491,0.04055088){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{50}}}%
     \put(0.98076292,0.04055088){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{60}}}%
     \put(0.02695381,0.24376437){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{delay (ms)}}}}%
-    \put(0.46705396,0.316015){\color[rgb]{1,0,0}\transparent{0.75294119}\makebox(0,0)[rb]{\smash{Skype}}}%
+    \put(0.46458133,0.316015){\color[rgb]{1,0,0}\transparent{0.75294119}\makebox(0,0)[rb]{\smash{Skype}}}%
     \put(0.22356744,0.19459446){\color[rgb]{0,0,1}\transparent{0.75294119}\makebox(0,0)[rb]{\smash{Sprout}}}%
     \put(0.54835986,0.00662737){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{time (s)}}}%
   \end{picture}%
